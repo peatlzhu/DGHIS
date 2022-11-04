@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Prism.Ioc;
 
 namespace DGHIS.Shell.Views
 {
@@ -13,26 +14,19 @@ namespace DGHIS.Shell.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        IEventAggregator _ea;
-        public MainWindow(IEventAggregator ea)
+     
+        public MainWindow()
         {
             InitializeComponent();
-          
-            _ea = ea;
-            //   PageEvent pageEvent = ServiceLocator.Current.TryResolve<IEventAggregator>().GetEvent<PageEvent>();
-            //pageEvent.Subscribe((p) =>
-            //{
-            //    MenuEntity menu = p.Menu;
-            //    AddPage(menu.Name, p.Page);
-            //});
-            _ea.GetEvent<PageEvent>().Subscribe(MessageReceived);
+
+            PageEvent pageEvent = ContainerLocator.Container.Resolve<IEventAggregator>().GetEvent<PageEvent>();
+            pageEvent.Subscribe((p) =>
+            {
+                MenuEntity menu = p.Menu;
+                AddPage(menu.Name, p.Page);
+            });
         }
 
-        private void MessageReceived(NavigatePage p)
-        {
-            MenuEntity menu = p.Menu;
-            AddPage(menu.Name, p.Page);
-        }
 
         private void AddPage(string name, Page page)
         {

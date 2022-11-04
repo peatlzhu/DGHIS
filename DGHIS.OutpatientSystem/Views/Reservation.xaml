@@ -29,7 +29,7 @@
         </DataTemplate>
         <DataTemplate x:Key="OperationKey">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button Name="btnEdit" Content="編輯" Background="#00FFFFFF" Style="{StaticResource MaterialDesignOutlinedButton}" Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=Page}}" CommandParameter="{Binding Path=DataContext, ElementName=btnEdit}" />
+                <Button Name="btnEdit" Content="編輯" Background="#00FFFFFF"  Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=Page}}" CommandParameter="{Binding Path=DataContext, ElementName=btnEdit}" />
                 <Button Name="btnView" Content="詳情" Margin="10,0,0,0" ToolTip="详情" Command="{Binding DataContext.ViewDetailsCommand, RelativeSource={RelativeSource AncestorType=Page}}" CommandParameter="{Binding Path=DataContext, ElementName=btnView}" />
             </StackPanel>
         </DataTemplate>

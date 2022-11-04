@@ -101,7 +101,7 @@ namespace DGHIS.Shell.ViewModels.Login
                 UserContext = response.Data;
                 AuthHttpClient.SetHttpClient(baseUrl, response.Data.Token.AccessToken);
             }
-           // ShellSwitcher.Switch<LoginWindow, MainWindow>();
+            ShellSwitcher.Switch<LoginWindow, MainWindow>();
         });
     }
 }

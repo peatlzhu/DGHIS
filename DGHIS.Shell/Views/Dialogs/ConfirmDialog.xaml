@@ -20,7 +20,7 @@
             <effects:DropShadowEffect ShadowDepth="0" Opacity="0.3" BlurRadius="15" RenderingBias="Quality" 
                                       xmlns:effects="clr-namespace:System.Windows.Media.Effects;assembly=PresentationCore" />
         </UIElement.Effect>
-        <Grid Margin="5" Background="{DynamicResource MaterialDesignLightBackground}">
+        <Grid Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition Height="Auto" />

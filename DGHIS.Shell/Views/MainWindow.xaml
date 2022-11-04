@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:cmmod="clr-namespace:DGHIS.Core.Modules;assembly=DGHIS.Core"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors" 
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         xmlns:prism="http://prismlibrary.com/" 
         xmlns:local="clr-namespace:DGHIS.Shell.Views" 
         x:Name="main" 
@@ -123,9 +122,9 @@
                             <Setter Property="Padding" Value="10,0" />
                             <Setter Property="Background" Value="{StaticResource MainBrush}" />
                         </Style>
-                        <!--<HierarchicalDataTemplate x:Key="{DataTemplateKey {x:Type cmmod:MenuEntity}}" DataType="{x:Type cmmod:MenuEntity}" ItemsSource="{Binding Path=Children}">
+                        <HierarchicalDataTemplate x:Key="{DataTemplateKey {x:Type cmmod:MenuEntity}}" DataType="{x:Type cmmod:MenuEntity}" ItemsSource="{Binding Path=Children}">
                             <TextBlock Text="{Binding Path=Name}" />
-                        </HierarchicalDataTemplate>-->
+                        </HierarchicalDataTemplate>
                     </ResourceDictionary>
                 </Menu.Resources>
                 <Menu.Style>

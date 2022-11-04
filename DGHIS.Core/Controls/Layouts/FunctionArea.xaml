@@ -12,7 +12,7 @@
             <Button Name="btnQuery" Content="查询" Margin="20,0,0,0" Command="{Binding QueryCommand}" />
         </WrapPanel>
         <WrapPanel Name="functionArea" HorizontalAlignment="Right" VerticalAlignment="Top">
-            <Button Name="btnNew" Content="新建" Style="{StaticResource MaterialDesignRaisedAccentButton}" Command="{Binding AddCommand}" />
+            <Button Name="btnNew" Content="新建"  Command="{Binding AddCommand}" />
         </WrapPanel>
     </Grid>
 </UserControl>
