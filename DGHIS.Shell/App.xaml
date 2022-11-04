@@ -1,0 +1,26 @@
+﻿<prism:PrismApplication x:Class="DGHIS.Shell.App" 
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                        xmlns:local="clr-namespace:DGHIS.Shell" 
+                        xmlns:prism="http://prismlibrary.com/">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/DGHIS.Wpf;component/Style/TextBoxStyle.xaml" />
+                <ResourceDictionary Source="/DGHIS.Wpf;component/Style/ButtonStyle.xaml" />
+                <ResourceDictionary Source="/DGHIS.Wpf;component/Style/PageIcon.xaml" />
+                <ResourceDictionary Source="/DGHIS.Wpf;component/Style/ComboBox.xaml" />
+                <ResourceDictionary Source="/DGHIS.Wpf;component/Resources/ConverterResources.xaml" />
+
+                <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />-->
+
+
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</prism:PrismApplication>

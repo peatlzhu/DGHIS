@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="images\add.png" />
+    <None Remove="images\alert.png" />
+    <None Remove="images\alert2.png" />
+    <None Remove="images\alter.png" />
+    <None Remove="images\background.jpg" />
+    <None Remove="images\details.png" />
+    <None Remove="images\icon.png" />
+    <None Remove="images\DGHIS.ico" />
+    <None Remove="images\logo.png" />
+    <None Remove="images\mainlogo.png" />
+    <None Remove="images\success.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Prism.Unity" Version="8.1.97" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DGHIS.Core\DGHIS.Core.csproj" />
+    <ProjectReference Include="..\DGHIS.OutpatientSystem\DGHIS.OutpatientSystem.csproj" />
+    <ProjectReference Include="..\DGHIS.RegisterManagement\DGHIS.RegisterManagement.csproj" />
+    <ProjectReference Include="..\DGHIS.SystemManage\DGHIS.SystemManage.csproj" />
+    <ProjectReference Include="..\DGHIS.Wpf\DGHIS.Wpf.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\add.png" />
+    <Resource Include="images\alert.png" />
+    <Resource Include="images\alert2.png" />
+    <Resource Include="images\alter.png" />
+    <Resource Include="images\background.jpg" />
+    <Resource Include="images\details.png" />
+    <Resource Include="images\icon.png" />
+    <Resource Include="images\DGHIS.ico" />
+    <Resource Include="images\logo.png" />
+    <Resource Include="images\mainlogo.png" />
+    <Resource Include="images\success.png" />
+  </ItemGroup>
+
+</Project>
