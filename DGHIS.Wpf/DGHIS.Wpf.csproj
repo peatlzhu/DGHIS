@@ -6,8 +6,46 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Style\" />
-    <Folder Include="images\" />
+    <None Remove="images\DevOps\DevOps-Boards.png" />
+    <None Remove="images\DevOps\DevOps-Overview.png" />
+    <None Remove="images\DevOps\DevOps-Pipelines.png" />
+    <None Remove="images\DevOps\DevOps-Repos.png" />
+    <None Remove="images\DevOps\DevOps-TestPlans.png" />
+    <None Remove="Resources\Fonts\demo.css" />
+    <None Remove="Resources\Fonts\demo_index.html" />
+    <None Remove="Resources\Fonts\fabric-icons.ttf" />
+    <None Remove="Resources\Fonts\iconfont.css" />
+    <None Remove="Resources\Fonts\iconfont.js" />
+    <None Remove="Resources\Fonts\iconfont.json" />
+    <None Remove="Resources\Fonts\iconfont.ttf" />
+    <None Remove="Resources\Fonts\iconfont.woff" />
+    <None Remove="Resources\Fonts\iconfont.woff2" />
+    <None Remove="Resources\Sound\desktop.ini" />
+    <None Remove="Resources\Sound\notify.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\DevOps\DevOps-Overview.png" />
+    <Content Include="Resources\Fonts\demo.css" />
+    <Content Include="Resources\Fonts\demo_index.html" />
+    <Content Include="Resources\Fonts\iconfont.css" />
+    <Content Include="Resources\Fonts\iconfont.js" />
+    <Content Include="Resources\Fonts\iconfont.json" />
+    <Resource Include="images\DevOps\DevOps-Boards.png" />
+    <Resource Include="images\DevOps\DevOps-Repos.png" />
+    <Resource Include="images\DevOps\DevOps-TestPlans.png" />
+    <Resource Include="Resources\Fonts\fabric-icons.ttf" />
+    <Resource Include="Resources\Fonts\iconfont.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Resources\Fonts\iconfont.woff" />
+    <Content Include="Resources\Fonts\iconfont.woff2" />
+    <Content Include="Resources\Sound\desktop.ini" />
+    <Content Include="Resources\Sound\notify.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\DevOps\DevOps-Pipelines.png" />
   </ItemGroup>
 
 </Project>

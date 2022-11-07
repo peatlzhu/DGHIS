@@ -14,7 +14,7 @@ namespace DGHIS.Core.Models
         /// <summary>
         /// 用戶名
         /// </summary>
-        public string Name { get; set; } = "https://DGHIS.com";
+        public string Name { get; set; } = "Admin";
 
         /// <summary>
         /// 登錄密碼

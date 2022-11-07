@@ -6,15 +6,15 @@
       xmlns:b="http://schemas.microsoft.com/xaml/behaviors" 
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       prism:ViewModelLocator.AutoWireViewModel="True" 
-      Height="400" Width="500" Title="LoginPage" Background="#FFFFFFFF" 
+      Title="LoginPage" 
       xmlns:login="clr-namespace:DGHIS.Shell.Views.Login;assembly=DGHIS.Shell">
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="Loaded">
             <b:InvokeCommandAction Command="{Binding PageLoadCommand}" />
         </b:EventTrigger>
     </b:Interaction.Triggers>
-    <Grid>
-        <Rectangle Height="100" VerticalAlignment="Top">
+    <!--<Grid>
+        --><!--<Rectangle Height="100" VerticalAlignment="Top">
             <Shape.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF2281D1" />
@@ -22,13 +22,13 @@
                     <GradientStop Color="#FF33288B" Offset="0.546" />
                 </LinearGradientBrush>
             </Shape.Fill>
-        </Rectangle>
+        </Rectangle>--><!--
         <Rectangle Width="500" Height="300" VerticalAlignment="Bottom" RadiusY="10" RadiusX="10" Fill="#FFFFFFFF">
             <UIElement.Effect>
                 <effects:DropShadowEffect BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1" Color="#FFBBBBBB" xmlns:effects="clr-namespace:System.Windows.Media.Effects;assembly=PresentationCore" />
             </UIElement.Effect>
         </Rectangle>
-        <Grid VerticalAlignment="Bottom" Margin="35,30" Height="300">
+        <Grid VerticalAlignment="Bottom" Margin="35,10,35,20" Height="300">
             <Label Content="用 戶 登 錄" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="50" Foreground="#FF808080" FontSize="24" />
             <StackPanel VerticalAlignment="Center" Margin="15">
                 <TextBox Margin="0,10"   FontFamily="Champagne &amp; Limousines" FontSize="18" Text="{Binding CurrentUser.Name, Mode=TwoWay}" />
@@ -43,5 +43,148 @@
         </b:EventTrigger>
     </b:Interaction.Triggers>
         </TextBlock>
+    </Grid>-->
+    <Grid>       
+            <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="41*" />
+            <ColumnDefinition Width="400*" />
+        </Grid.ColumnDefinitions>
+        <Border Background="Transparent"            
+                                            BorderBrush="Black"
+                                            Opacity="0.2"
+                                            BorderThickness="10"
+                                            CornerRadius="10"
+                                            Grid.ColumnSpan="2"
+                                            Margin="0,0,-0.4,0.2">
+            <Border.Effect>
+                <BlurEffect Radius="10"
+                                                        KernelType="Box"
+                                                        RenderingBias="Quality" />
+            </Border.Effect>
+        </Border>
+        <Border BorderThickness="10"
+                                            CornerRadius="10"
+                                            Opacity="1"
+                                            Margin="3,3,2.6,3.2"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch"
+                                            Background="#4058A9B6"
+                                            BorderBrush="#997FC3CE"
+                                            Grid.ColumnSpan="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="60" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="1"
+                                                        Orientation="Vertical">
+
+                    <Border CornerRadius="4"
+                                                        Margin="0,20,0,10"
+                                                        Height="50"
+                                                        Background="#FFFFFF">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="48" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0"
+                                                                    Orientation="Horizontal">
+                                <TextBlock Text="&#xE6EF;"
+                                                                       FontSize="32"
+                                                                       Margin="5,0,0,0"
+                                                                      VerticalAlignment="Center"
+                                                                       Foreground="{DynamicResource EMRCPOE.Main.Background}"
+                                                                       FontFamily="{StaticResource AppIcons}" />
+                                <Line X1="3"
+                                                                  Y1="12"
+                                                                  X2="3"
+                                                                  Y2="38"
+                                                                  Margin="2,0,2,0"
+                                                                  Stroke="{DynamicResource EMRCPOE.Main.Background}"
+                                                                  StrokeThickness="1" />
+                            </StackPanel>             
+                            <TextBox Grid.Column="1"
+                                                                 x:Name="tbxAccount"
+                                                                 Text="{Binding CurrentUser.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"                                                              
+                                                                 FontSize="22"
+                                                                 BorderThickness="0"
+                                                                 VerticalContentAlignment="Center" />
+
+                        </Grid>
+                    </Border>
+                    <Border CornerRadius="4"
+                                                        Margin="0,20,0,10"
+                                                        Height="50"
+                                                        Background="#FFFFFF">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="48" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0"
+                                                                    Orientation="Horizontal">
+                                <TextBlock Text="&#xE6EE;"
+                                                                       FontSize="32"
+                                                                       Margin="5,0,0,0"
+                                                                       VerticalAlignment="Center"
+                                                                       Foreground="{DynamicResource EMRCPOE.Main.Background}"
+                                                                       Style="{DynamicResource TextBlockAppIcons}" />
+                                <Line X1="3"
+                                                                  Y1="12"
+                                                                  X2="3"
+                                                                  Y2="38"
+                                                                  Margin="2,0,2,0"
+                                                                  Stroke="{DynamicResource EMRCPOE.Main.Background}"
+                                                                  StrokeThickness="1" />
+                            </StackPanel>                       
+                            <TextBox Grid.Column="1"
+                                                                 x:Name="password"
+                                                                 Text="{Binding CurrentUser.Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"                                                                
+                                                                 FontSize="22"
+                                                                 BorderThickness="0"
+                                                                 VerticalContentAlignment="Center"                                    
+                                                                 Style="{DynamicResource TextBoxPasswordStyle}" />
+
+                        </Grid>
+                    </Border>
+                    <Grid Margin="0,5,0,25">
+                        <Button x:Name="btnLogin"
+                                                            HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"
+                                                            Background="#FF9900"
+                                                            Foreground="#FFFFFF"
+                                                            FontSize="28"
+                                                            Width="240"
+                                                            Height="60"
+                                                            IsDefault="True"
+                                                            IsEnabled="{Binding IsEnabledLogin,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                             Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=password,Path=Text}" 
+                                                            Style="{DynamicResource ButtonLoginStyle}">
+                            <Grid>
+                                <StackPanel Orientation="Horizontal"
+                                                                        HorizontalAlignment="Left"
+                                                                        VerticalAlignment="Center">                                
+                                    <TextBlock x:Name="tblLoginEN"
+                                                                           Text="LOGIN"
+                                                                           VerticalAlignment="Center" />
+                                    <Line X1="0"
+                                                                      Y1="0"
+                                                                      X2="0"
+                                                                      Y2="38"
+                                                                      Margin="10,0,10,0"
+                                                                      Stroke="White"
+                                                                      StrokeThickness="0.5" />                             
+                                    <TextBlock x:Name="tblLoginCN"
+                                                                           Text="登录"
+                                                                           VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Grid>                 
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Page>

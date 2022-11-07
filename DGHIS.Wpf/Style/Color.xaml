@@ -1,0 +1,168 @@
+﻿
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    >
+    <ResourceDictionary.MergedDictionaries>
+
+        <ResourceDictionary>
+
+            <!--#region EMRCPOE项目最主要通用颜色 浅绿色-->
+            <Color x:Key="EMRCPOE.Major.Common.Color">#2E8A9B</Color>
+     
+
+            <!--#region EMRCPOE项目最主要通用颜色 高亮黄色色-->
+            <Color x:Key="EMRCPOE.Major.HightLight.Color">#F4AE00</Color>
+    
+            <!--#region EMRCPOE项目最主要通用颜色 白色-->
+            <Color x:Key="EMRCPOE.Major.Background.Color">#FFFFFF</Color>
+            <!--#endregion-->
+
+            <!--#region EMRCPOE项目输入性控件边框通用颜色 浅灰色-->
+            <Color x:Key="EMRCPOE.Major.InputControl.Border.Color">#ADADAD</Color>
+            <!--#endregion-->
+
+            <!--#region EMRCPOE项目容器控件边框通用颜色 浅灰色-->
+            <Color x:Key="EMRCPOE.Major.Panel.Border.Color">#D5DFE5</Color>
+            <!--#endregion-->
+
+            <!--#region EMRCPOE项目容器控件通用字体颜色 白色-->
+            <Color x:Key="EMRCPOE.Major.Panel.Foreground.Color">#FFFFFF</Color>
+            <!--#endregion-->
+
+            <!--#region 按钮颜色集合-->
+
+            <!--#region 普通按钮颜色集合-->
+
+            <!--普通按钮正常时按钮字体色-->
+            <SolidColorBrush x:Key="EMRCPOE.Button.Normal.Foreground"
+                             Color="{StaticResource EMRCPOE.Major.Common.Color}" />
+            <!--普通按钮正常时按钮边框色-->
+            <SolidColorBrush x:Key="EMRCPOE.Button.Normal.BorderBrush"
+                             Color="{StaticResource EMRCPOE.Major.Common.Color}" />
+            <!--普通按钮正常时按钮背景色-->
+            <SolidColorBrush x:Key="EMRCPOE.Button.Normal.Background"
+                             Color="Transparent" />
+            <!--普通按钮鼠标滑过时背景颜色-->
+            <SolidColorBrush x:Key="EMRCPOE.Button.MouseOver.Background"
+                             Color="{StaticResource EMRCPOE.Major.HightLight.Color}" />
+            <!--普通按钮鼠标滑过时字体颜色-->
+            <SolidColorBrush x:Key="EMRCPOE.Button.MouseOver.Foreground"
+                             Color="{StaticResource EMRCPOE.Major.Panel.Foreground.Color}" />
+            <!--普通按钮鼠标滑过时边框颜色-->
+            <SolidColorBrush x:Key="EMRCPOE.Button.MouseOver.BorderBrush"
+                             Color="{StaticResource EMRCPOE.Major.HightLight.Color}" />
+            <!--普通按钮点击按钮时按钮背景色-->
+            <SolidColorBrush x:Key="EMRCPOE.Button.Pressed.Background"
+                             Color="{StaticResource EMRCPOE.Major.HightLight.Color}" />
+            <!--普通按钮点击按钮时按钮边框色-->
+            <SolidColorBrush x:Key="EMRCPOE.Button.Pressed.BorderBrush"
+                             Color="Transparent" />
+            <!--普通按钮点击按钮时按钮字体色-->
+            <SolidColorBrush x:Key="EMRCPOE.Button.Pressed.Foreground"
+                             Color="{StaticResource EMRCPOE.Major.Common.Color}"  />
+
+            <!--#endregion普通按钮颜色集合-->
+
+            <!--#region 字体图标按钮颜色集合-->
+
+            <!--字体图标按钮正常时按钮字体色-->
+            <SolidColorBrush x:Key="EMRCPOE.IconEditButton.Normal.Foreground"
+                             Color="{StaticResource EMRCPOE.Major.Common.Color}" />
+            <!--字体图标按钮正常按钮时边框颜色-->
+            <SolidColorBrush x:Key="EMRCPOE.IconEditButton.Normal.Border"
+                             Color="{StaticResource EMRCPOE.Major.Common.Color}" />
+            <!--字体图标按钮正常按钮时背景颜色-->
+            <SolidColorBrush x:Key="EMRCPOE.IconEditButton.Normal.Background"
+                             Color="Transparent" />
+            <!--字体图标按钮鼠标滑过时背景颜色-->
+            <SolidColorBrush x:Key="EMRCPOE.IconEditButton.MouseOver.Background"
+                             Color="{StaticResource EMRCPOE.Major.HightLight.Color}" />
+            <!--字体图标按钮点击按钮时按钮背景色-->
+            <SolidColorBrush x:Key="EMRCPOE.IconEditButton.Pressed.Background"
+                             Color="{StaticResource EMRCPOE.Major.HightLight.Color}" />
+            <!--字体图标按钮点击按钮时按钮边框色-->
+            <SolidColorBrush x:Key="EMRCPOE.IconEditButton.Pressed.BorderBrush"
+                             Color="#FFFFFF" />
+            <!--字体图标按钮点击按钮时按钮字体色-->
+            <SolidColorBrush x:Key="EMRCPOE.IconEditButton.Pressed.Foreground"
+                             Color="{StaticResource EMRCPOE.Major.Common.Color}" />
+            <!--字体图标按钮鼠标滑过时字体颜色-->
+            <SolidColorBrush x:Key="EMRCPOE.IconEditButton.MouseOver.Foreground"
+                             Color="#FFFFFF" />
+            <!--字体图标按钮鼠标滑过时边框颜色-->
+            <SolidColorBrush x:Key="EMRCPOE.IconEditButton.MouseOver.BorderBrush"
+                             Color="{StaticResource EMRCPOE.Major.HightLight.Color}" />
+            <!--#endregion字体图标按钮颜色集合-->
+
+            <!--#endregion按钮颜色集合-->
+
+            <!--#region 主背景颜色-->
+            <SolidColorBrush x:Key="EMRCPOE.Main.Background"
+                             Color="{StaticResource EMRCPOE.Major.Common.Color}" />
+            <!--#endregion-->
+
+            <!--#region 二级菜单容器颜色-->
+            <SolidColorBrush x:Key="SecondaryMenu.Container.Background"
+                             Color="{StaticResource EMRCPOE.Major.Common.Color}" />
+            <!--#endregion-->
+
+            <!--#region 快捷标签容器颜色-->
+            <SolidColorBrush x:Key="ShortcutMenu.Container.Background"
+                             Color="#EFEFEF" />
+            <!--#endregion-->
+
+            <!--#region 常用标题背景颜色-->
+            <SolidColorBrush x:Key="Common.Heard.Background"
+                             Color="{StaticResource EMRCPOE.Major.Common.Color}" />
+            <!--#endregion-->
+
+            <!--#region 缓冲动画圆点背景色-->
+            <SolidColorBrush x:Key="SplashWindow.Ellipse.Static.Background"
+                             Color="{StaticResource EMRCPOE.Major.Common.Color}" />
+            <!--#endregion-->
+
+            <!--#region 登录界面标题字体颜色-->
+            <SolidColorBrush x:Key="WinLogin.Soft.Title.Foreground"
+                             Color="#FFFFCC" />
+            <!--#endregion-->
+
+            <!--#region 主界面底部状态栏标签字体颜色-->
+            <SolidColorBrush x:Key="EMRCPOE.StatusBarItem.Foreground"
+                             Color="{StaticResource EMRCPOE.Major.Common.Color}" />
+            <!--#endregion-->
+            <!--#region 主界面底部状态栏标签背景颜色-->
+            <SolidColorBrush x:Key="EMRCPOE.StatusBarItem.Background"
+                             Color="{StaticResource EMRCPOE.Major.Background.Color}" />
+            <!--#endregion-->
+
+            <!--#region 专用输入框边框颜色-->
+            <SolidColorBrush x:Key="EMRCPOE.Special.InputControl.BorderBrush"
+                             Color="{StaticResource EMRCPOE.Major.Common.Color}" />
+            <!--#endregion-->
+
+            <!--#region GroupBox系列-->
+            <!--#region GroupBox标题背景颜色-->
+            <SolidColorBrush x:Key="EMRCPOE.GroupBox.Heard.Background"
+                             Color="{StaticResource EMRCPOE.Major.Common.Color}" />
+            <!--#endregion-->
+            <!--#region GroupBox标题背景颜色-->
+            <SolidColorBrush x:Key="EMRCPOE.GroupBox.Heard.Foreground"
+                             Color="{StaticResource EMRCPOE.Major.Panel.Foreground.Color}" />
+            <!--#endregion-->
+            <!--#region GroupBox边框色颜色-->
+            <SolidColorBrush x:Key="EMRCPOE.GroupBox.Border.BorderBrush"
+                             Color="{StaticResource EMRCPOE.Major.Panel.Border.Color}" />
+            <!--#endregion-->
+            <!--#region Border边框色颜色-->
+            <SolidColorBrush x:Key="EMRCPOE.Border.Common.BorderBrush"
+                             Color="{StaticResource EMRCPOE.Major.Panel.Border.Color}" />
+            <!--#endregion-->
+            <!--#endregion-->
+
+        </ResourceDictionary>
+
+        <ResourceDictionary>
+
+        </ResourceDictionary>
+
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

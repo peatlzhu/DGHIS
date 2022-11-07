@@ -6,39 +6,193 @@
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors" 
         xmlns:region="clr-namespace:DGHIS.Constants;assembly=DGHIS"
         xmlns:prism="http://prismlibrary.com/" 
-        Icon="/images/DGHIS.ico" 
+        Icon="/images/his.ico"    
+        x:Name="winLogin"
         prism:ViewModelLocator.AutoWireViewModel="True" 
-        WindowStartupLocation="CenterScreen" 
+        WindowStartupLocation="CenterScreen"         
         Title="DGHIS" Height="728" Width="1024" 
+        ResizeMode="NoResize"
+        WindowStyle="None"   
+        WindowState="Maximized"      
+        Background="{DynamicResource EMRCPOE.Main.Background}"
         xmlns:login="clr-namespace:DGHIS.Shell.Views.Login;assembly=DGHIS.Shell">
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="Loaded">
             <b:InvokeCommandAction Command="{Binding LoadingCommand}" />
         </b:EventTrigger>
     </b:Interaction.Triggers>
-    <Control.Background>
-        <ImageBrush ImageSource="/images/background.jpg" />
-    </Control.Background>
-    <Grid>
-        <Frame prism:RegionManager.RegionName="{x:Static region:RegionNames.LoginContentRegion}" Opacity="0.95" VerticalAlignment="Center" HorizontalAlignment="Center" NavigationUIVisibility="Hidden">
-            <UIElement.Effect>
-                <effects:DropShadowEffect Opacity="0.1" ShadowDepth="3" xmlns:effects="clr-namespace:System.Windows.Media.Effects;assembly=PresentationCore" />
-            </UIElement.Effect>
-        </Frame>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="50,10,0,0">
-            <FrameworkElement.Resources>
-                <ResourceDictionary>
-                    <Style x:Key="{x:Type TextBlock}" TargetType="{x:Type TextBlock}">
-                        <Setter Property="FontSize" Value="36" />
-                        <Setter Property="Foreground" Value="#FFFFFFFF" />
-                        <Setter Property="VerticalAlignment" Value="Center" />
-                        <Setter Property="FontFamily" Value="Microsoft YaHei" />
-                    </Style>
-                </ResourceDictionary>
-            </FrameworkElement.Resources>
-            <TextBlock Text="演 示 版" />
-            <Ellipse Width="24" Height="24" Fill="#FFFFFFFF" VerticalAlignment="Center" Margin="10,0" />
-            <TextBlock Text="XXX管理系统" />
-        </StackPanel>
+    
+    <Grid>    
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="/images/bubble_bg.png"/>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"
+                              MinWidth="450"
+                              MaxWidth="480" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>     
+            <StackPanel Grid.Column="3"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Margin="0,0,0,0">
+                <Button x:Name="btnMin"
+                    Content="&#xe6bc;"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Foreground="#80000000"
+                    FontSize="25"
+                    FontFamily="{StaticResource AppIcons}" Click="btnMin_Click"  >
+                   
+                </Button>
+                <Button x:Name="btnMax"
+                        Background="Transparent"
+                        BorderThickness="0"
+                    Foreground="#80000000"
+                    FontSize="25" Click="btnMax_Click"                    
+                   >
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}"  >
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=winLogin,Path=WindowState}"
+                                         Value="Normal">
+                                    <Setter Property="FontFamily"
+                                        Value="{StaticResource AppIcons}" />
+                                    <Setter Property="Content"
+                                        Value="&#xe6f2;" />                             
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=winLogin,Path=WindowState}"
+                                         Value="Maximized">
+                                    <Setter Property="Content"
+                                        Value="&#xe6f1;" />
+                                    <Setter Property="FontFamily"
+                                        Value="{StaticResource AppIcons}" />
+                                </DataTrigger>                              
+                            </Style.Triggers>
+                        </Style>
+
+                    </Button.Style>
+                </Button>
+                <Button x:Name="btnClose"
+                    Content="&#xe6bd;"      
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Foreground="#80000000"
+                    FontSize="25"
+                    FontFamily="{StaticResource AppIcons}" Click="btnClose_Click"
+                
+                   />
+            </StackPanel>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="180" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="0" />
+                        </Grid.RowDefinitions>
+                        <Image Source="/images/logo_mlyy.png"
+                           Stretch="Uniform"                            
+                           Grid.Row="0" 
+                           Height="240"
+                           Margin="0,-30,0,-30" Panel.ZIndex="102"/>
+                        <StackPanel Grid.Row="1"
+                                Orientation="Vertical"
+                                HorizontalAlignment="Center">
+                            <TextBlock Text="Suha International Medicine"
+                                   HorizontalAlignment="Center"
+                                   Foreground="#FFFFFF" />
+                            <TextBlock Text="苏 哈 国  际 医 疗"
+                                   HorizontalAlignment="Center"
+                                   Foreground="#FFFFFF" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="1"
+                      Margin="0,40,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="15" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0"
+                          Margin="-250,0,-250,0">
+                            <StackPanel Orientation="Vertical"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Top">
+                                <!--Text="{DynamicResource WinLogin_tblSoftName}"-->
+                                <TextBlock x:Name="tblSoftName"
+                                       Text="一站式医疗管理系统"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="{DynamicResource WinLogin.Soft.Title.Foreground}"
+                                       FontSize="30"
+                                       FontWeight="Regular" />
+                                <TextBlock Text="One Stop Medical System Management System"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="{DynamicResource WinLogin.Soft.Title.Foreground}"
+                                       FontSize="14"
+                                       FontWeight="Regular" />
+                                <TextBlock x:Name="tblSoftVersion"
+                                       Text="V1.0"
+                                       Margin="20,0,0,0"
+                                       Visibility="Collapsed"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="{DynamicResource WinLogin.Soft.Title.Foreground}"
+                                       FontSize="30"
+                                       FontWeight="Regular" />
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <Frame prism:RegionManager.RegionName="{x:Static region:RegionNames.LoginContentRegion}" Opacity="0.95" VerticalAlignment="Center" HorizontalAlignment="Center" NavigationUIVisibility="Hidden" BorderThickness="0">
+                                <UIElement.Effect>
+                                    <effects:DropShadowEffect Opacity="0.1" ShadowDepth="3" xmlns:effects="clr-namespace:System.Windows.Media.Effects;assembly=PresentationCore" />
+                                </UIElement.Effect>
+                            </Frame>
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+                <Grid Grid.Row="2">
+                    <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Center">
+                        <Label x:Name="lblYear"                       
+                           ContentStringFormat="yyyy"
+                           Visibility="Collapsed" />
+                        <TextBlock Text="©"
+                               FontSize="12"
+                               Margin="0,0,0,10"
+                               Visibility="Visible"
+                               VerticalAlignment="Bottom"
+                               HorizontalAlignment="Center"
+                               Foreground="#FFFFFF" />
+                      
+                        <TextBlock Text="2019 - 2030"
+                               FontSize="12"
+                               Margin="2,0,0,10"
+                               VerticalAlignment="Bottom"
+                               HorizontalAlignment="Center"
+                               Foreground="#FFFFFF" />             
+                    
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+  
+      
+      
     </Grid>
 </Window>

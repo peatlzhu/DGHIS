@@ -23,5 +23,25 @@ namespace DGHIS.Shell.Views.Login
         {
             InitializeComponent();
         }
+
+        private void btnMin_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void btnMax_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Normal)
+                this.WindowState = WindowState.Maximized;
+            else
+                this.WindowState = WindowState.Normal;          
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+            App.Current.Shutdown();//先停止线程,然后终止进程.
+            Environment.Exit(0);//直接终止进程.
+        }
     }
 }

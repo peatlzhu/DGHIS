@@ -6,10 +6,13 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/DGHIS.Wpf;component/Resources/Fonts/Fonts.xaml" />
                 <ResourceDictionary Source="/DGHIS.Wpf;component/Style/TextBoxStyle.xaml" />
                 <ResourceDictionary Source="/DGHIS.Wpf;component/Style/ButtonStyle.xaml" />
                 <ResourceDictionary Source="/DGHIS.Wpf;component/Style/PageIcon.xaml" />
                 <ResourceDictionary Source="/DGHIS.Wpf;component/Style/ComboBox.xaml" />
+                <ResourceDictionary Source="/DGHIS.Wpf;component/Style/Color.xaml" />
+                <ResourceDictionary Source="/DGHIS.Wpf;component/Style/Style.xaml" />         
                 <ResourceDictionary Source="/DGHIS.Wpf;component/Resources/ConverterResources.xaml" />
 
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>

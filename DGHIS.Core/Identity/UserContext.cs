@@ -47,9 +47,9 @@ namespace DGHIS.Core.Identity
         public UserToken Token { get; set; }
 
         /// <summary>
-        /// 醫院名稱
+        /// 医院名称
         /// </summary>
-        public string HospitalName { get; set; } = "江湖人士醫院";
+        public string HospitalName { get; set; } = "玛丽医院";
 
         /// <summary>
         /// 顯示

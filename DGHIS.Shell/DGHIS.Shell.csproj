@@ -12,10 +12,12 @@
     <None Remove="images\alert2.png" />
     <None Remove="images\alter.png" />
     <None Remove="images\background.jpg" />
+    <None Remove="images\bubble_bg.png" />
     <None Remove="images\details.png" />
+    <None Remove="images\his.ico" />
     <None Remove="images\icon.png" />
-    <None Remove="images\DGHIS.ico" />
     <None Remove="images\logo.png" />
+    <None Remove="images\logo_mlyy.png" />
     <None Remove="images\mainlogo.png" />
     <None Remove="images\success.png" />
   </ItemGroup>
@@ -34,15 +36,10 @@
 
   <ItemGroup>
     <Resource Include="images\add.png" />
-    <Resource Include="images\alert.png" />
-    <Resource Include="images\alert2.png" />
     <Resource Include="images\alter.png" />
-    <Resource Include="images\background.jpg" />
-    <Resource Include="images\details.png" />
-    <Resource Include="images\icon.png" />
-    <Resource Include="images\DGHIS.ico" />
-    <Resource Include="images\logo.png" />
-    <Resource Include="images\mainlogo.png" />
+    <Resource Include="images\bubble_bg.png" />
+    <Resource Include="images\his.ico" />
+    <Resource Include="images\logo_mlyy.png" />
     <Resource Include="images\success.png" />
   </ItemGroup>
 

@@ -8,17 +8,16 @@
         xmlns:prism="http://prismlibrary.com/" 
         xmlns:local="clr-namespace:DGHIS.Shell.Views" 
         x:Name="main" 
+          xmlns:hc="https://handyorg.github.io/handycontrol"
         prism:ViewModelLocator.AutoWireViewModel="True" 
-        WindowStartupLocation="CenterScreen" Icon="/images/DGHIS.ico" 
-        Title="江湖郎中管理系統【首发于：DGHIS.com】" Height="768" Width="1200">
+        WindowStartupLocation="CenterScreen" Icon="/images/his.ico" 
+        Title="一站式医疗管理系统" Height="768" Width="1200">
     <Window.Resources>
         <ResourceDictionary>
-            <Color x:Key="ForeReverseColor">#FFFFFF</Color>
-            <Color x:Key="MainColor">green</Color>
+            <Color x:Key="ForeReverseColor">#FFFFFF</Color>      
             <SolidColorBrush x:Key="DeepForegroundBrush" Color="#e0e0e0" />
             <SolidColorBrush x:Key="ForeReverseBrush.OpacityTwo" Opacity="0.2" Color="{StaticResource ForeReverseColor}" />
-            <SolidColorBrush x:Key="ForeReverseBrush.OpacitySix" Opacity="0.6" Color="{StaticResource ForeReverseColor}" />
-            <SolidColorBrush x:Key="MainBrush" Color="{StaticResource MainColor}" />
+            <SolidColorBrush x:Key="ForeReverseBrush.OpacitySix" Opacity="0.6" Color="{StaticResource ForeReverseColor}" />       
             <SolidColorBrush x:Key="ForeReverseBrush" Color="{StaticResource ForeReverseColor}" />
         </ResourceDictionary>
     </Window.Resources>
@@ -29,16 +28,16 @@
     </b:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />          
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid Background="#FF008000">
+        <Grid Background="{StaticResource EMRCPOE.Main.Background}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Image Source="/images/mainlogo.png" HorizontalAlignment="Center" />
+            <Image Source="/images/his.ico" HorizontalAlignment="Center" />
             <Menu Name="MainMenu" Grid.Column="1" Margin="0,0,220,0" ItemsSource="{Binding Path=MainMenuItemsSource}">
                 <ItemsControl.ItemContainerStyleSelector>
                     <local:MenuStyleSelector />
@@ -120,7 +119,7 @@
                             <Setter Property="MinWidth" Value="{Binding Path=ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=MenuItem}}" />
                             <Setter Property="Height" Value="36" />
                             <Setter Property="Padding" Value="10,0" />
-                            <Setter Property="Background" Value="{StaticResource MainBrush}" />
+                            <Setter Property="Background" Value="{StaticResource EMRCPOE.Main.Background}" />
                         </Style>
                         <HierarchicalDataTemplate x:Key="{DataTemplateKey {x:Type cmmod:MenuEntity}}" DataType="{x:Type cmmod:MenuEntity}" ItemsSource="{Binding Path=Children}">
                             <TextBlock Text="{Binding Path=Name}" />
@@ -152,30 +151,39 @@
                 <TextBlock FontSize="14" Foreground="#FFFFFFFF" Margin="1" Text="{Binding CurrentUser.ShowText}" />
             </ItemsControl>
         </Grid>
-        <TabControl Name="MainTabPanel" BorderBrush="#FFDCDCDC" Grid.Row="1" Margin="5" BorderThickness="0">
-            <TabControl.Resources>
-                <ResourceDictionary>
-                    <Style x:Key="{x:Type TabItem}" TargetType="{x:Type TabItem}">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type TabItem}">
-                                    <Border Name="Border" Height="30" BorderThickness="1,1,1,0" BorderBrush="#FFDCDCDC" CornerRadius="4,4,0,0" Margin="3,0">
-                                        <ContentPresenter Name="ContentSite" VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Header" Margin="20,2" />
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="TabItem.IsSelected" Value="True">
-                                            <Setter TargetName="Border" Property="Border.Background" Value="#FF87CEFA" />
-                                        </Trigger>
-                                        <Trigger Property="TabItem.IsSelected" Value="False">
-                                            <Setter TargetName="Border" Property="Border.Background" Value="#FFF8F8FF" />
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ResourceDictionary>
-            </TabControl.Resources>
-        </TabControl>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <local:LeftMenu Grid.Column="0" Width="Auto" />
+            <TabControl Name="MainTabPanel" BorderBrush="#FFDCDCDC" Grid.Row="1" Margin="5" BorderThickness="0" Grid.Column="1">
+                <TabControl.Resources>
+                    <ResourceDictionary>
+                        <Style x:Key="{x:Type TabItem}" TargetType="{x:Type TabItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type TabItem}">
+                                        <Border Name="Border" Height="30" BorderThickness="1,1,1,0" BorderBrush="#FFDCDCDC" CornerRadius="4,4,0,0" Margin="3,0">
+                                            <ContentPresenter Name="ContentSite" VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Header" Margin="20,2" />
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="TabItem.IsSelected" Value="True">
+                                                <Setter TargetName="Border" Property="Border.Background" Value="#FF87CEFA" />
+                                            </Trigger>
+                                            <Trigger Property="TabItem.IsSelected" Value="False">
+                                                <Setter TargetName="Border" Property="Border.Background" Value="#FFF8F8FF" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ResourceDictionary>
+                </TabControl.Resources>
+            </TabControl>
+        </Grid>
+
+
     </Grid>
 </Window>

@@ -66,14 +66,14 @@ namespace DGHIS.Shell.ViewModels.Login
         /// <summary>
         /// 登錄命令
         /// </summary>
-        public DelegateCommand<PasswordBox> LoginCommand => new DelegateCommand<PasswordBox>(async (b) =>
+        public DelegateCommand<string> LoginCommand => new DelegateCommand<string>(async (pwd) =>
         {
             if (string.IsNullOrWhiteSpace(CurrentUser.Name))
             {
                 Alert("請輸入用戶名！");
                 return;
             }
-            if (string.IsNullOrWhiteSpace(b.Password))
+            if (string.IsNullOrWhiteSpace(pwd))
             {
                 AlertPopup("請輸入密碼！");
                 return;
