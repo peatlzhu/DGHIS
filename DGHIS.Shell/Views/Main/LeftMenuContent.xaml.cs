@@ -16,13 +16,18 @@ using System.Windows.Shapes;
 namespace DGHIS.Shell.Views
 {
     /// <summary>
-    /// LeftMenu.xaml 的交互逻辑
+    /// LeftMenuContent.xaml 的交互逻辑
     /// </summary>
-    public partial class LeftMenu : UserControl
+    public partial class LeftMenuContent : UserControl
     {
-        public LeftMenu()
+        public LeftMenuContent()
         {
             InitializeComponent();
+        }
+
+        private void SearchBar_OnSearchStarted(object sender, HandyControl.Data.FunctionEventArgs<string> e)
+        {
+
         }
     }
 }

@@ -8,7 +8,7 @@
         xmlns:prism="http://prismlibrary.com/" 
         xmlns:local="clr-namespace:DGHIS.Shell.Views" 
         x:Name="main" 
-          xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
         prism:ViewModelLocator.AutoWireViewModel="True" 
         WindowStartupLocation="CenterScreen" Icon="/images/his.ico" 
         Title="一站式医疗管理系统" Height="768" Width="1200">
@@ -30,6 +30,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />          
             <RowDefinition />
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Background="{StaticResource EMRCPOE.Main.Background}">
             <Grid.ColumnDefinitions>
@@ -156,7 +157,7 @@
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <local:LeftMenu Grid.Column="0" Width="Auto" />
+            <local:LeftMenuContent Grid.Column="0" Width="Auto" />
             <TabControl Name="MainTabPanel" BorderBrush="#FFDCDCDC" Grid.Row="1" Margin="5" BorderThickness="0" Grid.Column="1">
                 <TabControl.Resources>
                     <ResourceDictionary>
@@ -184,6 +185,6 @@
             </TabControl>
         </Grid>
 
-
+        <local:BottomStatusContent Grid.Row="2"  />
     </Grid>
 </Window>
