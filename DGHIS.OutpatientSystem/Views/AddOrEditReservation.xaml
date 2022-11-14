@@ -9,41 +9,24 @@
       xmlns:local="clr-namespace:DGHIS.OutpatientSystem.Views" 
       xmlns:dd="clr-namespace:DGHIS.Core.Controls.DropDown;assembly=DGHIS.Core"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:hc="https://handyorg.github.io/handycontrol"
+      d:DesignHeight="450" d:DesignWidth="800"    
       Title="AddOrEditReservation" Background="White">
     <Grid x:Name="maskContainer">
-        <Grid >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="1*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="20"/>
-            </Grid.ColumnDefinitions>
-            <Label Content="叫號順序" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="20,0, 0, 0"/>
-            <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding Dto.Index}" VerticalAlignment="Center" Margin="20,0,0,0" MaxLength="50"></TextBox>
-            <Label Content="流水號" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="20, 0, 0, 0"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Dto.BusinessNumber}" VerticalAlignment="Center" Margin="20, 0, 0, 0" MaxLength="50"/>
-            <Label Content="掛號時間" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="20, 0, 0, 0"/>
-            <Calendar SelectedDate="{Binding Dto.ReservationTime}" Grid.Row="2"/>
-            <Label Content="患者姓名" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="20, 0, 0, 0"/>
-            <TextBox Grid.Row="5" Grid.Column="0" Text="{Binding Dto.Name}" VerticalAlignment="Center" Margin="20, 0, 0, 0"  />
-            <Label Content="性別" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="20, 0, 0, 0"/>
-            <dd:DictionaryComboBox Grid.Row="5" DictionaryType="性別" SelectedValue="{Binding Dto.Gender}" />
-            <Label Content="科室" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Margin="20, 0, 0, 0"/>
-            <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Dto.DepartmentName}" VerticalAlignment="Center" Margin="20, 0, 0, 0"  />
-            <Label Content="醫師" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="20, 0, 0, 0"/>
-            <TextBox Grid.Row="7" Grid.Column="0" Text="{Binding Dto.DoctorName}" VerticalAlignment="Center" Margin="20, 0, 0, 0"  />
-            <Label Content="有效期" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" Margin="20, 0, 0, 0"/>
-            <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Dto.Expire}" VerticalAlignment="Center" Margin="20, 0, 0, 0"  />
+        <hc:UniformSpacingPanel Spacing="24" Margin="24,0" ChildWrapping="Wrap">
+        <StackPanel>
+                <hc:TextBox ShowClearButton="True" hc:InfoElement.Title="顺序" Width="140" Text="{Binding Dto.Index}" ></hc:TextBox>
+            <hc:TextBox ShowClearButton="True" hc:InfoElement.Title="流水号"  Text="{Binding Dto.BusinessNumber}" ></hc:TextBox>
+            <hc:DatePicker ShowClearButton="True"  hc:InfoElement.Title="挂号时间"  SelectedDate="{Binding Dto.ReservationTime}" />
+            <hc:TextBox ShowClearButton="True" hc:InfoElement.Title="患者姓名"  Text="{Binding Dto.Name}" ></hc:TextBox>
+        </StackPanel>
+        <StackPanel>
+            <hc:TextBox ShowClearButton="True"  hc:InfoElement.Title="科室" Width="140"  Text="{Binding Dto.DepartmentName}" ></hc:TextBox>
+            <hc:TextBox ShowClearButton="True" hc:InfoElement.Title="医生"  Text="{Binding Dto.DoctorName}" ></hc:TextBox>
+            <hc:TextBox ShowClearButton="True" hc:InfoElement.Title="有效期"  Text="{Binding Dto.Expire}" ></hc:TextBox>
+            <dd:DictionaryComboBox Style="{StaticResource ComboBoxPlusBaseStyle}" DictionaryType="性別"   hc:InfoElement.Title="性別"   SelectedValue="{Binding Dto.Gender}" />
+
+        </StackPanel>
+    </hc:UniformSpacingPanel>
         </Grid>
-    </Grid>
 </Page>

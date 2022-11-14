@@ -1,5 +1,7 @@
-﻿using DGHIS.Core.ViewModels;
+﻿using DGHIS.Core.Enums;
+using DGHIS.Core.ViewModels;
 using DGHIS.Data;
+using DGHIS.OutpatientSystem.Views;
 using KWT.Core.Aop;
 using Prism.Commands;
 using Prism.Ioc;
@@ -33,11 +35,11 @@ namespace DGHIS.RegisterManagement.ViewModels
         /// </summary>
         public override DelegateCommand AddCommand => new DelegateCommand(() =>
         {
-            //this.ShowDialog(typeof(AddOrEditReservation).FullName, IconEnum.新增頁面圖標, "新增預約掛號記錄", callback: async (d) =>
-            //{
-            //    if (d.Parameters.GetValue<bool>("success"))
-            //        await BindPagingData();
-            //});
+            this.ShowDialog(typeof(AddOrEditReservation).FullName, IconEnum.Add, "新增预约挂号记录", callback: async (d) =>
+            {
+                if (d.Parameters.GetValue<bool>("success"))
+                    await BindPagingData();
+            });
         });
 
         /// <summary>

@@ -6,9 +6,9 @@
       xmlns:local="clr-namespace:DGHIS.OutpatientSystem.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SpotReservation">
+      Title="现场挂号">
 
     <Grid>
-        <Label Content="現場掛號" />
+        <Label Content="现场挂号" />
     </Grid>
 </Page>

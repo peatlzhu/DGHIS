@@ -19,12 +19,12 @@ using System.Windows.Controls;
 namespace DGHIS.OutpatientSystem.ViewModels
 {
     /// <summary>
-    /// 預約掛號業務處理
+    /// 预约挂号业务处理
     /// </summary>
     public class ReservationViewModel : BaseManagePageViewModel
     {
         /// <summary>
-        /// 構造函數
+        /// 构造函数
         /// </summary>
         /// <param name="container"></param>
         public ReservationViewModel(IContainerExtension container) : base(container)
@@ -35,7 +35,7 @@ namespace DGHIS.OutpatientSystem.ViewModels
         private ReservationCondition query = new ReservationCondition();
 
         /// <summary>
-        /// 查詢條件
+        /// 查询条件
         /// </summary>
         public ReservationCondition Query
         {
@@ -44,11 +44,11 @@ namespace DGHIS.OutpatientSystem.ViewModels
         }
 
         /// <summary>
-        /// 處理新增事件
+        /// 处理新增事件
         /// </summary>
         public override DelegateCommand AddCommand => new DelegateCommand(() =>
         {
-            this.ShowDialog(typeof(AddOrEditReservation).FullName, IconEnum.新增頁面圖標, "新增預約掛號記錄", callback: async (d) =>
+            this.ShowDialog(typeof(AddOrEditReservation).FullName, IconEnum.Add, "新增预约挂号记录", callback: async (d) =>
             {
                 if (d.Parameters.GetValue<bool>("success"))
                     await BindPagingData();
@@ -56,27 +56,27 @@ namespace DGHIS.OutpatientSystem.ViewModels
         });
 
         /// <summary>
-        /// 編輯事件
+        /// 编辑事件
         /// </summary>
         public DelegateCommand<object> EditCommand => new DelegateCommand<object>((item) =>
         {
-            this.ShowDialog(typeof(AddOrEditReservation).FullName, IconEnum.編輯頁面圖標, "修改預約掛號記錄", args: item, callback: async (d) =>
-              {
-                  if (d.Parameters.GetValue<bool>("success"))
-                      await BindPagingData();
-              });
+            this.ShowDialog(typeof(AddOrEditReservation).FullName, IconEnum.Edit, "修改预约挂号记录", args: item, callback: async (d) =>
+            {
+                if (d.Parameters.GetValue<bool>("success"))
+                    await BindPagingData();
+            });
         });
 
         /// <summary>
-        /// 查看詳情
+        /// 查看详情
         /// </summary>
         public DelegateCommand<object> ViewDetailsCommand => new DelegateCommand<object>((item) =>
         {
-            this.ShowDialog(typeof(ReservationDetails).FullName, IconEnum.詳情頁面圖標, "掛號記錄詳細信息", args: item, disableArea: true);
+            this.ShowDialog(typeof(ReservationDetails).FullName, IconEnum.Detail, "挂号记录详细信息", args: item, disableArea: true);
         });
 
         /// <summary>
-        /// 頁面加載事件
+        /// 页面加载事件
         /// </summary>
         /// <param name="page"></param>
         public async override void PageLoaded(Page page)
@@ -85,7 +85,7 @@ namespace DGHIS.OutpatientSystem.ViewModels
         }
 
         /// <summary>
-        /// 綁定分頁數據
+        /// 绑定分页数据
         /// </summary>
         [WaitComplete]
         protected async override Task<object> BindPagingData()
@@ -103,7 +103,8 @@ namespace DGHIS.OutpatientSystem.ViewModels
             }
             else
             {
-                int counter = 20;
+                this.PagingData.Total = 200;
+                int counter = this.PagingData.PageSize;
                 var list = new List<ReservationOutputDto>();
                 for (int i = 0; i < counter; i++)
                 {
@@ -111,35 +112,35 @@ namespace DGHIS.OutpatientSystem.ViewModels
                     {
                         BusinessNumber = DateTime.Now.ToString($"GH-yyyyMMdd{i + 1}"),
                         DepartmentID = i + 1,
-                        DepartmentName = $"測試科室{i}",
-                        DoctorName = $"趙不治{i}",
+                        DepartmentName = $"测试科室{i}",
+                        DoctorName = $"非诉讼{i}",
                         Expire = i % 2 == 0 ? "上午有效" : "下午有效",
                         Id = i + 1,
-                        Index = $"第{i + 1}號",
+                        Index = $"第{i + 1}号",
                         Name = $"柳{i}刀",
+                        Gender= 235,
                         ReservationTime = DateTime.Now.AddSeconds(i),
                         Status = i % 5 == 0 ? EntityStatus.停用 : EntityStatus.正常
                     });
                 }
                 PageData = list;
-                this.PagingData.Total = counter;
                 return true;
             }
         }
 
         /// <summary>
-        /// 更改狀態
+        /// 更改状态
         /// </summary>
         public DelegateCommand<StatusComboBox> SelectionChangedCommand => new DelegateCommand<StatusComboBox>((c) =>
         {
-            this.ChangeStatus<StatusComboBox, ReservationOutputDto>(c, "預約掛號記錄", p => nameof(p.Status));
+            this.ChangeStatus<StatusComboBox, ReservationOutputDto>(c, "预约挂号记录", p => nameof(p.Status));
         });
 
         /// <summary>
-        /// 通用更改狀態方法
+        /// 通用更改状态方法
         /// </summary>
-        /// <typeparam name="TEntity">待更改狀態實體</typeparam>
-        /// <param name="entity">當前對象</param>
+        /// <typeparam name="TEntity">待更改状态实体</typeparam>
+        /// <param name="entity">当前对象</param>
         [WaitComplete]
         protected override async Task<object> UpdateDataStatus<TEntity>(TEntity entity)
         {

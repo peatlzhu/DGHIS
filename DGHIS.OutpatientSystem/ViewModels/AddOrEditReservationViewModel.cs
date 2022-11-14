@@ -13,27 +13,27 @@ using Refit;
 namespace DGHIS.OutpatientSystem.ViewModels
 {
     /// <summary>
-    /// 新增預約掛號,編輯預約掛號功能頁面viewmodel,用於處理業務邏輯
-    /// 調用web api保存數據
+    /// 新增预约挂号,编辑预约挂号功能页面viewmodel,用于处理业务逻辑
+    /// 调用web api保存数据
     /// </summary>
     public class AddOrEditReservationViewModel : BaseDialogPageViewModel
     {
         /// <summary>
-        /// 新增預約掛號業務處理構造函數
+        /// 新增预约挂号业务处理构造函数
         /// </summary>
         /// <param name="container"></param>
         public AddOrEditReservationViewModel(IContainerExtension container) : base(container)
         {
-            InintData();
+            InitData();
         }
 
         /// <summary>
-        /// 編輯模式下初始化界面數據
+        /// 编辑模式下初始化界面数据
         /// </summary>
-        private void InintData()
+        private void InitData()
         {
             ReservationOutputDto current = this.GetContext<ReservationOutputDto>();
-            //不爲null表示處於編輯模式
+            //不爲null表示处于编辑模式
             if (current != null)
             {
                 Dto = new ReservationInputDto
@@ -45,7 +45,8 @@ namespace DGHIS.OutpatientSystem.ViewModels
                     Index = current.Index,
                     BusinessNumber = current.BusinessNumber,
                     Name = current.Name,
-                    ReservationTime = current.ReservationTime
+                    ReservationTime = current.ReservationTime,
+                    Expire=current.Expire
                 };
             }
         }
@@ -53,7 +54,7 @@ namespace DGHIS.OutpatientSystem.ViewModels
         private ReservationInputDto _dto = new ReservationInputDto();
 
         /// <summary>
-        /// 界面上輸入的信息
+        /// 界面上输入的信息
         /// </summary>
         public ReservationInputDto Dto
         {
@@ -62,7 +63,7 @@ namespace DGHIS.OutpatientSystem.ViewModels
         }
 
         /// <summary>
-        /// 新增,編輯保存方法,從viewmodel獲取數據保存即可.
+        /// 新增,编辑保存方法,从viewmodel获取数据保存即可.
         /// </summary>
         /// <returns></returns>
         [WaitComplete]
@@ -77,7 +78,7 @@ namespace DGHIS.OutpatientSystem.ViewModels
                     AlertPopup(response.Message, response.Succeeded ? MessageType.Success : MessageType.Error, (d) =>
                     {
                         if (response.Succeeded)
-                            this.CloseDialog(returnValue: "已經添加成功啦，這裏可以是任何參數和對象喲，父窗體可以接收到此回傳參數。");
+                            this.CloseDialog(returnValue: "已经添加成功啦，这里可以是任何参数和对象哟，父窗体可以接收到此回传参数。");
                     });
                 }
             }
@@ -89,7 +90,7 @@ namespace DGHIS.OutpatientSystem.ViewModels
                     AlertPopup(response.Message, response.Succeeded ? MessageType.Success : MessageType.Error, (d) =>
                     {
                         if (response.Succeeded)
-                            this.CloseDialog(returnValue: "已經修改成功啦，這裏可以是任何參數和對象喲，父窗體可以接收到此回傳參數。");
+                            this.CloseDialog(returnValue: "已经修改成功啦，这里可以是任何参数和对象哟，父窗体可以接收到此回传参数。");
                     });
                 }
             }

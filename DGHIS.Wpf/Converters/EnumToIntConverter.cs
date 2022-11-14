@@ -40,7 +40,7 @@ namespace DGHIS.Wpf.Converters
         /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Enum.TryParse(value.GetType(), value?.ToString(), out object result);
+            Enum.TryParse(targetType, value?.ToString(), out object result);
             return result;
         }
     }

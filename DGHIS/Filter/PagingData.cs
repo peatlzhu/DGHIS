@@ -15,7 +15,7 @@ namespace DGHIS.Filter
         /// <summary>
         /// 每页显示数据
         /// </summary>
-        public int PageSize { get; set; } = 10;
+        public int PageSize { get; set; } = 20;
 
         /// <summary>
         /// 当前第几页

@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\cloud.png" />
     <None Remove="images\DevOps\DevOps-Boards.png" />
     <None Remove="images\DevOps\DevOps-Overview.png" />
     <None Remove="images\DevOps\DevOps-Pipelines.png" />
@@ -26,6 +27,7 @@
 
   <ItemGroup>
     <Resource Include="images\DevOps\DevOps-Overview.png" />
+    <Resource Include="images\cloud.png" />
     <Content Include="Resources\Fonts\demo.css" />
     <Content Include="Resources\Fonts\demo_index.html" />
     <Content Include="Resources\Fonts\iconfont.css" />
@@ -45,7 +47,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="HandyControl" Version="3.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="images\DevOps\DevOps-Pipelines.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="images\detail.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="images\edit.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

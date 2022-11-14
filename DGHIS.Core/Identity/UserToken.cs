@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace DGHIS.Core.Identity
 {
     /// <summary>
-    /// 會話token
+    /// 会话token
     /// </summary>
     public class UserToken
     {
         /// <summary>
-        /// 訪客token
+        /// 访客token
         /// </summary>
         public string AccessToken { get; set; }
 
@@ -22,7 +22,7 @@ namespace DGHIS.Core.Identity
         public string RefreshToken { get; set; }
 
         /// <summary>
-        /// 過期時間
+        /// 过期时间
         /// </summary>
         public long RefreshUctExpires { get; set; }
     }

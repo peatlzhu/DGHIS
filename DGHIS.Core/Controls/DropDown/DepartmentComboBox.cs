@@ -32,7 +32,7 @@ namespace DGHIS.Core.Controls.DropDown
                 list.Add(new DepartmentOutputDto
                 {
                     Id = i + 1,
-                    Name = $"測試科室{i + 1}"
+                    Name = $"测试科室{i + 1}"
                 });
             }
             Data = list;

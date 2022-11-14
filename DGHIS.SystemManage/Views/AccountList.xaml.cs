@@ -19,7 +19,7 @@ namespace DGHIS.SystemManage.Views
     /// <summary>
     /// AccountList.xaml 的交互邏輯
     /// </summary>
-    [Function("賬戶管理")]
+    [Function("账户管理")]
     public partial class AccountList : Page
     {
         public AccountList()

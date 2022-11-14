@@ -13,13 +13,25 @@
     <None Remove="images\alter.png" />
     <None Remove="images\background.jpg" />
     <None Remove="images\bubble_bg.png" />
+    <None Remove="images\detail.png" />
     <None Remove="images\details.png" />
+    <None Remove="images\edit.png" />
     <None Remove="images\his.ico" />
     <None Remove="images\icon.png" />
     <None Remove="images\logo.png" />
     <None Remove="images\logo_mlyy.png" />
     <None Remove="images\mainlogo.png" />
     <None Remove="images\success.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\details.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\detail.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +43,7 @@
     <ProjectReference Include="..\DGHIS.Core\DGHIS.Core.csproj" />
     <ProjectReference Include="..\DGHIS.OutpatientSystem\DGHIS.OutpatientSystem.csproj" />
     <ProjectReference Include="..\DGHIS.RegisterManagement\DGHIS.RegisterManagement.csproj" />
+    <ProjectReference Include="..\DGHIS.StoreManage\DGHIS.StoreManage.csproj" />
     <ProjectReference Include="..\DGHIS.SystemManage\DGHIS.SystemManage.csproj" />
     <ProjectReference Include="..\DGHIS.Wpf\DGHIS.Wpf.csproj" />
   </ItemGroup>
@@ -39,6 +52,7 @@
     <Resource Include="images\add.png" />
     <Resource Include="images\alter.png" />
     <Resource Include="images\bubble_bg.png" />
+    <Resource Include="images\edit.png" />
     <Resource Include="images\his.ico" />
     <Resource Include="images\logo_mlyy.png" />
     <Resource Include="images\success.png" />

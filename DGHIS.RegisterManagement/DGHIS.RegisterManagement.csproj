@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DGHIS.Core\DGHIS.Core.csproj" />
+    <ProjectReference Include="..\DGHIS.OutpatientSystem\DGHIS.OutpatientSystem.csproj" />
   </ItemGroup>
 
 </Project>

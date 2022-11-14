@@ -21,25 +21,25 @@ namespace DGHIS.Core.Models
         /// <summary>
         /// 叫號順序
         /// </summary>
-        [BindDescription("叫號順序", ShowScheme.普通文本, "80*", 1, "")]
+        [BindDescription("叫号顺序", ShowScheme.普通文本, "80*", 1, "")]
         public string Index { get; set; }
 
         /// <summary>
-        /// 流水號
+        /// 流水号
         /// </summary>
-        [BindDescription("流水號", ShowScheme.普通文本, "100*", 2, "")]
+        [BindDescription("流水号", ShowScheme.普通文本, "100*", 2, "")]
         public string BusinessNumber { get; set; }
 
         /// <summary>
-        /// 掛號狀態
+        /// 挂号状态
         /// </summary>
-        [BindDescription("掛號狀態", ShowScheme.自定义, "100*", 7, "Status")]
+        [BindDescription("挂号状态", ShowScheme.普通文本, "100*", 7, "")]
         public EntityStatus Status { get; set; }
 
         /// <summary>
-        /// 掛號時間
+        /// 挂号时间
         /// </summary>
-        [BindDescription("掛號時間", ShowScheme.普通文本, "150*", 8, "")]
+        [BindDescription("挂号时间", ShowScheme.普通文本, "150*", 8, "")]
         public DateTime ReservationTime { get; set; }
 
         /// <summary>
@@ -55,15 +55,15 @@ namespace DGHIS.Core.Models
         public int Gender { get; set; }
 
         /// <summary>
-        /// 掛號科室
+        /// 挂号科室
         /// </summary>
-        [BindDescription("掛號科室", ShowScheme.普通文本, "100*", 4, "")]
+        [BindDescription("挂号科室", ShowScheme.普通文本, "100*", 4, "")]
         public string DepartmentName { get; set; }
 
         /// <summary>
-        /// 診治醫師
+        /// 诊治医生
         /// </summary>
-        [BindDescription("診治醫師", ShowScheme.普通文本, "80*", 5, "")]
+        [BindDescription("诊治医生", ShowScheme.普通文本, "80*", 5, "")]
         public string DoctorName { get; set; }
 
         /// <summary>

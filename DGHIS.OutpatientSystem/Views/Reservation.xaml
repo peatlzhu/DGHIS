@@ -11,7 +11,8 @@
       xmlns:p="clr-namespace:DGHIS.Core.Controls.DataGrids;assembly=DGHIS.Core"
       xmlns:c="clr-namespace:DGHIS.Core.Controls.DropDown;assembly=DGHIS.Core" 
       x:Name="page" 
-      Title="Reservation" Background="#FFFFFFFF">
+      Background="Transparent"
+      Title="预约挂号" >
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="Loaded" >
             <b:InvokeCommandAction Command="{Binding LoadedCommand}" CommandParameter="{Binding ElementName=page}" />
@@ -29,8 +30,8 @@
         </DataTemplate>
         <DataTemplate x:Key="OperationKey">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button Name="btnEdit" Content="編輯" Background="#00FFFFFF"  Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=Page}}" CommandParameter="{Binding Path=DataContext, ElementName=btnEdit}" />
-                <Button Name="btnView" Content="詳情" Margin="10,0,0,0" ToolTip="详情" Command="{Binding DataContext.ViewDetailsCommand, RelativeSource={RelativeSource AncestorType=Page}}" CommandParameter="{Binding Path=DataContext, ElementName=btnView}" />
+                <Button Name="btnEdit" Content="编辑" Background="#00FFFFFF"  Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=Page}}" CommandParameter="{Binding Path=DataContext, ElementName=btnEdit}" />
+                <Button Name="btnView" Content="详情" Margin="10,0,0,0" ToolTip="详情" Command="{Binding DataContext.ViewDetailsCommand, RelativeSource={RelativeSource AncestorType=Page}}" CommandParameter="{Binding Path=DataContext, ElementName=btnView}" />
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
@@ -39,16 +40,11 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid VerticalAlignment="Top">
-            <f:FunctionArea AddButtonText="新增預約" />
+        <Grid VerticalAlignment="Center" >
+            <f:FunctionArea AddButtonText="新增预约" />
         </Grid>
-        <Grid Name="maskContainer" Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height="5" />
-                <RowDefinition Height="30" />
-            </Grid.RowDefinitions>
-            <p:PagingDataGrid Name="ucDataGrid" OperatingKey="OperationKey" OperatingWidth="150*" EnableSelectAll="True" PageData="{Binding PageData}" PagingData="{Binding PagingData}" />
+        <Grid x:Name="maskContainer" Row="1" >
+            <p:PagingDataGrid  Name="ucDataGrid" OperatingKey="OperationKey" OperatingWidth="150*" EnableSelectAll="True"   PageData="{Binding PageData}" PagingData="{Binding PagingData}" />
         </Grid>
     </Grid>
 </Page>

@@ -1,4 +1,5 @@
 ﻿using DGHIS.Core.Controls.Mask;
+using HandyControl.Controls;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,22 +21,23 @@ namespace DGHIS.Core.Extensions
         /// 顯示蒙層
         /// </summary>
         public static void Show()
-        {
-            Window win = Application.Current.Windows.OfType<Window>().FirstOrDefault(x => x.IsActive);
-            Grid container = win.GetChildObject<Grid>("maskContainer");
-            if (container == null) throw new Exception("界面上未找到名稱爲maskContainer的Grid容器控件！");
-            container.Children.Add(w);
-        }
+        {        
+            //Window win = Application.Current.Windows.OfType<Window>().FirstOrDefault(x => x.IsActive);
+            //Grid container = win.GetChildObject<Grid>("maskContainer");
+            //if (container == null) throw new Exception("界面上未找到名稱爲maskContainer的Grid容器控件！");
+            //container.Children.Add(w);
+        }         
+
 
         /// <summary>
         /// 關閉蒙層
         /// </summary>
         public static void Close()
         {
-            Window win = Application.Current.Windows.OfType<Window>().FirstOrDefault(x => x.IsActive);
-            Grid container = win.GetChildObject<Grid>("maskContainer");
-            if (container == null) throw new Exception("界面上未找到名稱爲maskContainer的Grid容器控件！");
-            container.Children.Remove(w);
+            //Window win = Application.Current.Windows.OfType<Window>().FirstOrDefault(x => x.IsActive);
+            //Grid container = win.GetChildObject<Grid>("maskContainer");
+            //if (container == null) throw new Exception("界面上未找到名稱爲maskContainer的Grid容器控件！");
+            //container.Children.Remove(w);
         }
     }
 }

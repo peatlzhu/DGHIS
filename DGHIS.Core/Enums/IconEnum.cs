@@ -8,26 +8,26 @@ using System.Threading.Tasks;
 namespace DGHIS.Core.Enums
 {
     /// <summary>
-    /// 圖標
+    /// 图标
     /// </summary>
     public enum IconEnum
     {
         /// <summary>
-        /// 詳情頁面圖標
+        /// 详情页面图标
         /// </summary>
         [Description("detail")]
-        詳情頁面圖標,
+        Detail,
 
         /// <summary>
-        /// 新增頁面圖標
+        /// 新增页面图标
         /// </summary>
         [Description("add")]
-        新增頁面圖標,
+        Add,
 
         /// <summary>
-        /// 編輯頁面圖標
+        /// 编辑页面图标
         /// </summary>
         [Description("edit")]
-        編輯頁面圖標
+        Edit
     }
 }

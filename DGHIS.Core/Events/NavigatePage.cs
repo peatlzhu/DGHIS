@@ -4,12 +4,12 @@ using System.Windows.Controls;
 namespace DGHIS.Core.Events
 {
     /// <summary>
-    /// wpf頁面導航
+    /// wpf頁面导航
     /// </summary>
     public class NavigatePage
     {
         /// <summary>
-        /// 功能菜單名稱
+        /// 功能菜单名称
         /// </summary>
         public MenuEntity Menu
         {
@@ -18,7 +18,17 @@ namespace DGHIS.Core.Events
         }
 
         /// <summary>
-        /// 功能頁面
+        /// 功能菜单名称
+        /// </summary>
+        public string  MenuName
+        {
+            get;
+            set;
+        }
+
+
+        /// <summary>
+        /// 功能页面
         /// </summary>
         public Page Page
         {

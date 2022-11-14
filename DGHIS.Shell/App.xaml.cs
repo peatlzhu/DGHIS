@@ -14,6 +14,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using Unity;
+using DGHIS.Shell.RegionAdptor;
 
 namespace DGHIS.Shell
 {
@@ -100,6 +101,7 @@ namespace DGHIS.Shell
         protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
         {
             base.ConfigureRegionAdapterMappings(regionAdapterMappings);
+            regionAdapterMappings.RegisterMapping(typeof(HandyControl.Controls.TabControl), Container.Resolve<TabControlRegionAdptor>());
         }
 
         protected override IModuleCatalog CreateModuleCatalog()

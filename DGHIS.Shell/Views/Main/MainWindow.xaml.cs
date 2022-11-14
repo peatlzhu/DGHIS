@@ -6,6 +6,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Prism.Ioc;
+using HandyControl.Controls;
+using TabItem = HandyControl.Controls.TabItem;
+using Window = HandyControl.Controls.Window;
+using Prism.Regions;
 
 namespace DGHIS.Shell.Views
 {
@@ -16,24 +20,27 @@ namespace DGHIS.Shell.Views
     {
      
         public MainWindow()
-        {
+        {        
             InitializeComponent();
-
+            RegionManager.SetRegionName(MainTabPanel, "ContentRegion");
+            ContainerLocator.Container.Resolve<IRegionManager>().Regions.Remove("ContentRegion");
+            RegionManager.SetRegionManager(MainTabPanel, ContainerLocator.Container.Resolve<IRegionManager>());
             PageEvent pageEvent = ContainerLocator.Container.Resolve<IEventAggregator>().GetEvent<PageEvent>();
             pageEvent.Subscribe((p) =>
             {
                 MenuEntity menu = p.Menu;
-                AddPage(menu.Name, p.Page);
+                string menuName = menu==null? p.MenuName:menu.Name;
+                AddPage(menuName, p.Page);              
             });
         }
-
+         
 
         private void AddPage(string name, Page page)
         {
-            TabItem tabItem = MainTabPanel.Items.OfType<TabItem>().FirstOrDefault(item => item.Header.ToString() == name);
+           HandyControl.Controls.TabItem tabItem = MainTabPanel.Items.OfType<HandyControl.Controls.TabItem>().FirstOrDefault(item => item.Header.ToString() == name);
             if (tabItem == null)
             {
-                tabItem = new TabItem()
+                tabItem = new HandyControl.Controls.TabItem()
                 {
                     Header = name,
                 };

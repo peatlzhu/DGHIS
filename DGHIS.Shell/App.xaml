@@ -17,6 +17,9 @@
 
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+                <ResourceDictionary Source="/DGHIS.Wpf;component/Style/CustomHandyControlColor.xaml" />
+                <ResourceDictionary Source="/DGHIS.Wpf;component/Style/Geometries.xaml" />
+            
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

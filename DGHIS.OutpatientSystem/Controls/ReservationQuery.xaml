@@ -10,8 +10,8 @@
         <Label Content="序號" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" />
         <TextBox Width="120" Style="{StaticResource TextBox.Normal}" Text="{Binding Query.Index}" />
         <Label Content="科室" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20,0,10,0" />
-        <dd:DepartmentComboBox MinWidth="120" SelectedValue="{Binding Query.DepartmentID}" />
+        <dd:DepartmentComboBox  Style="{StaticResource ComboBoxPlusBaseStyle}" MinWidth="120" SelectedValue="{Binding Query.DepartmentID}" />
         <Label Content="性別" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20,0,10,0" />
-        <dd:DictionaryComboBox MinWidth="150" SelectedValue="{Binding Query.DicID}" DictionaryType="性別" />
+        <dd:DictionaryComboBox Style="{StaticResource ComboBoxPlusBaseStyle}" MinWidth="150" SelectedValue="{Binding Query.DicID}" DictionaryType="性別" />
     </WrapPanel>
 </UserControl>

@@ -29,12 +29,12 @@ namespace DGHIS.Core.Identity
         /// <summary>
         /// 用戶當前所在科室名稱
         /// </summary>
-        public string CurrentDepartmentName { get; set; } = "重症醫學科（ICU）";
+        public string CurrentDepartmentName { get; set; } = "重症医学科（ICU）";
 
         /// <summary>
         /// 當前登錄用戶姓名
         /// </summary>
-        public string UserName { get; set; } = "趙佳仁";
+        public string UserName { get; set; } = "张三封";
 
         /// <summary>
         /// 當前用戶角色ID集合
