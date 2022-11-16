@@ -7,9 +7,10 @@
       xmlns:prism="http://prismlibrary.com/" 
       xmlns:b="http://schemas.microsoft.com/xaml/behaviors" 
       prism:ViewModelLocator.AutoWireViewModel="True" 
-      xmlns:f="clr-namespace:DGHIS.Core.Controls.Layouts;assembly=DGHIS.Core"
+      xmlns:search="clr-namespace:DGHIS.Core.Controls.Layouts;assembly=DGHIS.Core"
       xmlns:p="clr-namespace:DGHIS.Core.Controls.DataGrids;assembly=DGHIS.Core"
       xmlns:c="clr-namespace:DGHIS.Core.Controls.DropDown;assembly=DGHIS.Core" 
+      xmlns:hc="https://handyorg.github.io/handycontrol" 
       x:Name="page" 
       Background="Transparent"
       Title="预约挂号" >
@@ -28,23 +29,19 @@
                 </b:Interaction.Triggers>
             </c:StatusComboBox>
         </DataTemplate>
-        <DataTemplate x:Key="OperationKey">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button Name="btnEdit" Content="编辑" Background="#00FFFFFF"  Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=Page}}" CommandParameter="{Binding Path=DataContext, ElementName=btnEdit}" />
-                <Button Name="btnView" Content="详情" Margin="10,0,0,0" ToolTip="详情" Command="{Binding DataContext.ViewDetailsCommand, RelativeSource={RelativeSource AncestorType=Page}}" CommandParameter="{Binding Path=DataContext, ElementName=btnView}" />
-            </StackPanel>
-        </DataTemplate>
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="70" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid VerticalAlignment="Center" >
-            <f:FunctionArea AddButtonText="新增预约" />
+        <Grid VerticalAlignment="Top" >
+            <search:FunctionArea AddButtonText="新增预约" />
         </Grid>
-        <Grid x:Name="maskContainer" Row="1" >
-            <p:PagingDataGrid  Name="ucDataGrid" OperatingKey="OperationKey" OperatingWidth="150*" EnableSelectAll="True"   PageData="{Binding PageData}" PagingData="{Binding PagingData}" />
+        <Grid x:Name="maskContainer" Row="1" VerticalAlignment="Top">
+            <Border Style="{StaticResource BorderRegion}" Effect="{StaticResource EffectShadow1}" >
+                <p:PagingDataGrid EnableRowNumber="false" Name="ucDataGrid" OperatingKey="OperationKey" OperatingWidth="150*" EnableSelectAll="True"   PageData="{Binding PageData}" PagingData="{Binding PagingData}" />
+           </Border>
         </Grid>
     </Grid>
 </Page>

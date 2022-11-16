@@ -32,7 +32,7 @@ namespace DGHIS.Core.Extensions
             IList<BindDescriptionAttribute> list = GetColumns(data);
             //Window win = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
             //Page page = win.GetChildObject<Page>("page");
-            //if (page == null) throw new Exception("未獲取到當前窗口名稱爲page的(Page)頁面對象，原因：沒有爲Page設置Name，且名稱必須爲【page】！");
+            //if (page == null) throw new Exception("未获取到当前窗口名称爲page的(Page)页面对象，原因：没有爲Page设置Name，且名称必须爲【page】！");
 
             Page page = GetParentObject<Page>(dataGrid, "page");
 

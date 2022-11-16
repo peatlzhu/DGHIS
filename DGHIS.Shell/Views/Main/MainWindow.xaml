@@ -7,20 +7,21 @@
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors" 
         xmlns:prism="http://prismlibrary.com/" 
         xmlns:local="clr-namespace:DGHIS.Shell.Views" 
-        x:Name="main"    NonClientAreaBackground="LightBlue"       
+        x:Name="main"        
         xmlns:hc="https://handyorg.github.io/handycontrol"
         prism:ViewModelLocator.AutoWireViewModel="True"         
-        WindowStartupLocation="CenterScreen" Icon="/images/his.ico" 
-        Title="一站式医疗管理系统" Height="768" Width="1200">
-    <hc:Window.NonClientAreaContent>
-        <StackPanel Orientation="Horizontal" Height="30" HorizontalAlignment="Right">     
-            <Button Style="{StaticResource ButtonCustom}" Width="30" Height="30" Cursor="Hand" >
-                <Border>
-                    <Path Margin="6" Fill="Gray" Stretch="Uniform" Data="{StaticResource ConfigGeometry}"/>
-                </Border>
-            </Button>
-        </StackPanel>
-    </hc:Window.NonClientAreaContent>
+        WindowStartupLocation="CenterScreen"     
+            OtherButtonForeground="{DynamicResource ReverseTextBrush}"
+           CloseButtonForeground="{DynamicResource ReverseTextBrush}"
+         Icon="/images/his.ico"
+         ShowIcon="False"
+          mc:Ignorable="d" 
+         d:DesignHeight="768" d:DesignWidth="1600"
+           ShowTitle="False"       
+           WindowState="Maximized"
+           NonClientAreaBackground="{DynamicResource EMRCPOE.Main.Background}" 
+           NonClientAreaHeight="62"
+            Title="一站式医疗管理系统" >
     <hc:Window.Resources>
         <ResourceDictionary>
             <Color x:Key="ForeReverseColor">#FFFFFF</Color>
@@ -30,22 +31,164 @@
             <SolidColorBrush x:Key="ForeReverseBrush" Color="{StaticResource ForeReverseColor}" />
         </ResourceDictionary>
     </hc:Window.Resources>
+    <hc:Window.NonClientAreaContent>
+        <Grid Height="62">
+            <!--<Image Source="/images/his.ico" HorizontalAlignment="Center" />-->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Menu Name="MainMenu"  ItemsSource="{Binding Path=MainMenuItemsSource}">
+                <ItemsControl.ItemContainerStyleSelector>
+                    <local:MenuStyleSelector />
+                </ItemsControl.ItemContainerStyleSelector>
+                <Menu.Resources>
+                    <ResourceDictionary>
+                        <Style x:Key="MainMenuStyle" TargetType="{x:Type MenuItem}">
+                            <Setter Property="Foreground" Value="#FFFFFF" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                            <Setter Property="Padding" Value="23,0" />
+                            <Setter Property="FontSize" Value="14" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type MenuItem}">
+                                        <Grid>
+                                            <Grid Name="MenuContentBorder" Background="{TemplateBinding Background}">
+                                                <Rectangle Name="SelectedBackground" Fill="{StaticResource ForeReverseBrush.OpacityTwo}" />
+                                                <ContentPresenter ContentSource="Header" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}" />
+                                            </Grid>
+                                            <Popup PopupAnimation="Slide" AllowsTransparency="True" IsOpen="{Binding Path=IsSubmenuOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                                                <Border Background="#FFFFFFFF" BorderBrush="{StaticResource DeepForegroundBrush}">
+                                                    <ItemsPresenter />
+                                                </Border>
+                                            </Popup>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="UIElement.IsMouseOver" Value="True">
+                                                <Setter TargetName="SelectedBackground" Property="Visibility" Value="Visible" />
+                                            </Trigger>
+                                            <Trigger Property="UIElement.IsMouseOver" Value="False">
+                                                <Setter TargetName="SelectedBackground" Property="Visibility" Value="Hidden" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="UIElement.IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="{StaticResource ForeReverseBrush}" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                        <Style x:Key="{x:Type MenuItem}" TargetType="{x:Type MenuItem}">
+                            <Style.Triggers>
+                                <Trigger Property="UIElement.IsMouseOver" Value="true">
+                                    <Setter Property="Foreground" Value="{StaticResource ForeReverseBrush}" />
+                                </Trigger>
+                            </Style.Triggers>
+                            <Setter Property="Foreground" Value="{StaticResource ForeReverseBrush.OpacitySix}" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                            <Setter Property="FontWeight" Value="Normal" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type MenuItem}">
+                                        <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                                            <Grid Name="SelectedBackground">
+                                                <ContentPresenter Margin="{TemplateBinding Padding}" ContentSource="Header" ContentTemplate="{TemplateBinding HeaderTemplate}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                                                <b:Interaction.Triggers>
+                                                    <b:EventTrigger EventName="MouseLeftButtonUp" >
+                                                        <b:InvokeCommandAction Command="{Binding DataContext.SelectedIntoPage,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" CommandParameter="{Binding .}"   />
+                                                    </b:EventTrigger>
+                                                </b:Interaction.Triggers>
+                                            </Grid>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="UIElement.IsMouseOver" Value="True">
+                                                <Setter TargetName="SelectedBackground" Property="Panel.Background" Value="{StaticResource ForeReverseBrush.OpacityTwo}" />
+                                            </Trigger>
+                                            <Trigger Property="UIElement.IsMouseOver" Value="False">
+                                                <Setter TargetName="SelectedBackground" Property="Panel.Background" Value="{x:Null}" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="MinWidth" Value="{Binding Path=ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=MenuItem}}" />
+                            <Setter Property="Height" Value="36" />
+                            <Setter Property="Padding" Value="10,0" />
+                            <Setter Property="Background" Value="{StaticResource EMRCPOE.Main.Background}" />
+                        </Style>
+                        <HierarchicalDataTemplate x:Key="{DataTemplateKey {x:Type cmmod:MenuEntity}}" DataType="{x:Type cmmod:MenuEntity}" ItemsSource="{Binding Path=Children}">
+                            <TextBlock Text="{Binding Path=Name}" />
+                        </HierarchicalDataTemplate>
+                    </ResourceDictionary>
+                </Menu.Resources>
+                <Menu.Style>
+                    <Style TargetType="{x:Type Menu}">
+                        <Setter Property="Background" Value="#00FFFFFF" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Menu}">
+                                    <ItemsPresenter Name="ItemsPresenter" />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="ItemsPanel">
+                            <Setter.Value>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Menu.Style>
+            </Menu>
+            </StackPanel>
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right"> 
+                <ItemsControl HorizontalAlignment="Right">
+                    <WrapPanel>
+                        <TextBlock 
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Text="&#xE6EB;"
+                               FontSize="18"
+                               Foreground="{DynamicResource EMRCPOE.StatusBarItem.Background}"
+                               Style="{DynamicResource TextBlockAppIcons}" />
+                        <TextBlock FontSize="22" FontWeight="Bold" Foreground="#FFFFFFFF" Margin="10 2 0 0" HorizontalAlignment="Right" Text="{Binding CurrentUser.HospitalName}" />
+                        </WrapPanel>
+                    <WrapPanel Margin="0 5 0 0">
+                        <TextBlock Margin="2"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Text="&#xE6EF;"
+                               FontSize="15"
+                               Foreground="{DynamicResource EMRCPOE.StatusBarItem.Background}"
+                               Style="{DynamicResource TextBlockAppIcons}" />
+                        <TextBlock FontSize="14" Foreground="#FFFFFFFF" Margin="10 2 0 0" Text="{Binding CurrentUser.ShowText}" />
+                    </WrapPanel>
+                </ItemsControl>
+            <StackPanel Orientation="Horizontal" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Button Style="{StaticResource ButtonCustom}" Width="30" Height="30" Cursor="Hand" >
+                    <Border>
+                        <Path Margin="6" Fill="#212121" Stretch="Uniform" Data="{StaticResource ConfigGeometry}"/>
+                    </Border>
+                </Button>
+            </StackPanel>
+            </WrapPanel>
+        </Grid>
+    </hc:Window.NonClientAreaContent>
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="Closing">
             <b:InvokeCommandAction PassEventArgsToCommand="True" Command="{Binding CloseWindowCommand}" />
         </b:EventTrigger>
     </b:Interaction.Triggers>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="589*"/>
-            <ColumnDefinition Width="611*"/>
-        </Grid.ColumnDefinitions>
+    <Grid>     
         <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid Background="{StaticResource EMRCPOE.Main.Background}" Grid.ColumnSpan="2">
+        <!--<Grid Background="{StaticResource EMRCPOE.Main.Background}" Grid.ColumnSpan="2" Height="60">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition />
@@ -164,20 +307,18 @@
                 <TextBlock FontSize="24" Foreground="#FFFFFFFF" Margin="2" HorizontalAlignment="Right" Text="{Binding CurrentUser.HospitalName}" />
                 <TextBlock FontSize="14" Foreground="#FFFFFFFF" Margin="1" Text="{Binding CurrentUser.ShowText}" />
             </ItemsControl>
-        </Grid>
-        <Grid Grid.Row="1" Grid.ColumnSpan="2" Visibility="Visible">
+        </Grid>-->
+        <Grid Grid.Row="1">
             <Grid.Background>
                 <Binding Source="{StaticResource CloudDrawingBrush}"  />
-            </Grid.Background>
+            </Grid.Background>       
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="*" />              
             </Grid.ColumnDefinitions>
-            <local:LeftMenuContent Grid.Column="0" Margin="5,5,5,5" Width="Auto"/>     
-
-            <hc:TabControl x:Name="MainTabPanel" prism:RegionManager.RegionName="ContentRegion" ShowOverflowButton="False" ShowScrollButton="False" IsScrollable="True" Margin="5" IsAnimationEnabled="True" ShowCloseButton="True" IsDraggable="False" IsTabFillEnabled="False" Grid.Row="1"  Grid.Column="1" />
+            <local:LeftMenuContent  Grid.Column="0" Margin="5 5 0 5" Width="Auto"/>
+            <hc:TabControl Grid.Column="1"  Background="Transparent" x:Name="MainTabPanel" prism:RegionManager.RegionName="ContentRegion" ShowOverflowButton="False" ShowScrollButton="False" IsScrollable="True" Margin="5" IsAnimationEnabled="True" ShowCloseButton="True" IsDraggable="False" IsTabFillEnabled="False"   />
         </Grid>
-
-        <local:BottomStatusContent Grid.Row="2" Grid.ColumnSpan="2"  />
+        <local:BottomStatusContent Grid.Row="2"  />
     </Grid>
 </hc:Window>

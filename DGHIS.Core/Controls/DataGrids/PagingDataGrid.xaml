@@ -18,7 +18,7 @@
                   ItemsSource="{Binding PageData}" CanUserAddRows="False" SelectionMode="Single" 
                   LoadingRow="pagingDataList_LoadingRow">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Header, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}, Mode=FindAncestor}}"  CanUserSort="False" Header="序号" IsReadOnly="True" Width="40"/>
+                <DataGridTextColumn Binding="{Binding Header, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}, Mode=FindAncestor}}"  CanUserSort="False" Header="序号" IsReadOnly="True" Width="50"/>
                 <DataGridTemplateColumn Width="40" x:Name="isCheckbox">
                     <DataGridTemplateColumn.Header>
                         <CheckBox Click="CheckBox_Click"></CheckBox>

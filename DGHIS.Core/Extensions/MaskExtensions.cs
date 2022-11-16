@@ -12,31 +12,31 @@ using System.Windows.Controls;
 namespace DGHIS.Core.Extensions
 {
     /// <summary>
-    /// 蒙層效果擴展
+    /// 蒙层效果扩展
     /// </summary>
     public static class MaskExtensions
     {
         private static LoadingWait w = new LoadingWait();
         /// <summary>
-        /// 顯示蒙層
+        /// 显示蒙层
         /// </summary>
         public static void Show()
-        {        
+        {
             //Window win = Application.Current.Windows.OfType<Window>().FirstOrDefault(x => x.IsActive);
             //Grid container = win.GetChildObject<Grid>("maskContainer");
-            //if (container == null) throw new Exception("界面上未找到名稱爲maskContainer的Grid容器控件！");
+            //if (container == null) throw new Exception("界面上未找到名称爲maskContainer的Grid容器控件！");
             //container.Children.Add(w);
-        }         
+        }
 
 
         /// <summary>
-        /// 關閉蒙層
+        /// 关闭蒙层
         /// </summary>
         public static void Close()
         {
             //Window win = Application.Current.Windows.OfType<Window>().FirstOrDefault(x => x.IsActive);
             //Grid container = win.GetChildObject<Grid>("maskContainer");
-            //if (container == null) throw new Exception("界面上未找到名稱爲maskContainer的Grid容器控件！");
+            //if (container == null) throw new Exception("界面上未找到名称爲maskContainer的Grid容器控件！");
             //container.Children.Remove(w);
         }
     }

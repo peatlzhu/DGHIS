@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Extensions\MaskExtensions.cs~RF1610c1aa.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AspectInjector" Version="2.8.0" />
     <PackageReference Include="HandyControl" Version="3.3.0" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />

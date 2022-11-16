@@ -5,14 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DGHIS.Core.Controls.Layouts" 
              xmlns:region="clr-namespace:DGHIS.Constants;assembly=DGHIS" 
+             xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:prism="http://prismlibrary.com/" Loaded="UserControl_Loaded">
-    <Grid>
-        <WrapPanel VerticalAlignment="Top">
-            <ContentControl Name="queryRegin" prism:RegionManager.RegionName="{x:Static region:RegionNames.QueryRegin}" />
-            <Button Name="btnQuery" Content="查询" Margin="20,0,0,0" Command="{Binding QueryCommand}" />
-        </WrapPanel>
-        <WrapPanel Name="functionArea" HorizontalAlignment="Right" VerticalAlignment="Top">
-            <Button Name="btnNew" Content="新建"  Command="{Binding AddCommand}" />
-        </WrapPanel>
-    </Grid>
+    <Border Style="{StaticResource BorderRegion}" Effect="{StaticResource EffectShadow1}"   >
+        <Grid>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                <ContentControl Name="queryRegin" prism:RegionManager.RegionName="{x:Static region:RegionNames.QueryRegin}" />
+                <Button Name="btnQuery" Content="查询" Margin="20,0,0,0" Command="{Binding QueryCommand}" Style="{StaticResource ButtonPrimary}"  hc:IconElement.Geometry="{StaticResource SearchGeometry}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Name="functionArea" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Button Name="btnNew" Content="新建"  Command="{Binding AddCommand}"  Style="{StaticResource ButtonSuccess}"  hc:IconElement.Geometry="{StaticResource AddGeometry}"/>
+            </StackPanel>
+        </Grid>
+    </Border>
 </UserControl>

@@ -24,7 +24,7 @@ namespace DGHIS.Shell.ViewModels.Dialogs
             set { SetProperty(ref _message, value); }
         }
 
-        private string _title = "未設置標題";
+        private string _title = "未设置标题";
         public string Title
         {
             get { return _title; }

@@ -23,7 +23,7 @@ using System.Windows.Controls;
 namespace DGHIS.Shell.ViewModels.Login
 {
     /// <summary>
-    /// 用戶登錄
+    /// 用户登录
     /// </summary>
     public class LoginPageViewModel : BaseViewModel
     {
@@ -53,7 +53,7 @@ namespace DGHIS.Shell.ViewModels.Login
 
         public DelegateCommand PreviewMouseDownCommand => new DelegateCommand(delegate
         {
-            Alert("忘記密碼了該咋辦?", (d) =>
+            Alert("忘记密码了该咋办?", (d) =>
             {
                 Process process = new Process();
                 process.StartInfo.UseShellExecute = true;
@@ -64,29 +64,29 @@ namespace DGHIS.Shell.ViewModels.Login
         });
 
         /// <summary>
-        /// 登錄命令
+        /// 登录命令
         /// </summary>
         public DelegateCommand<string> LoginCommand => new DelegateCommand<string>(async (pwd) =>
         {
             if (string.IsNullOrWhiteSpace(CurrentUser.Name))
             {
-                Alert("請輸入用戶名！");
+                Alert("请输入用户名！");
                 return;
             }
             if (string.IsNullOrWhiteSpace(pwd))
             {
-                AlertPopup("請輸入密碼！");
+                AlertPopup("请输入密码！");
                 return;
             }
             var baseUrl = ConfigurationManager.AppSettings["BaseUrl"];
-            if (string.IsNullOrEmpty(baseUrl)) throw new Exception("未配置BaseUrl節點！");
+            if (string.IsNullOrEmpty(baseUrl)) throw new Exception("未配置BaseUrl节点！");
 
-            //開發環境模擬登錄，正式環境調接口
+            //开发环境模拟登录，正式环境调接口
             if (ConfigurationManager.AppSettings["Development"].CastTo<bool>())
             {
                 UserContext = new UserContext
                 {
-                    Token = new UserToken { AccessToken = "這是訪問token", RefreshToken = "這是刷新token" }
+                    Token = new UserToken { AccessToken = "这是访问token", RefreshToken = "这是刷新token" }
                 };
                 AuthHttpClient.SetHttpClient(baseUrl, UserContext.Token.AccessToken);
             }

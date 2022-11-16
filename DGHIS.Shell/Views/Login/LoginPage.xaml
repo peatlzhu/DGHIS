@@ -138,15 +138,9 @@
                                                                   Margin="2,0,2,0"
                                                                   Stroke="{DynamicResource EMRCPOE.Main.Background}"
                                                                   StrokeThickness="1" />
-                            </StackPanel>                       
-                            <TextBox Grid.Column="1"
-                                                                 x:Name="password"
-                                                                 Text="{Binding CurrentUser.Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"                                                                
-                                                                 FontSize="22"
-                                                                 BorderThickness="0"
-                                                                 VerticalContentAlignment="Center"                                    
-                                                                 Style="{DynamicResource TextBoxPasswordStyle}" />
-
+                            </StackPanel>
+                            <PasswordBox  x:Name="password"  Grid.Column="1" Password="123456" BorderThickness="0"   VerticalContentAlignment="Center"     FontFamily="Champagne &amp; Limousines" FontSize="22" />
+     
                         </Grid>
                     </Border>
                     <Grid Margin="0,5,0,25">
@@ -160,7 +154,7 @@
                                                             Height="60"
                                                             IsDefault="True"
                                                             IsEnabled="{Binding IsEnabledLogin,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                                             Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=password,Path=Text}" 
+                                                             Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=password,Path=Password}" 
                                                             Style="{DynamicResource ButtonLoginStyle}">
                             <Grid>
                                 <StackPanel Orientation="Horizontal"

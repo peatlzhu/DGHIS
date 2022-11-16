@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DGHIS.Core.Enums
 {
     /// <summary>
-    /// 通用業務狀態
+    /// 通用业务状态
     /// </summary>
     public enum EntityStatus
     {

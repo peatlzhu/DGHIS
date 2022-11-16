@@ -3,15 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"          
-             xmlns:dd="clr-namespace:DGHIS.Core.Controls.DropDown;assembly=DGHIS.Core"
-             Background="#FFFFFFFF" 
+             xmlns:dd="clr-namespace:DGHIS.Core.Controls.DropDown;assembly=DGHIS.Core"              
              xmlns:controls="clr-namespace:DGHIS.OutpatientSystem.Controls;assembly=DGHIS.OutpatientSystem">
-    <WrapPanel Name="root" VerticalAlignment="Top">
+    <WrapPanel Name="root" VerticalAlignment="Center" >
         <Label Content="序號" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" />
-        <TextBox Width="120" Style="{StaticResource TextBox.Normal}" Text="{Binding Query.Index}" />
+        <TextBox Width="120" VerticalAlignment="Center" Style="{StaticResource TextBox.Normal}" Text="{Binding Query.Index}" />
         <Label Content="科室" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20,0,10,0" />
-        <dd:DepartmentComboBox  Style="{StaticResource ComboBoxPlusBaseStyle}" MinWidth="120" SelectedValue="{Binding Query.DepartmentID}" />
+        <dd:DepartmentComboBox VerticalAlignment="Center" Style="{StaticResource ComboBoxPlusBaseStyle}" MinWidth="120" SelectedValue="{Binding Query.DepartmentID}" />
         <Label Content="性別" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20,0,10,0" />
-        <dd:DictionaryComboBox Style="{StaticResource ComboBoxPlusBaseStyle}" MinWidth="150" SelectedValue="{Binding Query.DicID}" DictionaryType="性別" />
+        <dd:DictionaryComboBox VerticalAlignment="Center" Style="{StaticResource ComboBoxPlusBaseStyle}" MinWidth="150" SelectedValue="{Binding Query.DicID}" DictionaryType="性别" />
     </WrapPanel>
 </UserControl>

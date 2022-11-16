@@ -10,11 +10,11 @@
               prism:ViewModelLocator.AutoWireViewModel="True"     
               xmlns:hc="https://handyorg.github.io/handycontrol"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Border CornerRadius="8" BorderThickness="1" BorderBrush="{StaticResource EMRCPOE.Main.Background}" Margin="2">
+    <Border  Style="{StaticResource BorderRegion}" Effect="{StaticResource EffectShadow1}">
         <StackPanel>
             <hc:SearchBar ShowClearButton="True" IsRealTime="True" SearchStarted="SearchBar_OnSearchStarted" Style="{StaticResource SearchBarPlus}"  hc:InfoElement.Placeholder="项目名称" Margin="4" Tag="{Binding ElementName=sideMenu}"/>
             <hc:TransitioningContentControl  TransitionMode="Fade" >
-                <hc:SideMenu BorderThickness="0" x:Name="sideMenu" Width="200" Margin="10" Background="Transparent"  >                
+                <hc:SideMenu BorderThickness="0" x:Name="sideMenu" Width="200" Margin="10" Background="Transparent" SelectionChanged="sideMenu_SelectionChanged"  >                
                     <hc:Interaction.Triggers>
                         <hc:EventTrigger EventName="SelectionChanged">
                             <hc:EventToCommand Command="{Binding SwitchItemCmd}" PassEventArgsToCommand="True" />
@@ -24,17 +24,17 @@
                         <hc:SideMenuItem.Icon>
                             <Image Source="/DGHIS.Wpf;component/images/DevOps/DevOps-Overview.png" Width="24" Height="24"/>
                         </hc:SideMenuItem.Icon>
-                        <hc:SideMenuItem Background="Transparent" Header="预约挂号" Command="{Binding SelectCmd}"  CommandParameter="{Binding Header,RelativeSource={RelativeSource Self}}">
+                        <hc:SideMenuItem Background="Transparent" Header="预约挂号" >
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf2cb;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
-                        <hc:SideMenuItem Background="Transparent" Header="现场挂号" Command="{Binding SelectCmd}" CommandParameter="{Binding Header,RelativeSource={RelativeSource Self}}">
+                        <hc:SideMenuItem Background="Transparent" Header="现场挂号" >
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf246;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
-                        <hc:SideMenuItem Background="Transparent" Header="Wiki"  Command="{Binding SelectCmd}" CommandParameter="{Binding Header,RelativeSource={RelativeSource Self}}">
+                        <hc:SideMenuItem Background="Transparent" Header="无线"   >
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xe82d;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
@@ -44,27 +44,27 @@
                         <hc:SideMenuItem.Icon>
                             <Image Source="/DGHIS.Wpf;component/images/DevOps/DevOps-Boards.png" Width="24" Height="24"/>
                         </hc:SideMenuItem.Icon>
-                        <hc:SideMenuItem Background="Transparent"  Header="挂号时段设置"  Command="{Binding SelectCmd}" CommandParameter="{Binding Header,RelativeSource={RelativeSource Self}}">
+                        <hc:SideMenuItem Background="Transparent"  Header="挂号时段设置"   >
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf314;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
-                        <hc:SideMenuItem Background="Transparent"  Header="Boards"  Command="{Binding SelectCmd}" CommandParameter="{Binding Header,RelativeSource={RelativeSource Self}}">
+                        <hc:SideMenuItem Background="Transparent"  Header="面板"   >
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf444;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
-                        <hc:SideMenuItem Background="Transparent" Header="Backlogs">
+                        <hc:SideMenuItem Background="Transparent" Header="日志">
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf6bf;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
-                        <hc:SideMenuItem Background="Transparent" Header="Sprints">
+                        <hc:SideMenuItem Background="Transparent" Header="冲刺">
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf3b0;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
-                        <hc:SideMenuItem Background="Transparent"  Header="Queries">
+                        <hc:SideMenuItem Background="Transparent"  Header="查询">
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf2b8;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
@@ -74,82 +74,82 @@
                         <hc:SideMenuItem.Icon>
                             <Image Source="/DGHIS.Wpf;component/images/DevOps/DevOps-Repos.png" Width="24" Height="24"/>
                         </hc:SideMenuItem.Icon>
-                        <hc:SideMenuItem Background="Transparent"  Header="账户管理"  Command="{Binding SelectCmd}" CommandParameter="{Binding Header,RelativeSource={RelativeSource Self}}">
+                        <hc:SideMenuItem Background="Transparent"  Header="账户管理"   >
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf30e;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
-                        <hc:SideMenuItem Background="Transparent" Header="Commits">
+                        <hc:SideMenuItem Background="Transparent" Header="提交">
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf293;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
-                        <hc:SideMenuItem Background="Transparent" Header="Pushes">
+                        <hc:SideMenuItem Background="Transparent" Header="推送">
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf298;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
-                        <hc:SideMenuItem Background="Transparent" Header="Branches">
+                        <hc:SideMenuItem Background="Transparent" Header="分支">
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xebc2;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
-                        <hc:SideMenuItem Background="Transparent" Header="Tags">
+                        <hc:SideMenuItem Background="Transparent" Header="目标">
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xe8ec;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
-                        <hc:SideMenuItem Background="Transparent" Header="Pull requests">
+                        <hc:SideMenuItem Background="Transparent" Header="拉取">
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf296;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
                     </hc:SideMenuItem>
-                    <hc:SideMenuItem Background="Transparent" Header="Pipelines">
+                    <hc:SideMenuItem Background="Transparent" Header="管道">
                         <hc:SideMenuItem.Icon>
                             <Image Source="/DGHIS.Wpf;component/images/DevOps/DevOps-Pipelines.png" Width="24" Height="24"/>
                         </hc:SideMenuItem.Icon>
-                        <hc:SideMenuItem Background="Transparent" Header="Builds">
+                        <hc:SideMenuItem Background="Transparent" Header="创建">
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf28f;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
-                        <hc:SideMenuItem Background="Transparent" Header="Releases">
+                        <hc:SideMenuItem Background="Transparent" Header="发布">
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf3b3;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
-                        <hc:SideMenuItem Background="Transparent" Header="Library">
+                        <hc:SideMenuItem Background="Transparent" Header="实验">
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xe8f1;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
-                        <hc:SideMenuItem Background="Transparent" Header="Task groups">
+                        <hc:SideMenuItem Background="Transparent" Header="任务组别">
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf2ae;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
-                        <hc:SideMenuItem Background="Transparent" Header="Deployment groups">
+                        <hc:SideMenuItem Background="Transparent" Header="项目">
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf29d;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
                     </hc:SideMenuItem>
-                    <hc:SideMenuItem Background="Transparent" Header="Test Plans">
+                    <hc:SideMenuItem Background="Transparent" Header="测试">
                         <hc:SideMenuItem.Icon>
                             <Image Source="/DGHIS.Wpf;component/images/DevOps/DevOps-TestPlans.png" Width="24" Height="24"/>
                         </hc:SideMenuItem.Icon>
-                        <hc:SideMenuItem Background="Transparent" Header="Test Plans">
+                        <hc:SideMenuItem Background="Transparent" Header="测试计划">
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf3ab;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
-                        <hc:SideMenuItem Background="Transparent" Header="Runs">
+                        <hc:SideMenuItem Background="Transparent" Header="运行">
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf3ac;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
-                        <hc:SideMenuItem Background="Transparent" Header="Load test">
+                        <hc:SideMenuItem Background="Transparent" Header="测试">
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xe8a9;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>

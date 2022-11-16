@@ -16,12 +16,12 @@ using System.Windows.Controls;
 namespace DGHIS.RegisterManagement.ViewModels
 {
     /// <summary>
-    /// 掛號時段業務
+    /// 挂号时段业务
     /// </summary>
     public class RegisterListViewModel : BaseManagePageViewModel
     {
         /// <summary>
-        /// 掛號時段業務構造函數
+        /// 挂号时段业务构造函数
         /// </summary>
         /// <param name="container"></param>
         public RegisterListViewModel(IContainerExtension container) : base(container)
@@ -31,7 +31,7 @@ namespace DGHIS.RegisterManagement.ViewModels
 
 
         /// <summary>
-        /// 處理新增事件
+        /// 处理新增事件
         /// </summary>
         public override DelegateCommand AddCommand => new DelegateCommand(() =>
         {
@@ -43,7 +43,7 @@ namespace DGHIS.RegisterManagement.ViewModels
         });
 
         /// <summary>
-        /// 頁面加載事件
+        /// 页面加载事件
         /// </summary>
         /// <param name="page"></param>
         public async override void PageLoaded(Page page)
@@ -54,7 +54,7 @@ namespace DGHIS.RegisterManagement.ViewModels
 
         //private ObservableCollection<Account> listGrid = new ObservableCollection<Account>();
         ///// <summary>
-        ///// 表格數據源
+        ///// 表格数据源
         ///// </summary>
         //public ObservableCollection<Account> ListGrid
         //{
@@ -63,20 +63,20 @@ namespace DGHIS.RegisterManagement.ViewModels
         //}
 
         /// <summary>
-        /// 綁定分頁數據
+        /// 绑定分页数据
         /// </summary>
         [WaitComplete]
         protected async override Task<object> BindPagingData()
         {
             List<Account> list = new List<Account>();
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 25; i++)
             {
                 list.Add(new Account
                 {
-                    Name = "趙佳仁" + i,
+                    Name = "赵佳仁" + i,
                     RegTime = DateTime.Now.AddDays(i),
-                    RoleName = "管理員" + i,
-                    Title = "無職" + i,
+                    RoleName = "管理员" + i,
+                    Title = "无职" + i,
                     UserID = 100 + i
                 });
             }
@@ -86,10 +86,10 @@ namespace DGHIS.RegisterManagement.ViewModels
         }
 
         /// <summary>
-        /// 通用更改狀態方法
+        /// 通用更改状态方法
         /// </summary>
-        /// <typeparam name="TEntity">待更改狀態實體</typeparam>
-        /// <param name="entity">當前對象</param>
+        /// <typeparam name="TEntity">待更改状态实体</typeparam>
+        /// <param name="entity">当前对象</param>
         [WaitComplete]
         protected override async Task<object> UpdateDataStatus<TEntity>(TEntity entity)
         {
@@ -110,15 +110,15 @@ namespace DGHIS.RegisterManagement.ViewModels
 
     public class Account
     {
-        [BindDescription("用戶ID")]
+        [BindDescription("用户ID")]
         public int UserID { get; set; }
-        [BindDescription("用戶名")]
+        [BindDescription("用户名")]
         public string Name { get; set; }
-        [BindDescription("註冊時間")]
+        [BindDescription("注册时间")]
         public DateTime RegTime { get; set; }
-        [BindDescription("角色名穩")]
+        [BindDescription("角色名")]
         public string RoleName { get; set; }
-        [BindDescription("職級")]
+        [BindDescription("职级")]
         public string Title { get; set; }
     }
 }

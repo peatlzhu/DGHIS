@@ -21,7 +21,7 @@ namespace DGHIS.Core.Models
         /// <summary>
         /// 叫號順序
         /// </summary>
-        [BindDescription("叫号顺序", ShowScheme.普通文本, "80*", 1, "")]
+        [BindDescription("叫号顺序", ShowScheme.普通文本, "100*", 1, "")]
         public string Index { get; set; }
 
         /// <summary>

@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-
+    
 namespace DGHIS.Core.Controls.Common
 {
     /// <summary>
     /// 輕量級的DataGrid擴展
     /// </summary>
     public class DataGridEx : DataGrid
-    {
+    {   
         /// <summary>
         /// 構造函數
         /// </summary>
@@ -87,7 +87,7 @@ namespace DGHIS.Core.Controls.Common
                     var acolumn = new DataGridTextColumn
                     {
                         Header = "序号",
-                        Width = new DataGridLength(50),
+                        Width = new DataGridLength(60),
                         Binding = new Binding("Header") { RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(DataGridRow), 1) }
                     };
                     u.Columns.Insert(0, acolumn);

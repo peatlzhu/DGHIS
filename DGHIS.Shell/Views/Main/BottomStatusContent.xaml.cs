@@ -27,6 +27,11 @@ namespace DGHIS.Shell.Views
 
         private void Version_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            VersionShow();
+        }
+
+        private void VersionShow()
+        {
 
         }
     }

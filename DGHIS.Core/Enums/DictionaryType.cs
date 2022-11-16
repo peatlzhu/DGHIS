@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DGHIS.Core.Enums
 {
     /// <summary>
-    /// 字典類型
+    /// 字典类型
     /// </summary>
     public enum DictionaryType
     {
@@ -17,18 +17,18 @@ namespace DGHIS.Core.Enums
         民族 = 1,
 
         /// <summary>
-        /// 單位
+        /// 单位
         /// </summary>
-        單位 = 2,
+        单位 = 2,
 
         /// <summary>
-        /// 性別
+        /// 性别
         /// </summary>
-        性別 = 3,
+        性别 = 3,
 
         /// <summary>
-        /// 職級
+        /// 职级
         /// </summary>
-        職級 = 4
+        职级 = 4
     }
 }

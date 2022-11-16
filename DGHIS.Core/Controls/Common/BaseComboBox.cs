@@ -68,7 +68,7 @@ namespace DGHIS.Core.Controls.Common
         protected abstract void OnInitialized(object sender, EventArgs e);
 
         private string DefaultSelectedValue = "-1";
-        private string DefaultSelectedText = "—請選擇—";
+        private string DefaultSelectedText = "—请选择—";
 
         /// <summary>
         /// 添加默认项：请选择
@@ -81,8 +81,8 @@ namespace DGHIS.Core.Controls.Common
             bool hasSelect = false;
             var s = pros.FirstOrDefault(x => x.Name == SelectedValuePath);
             var d = pros.FirstOrDefault(x => x.Name == DisplayMemberPath);
-            if (s == null) throw new Exception("未給ComboBox指定SelectedValuePath屬性，注意：屬性區分大小寫！");
-            if (d == null) throw new Exception("未给ComboBox指定DisplayMemberPath屬性，注意：屬性區分大小寫！");
+            if (s == null) throw new Exception("未给ComboBox指定SelectedValuePath属性，注意：属性区分大小写！");
+            if (d == null) throw new Exception("未给ComboBox指定DisplayMemberPath属性，注意：属性区分大小写！");
             foreach (var item in data)
             {
                 if (s == d && s.GetValue(item, null) + "" == DefaultSelectedText)

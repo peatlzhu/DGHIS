@@ -20,13 +20,13 @@ using System.Threading.Tasks;
 namespace DGHIS.Core.Apis
 {
     /// <summary>
-    /// 預約掛號接口
+    /// 预约挂号接口
     /// </summary>
     [Headers("User-Agent: DGHIS.WPF-Client")]
     public interface IReservationApi
     {
         /// <summary>
-        /// 新增紐約掛號記錄
+        /// 新增纽约挂号记录
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
@@ -34,7 +34,7 @@ namespace DGHIS.Core.Apis
         Task<OperationResult> Add(ReservationInputDto dto);
 
         /// <summary>
-        /// 修改預約掛號記錄
+        /// 修改预约挂号记录
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
@@ -42,16 +42,16 @@ namespace DGHIS.Core.Apis
         Task<OperationResult> Update(ReservationInputDto dto);
 
         /// <summary>
-        /// 更改預約掛號記錄狀態
+        /// 更改预约挂号记录状态
         /// </summary>
-        /// <param name="id">掛號記錄ID</param>
-        /// <param name="status">狀態</param>
+        /// <param name="id">挂号记录ID</param>
+        /// <param name="status">状态</param>
         /// <returns></returns>
         [Post("/api/Reservation/ChangeStatus")]
         Task<OperationResult> ChangeStatus(int id, EntityStatus status);
 
         /// <summary>
-        /// 批量刪除掛號記錄
+        /// 批量删除挂号记录
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -59,9 +59,9 @@ namespace DGHIS.Core.Apis
         Task<OperationResult> Delete(int[] id);
 
         /// <summary>
-        /// 預約掛號分頁查詢接口
+        /// 预约挂号分页查询接口
         /// </summary>
-        /// <param name="request">請求規則</param>
+        /// <param name="request">请求规则</param>
         /// <returns></returns>
         [Post("/api/Reservation/GetPageingData")]
         Task<OperationResult<PageData<ReservationOutputDto>>> GetPageingData(PageRequest request);

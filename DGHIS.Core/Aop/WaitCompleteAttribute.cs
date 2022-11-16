@@ -23,8 +23,8 @@ namespace KWT.Core.Aop
         private static MethodInfo _taskHandler = typeof(WaitCompleteAttribute).GetMethod(nameof(WaitCompleteAttribute.WrapTaskAsync), BindingFlags.NonPublic | BindingFlags.Static);
         private static MethodInfo _normalMethodHandler = typeof(WaitCompleteAttribute).GetMethod(nameof(WaitCompleteAttribute.WrapSync), BindingFlags.NonPublic | BindingFlags.Static);
 
-        private static int delay = 500;
-
+        //  private static int delay = 500;
+     
         [Advice(Kind.Around, Targets = Target.Method)]
         public object HandleMethod([Argument(Source.Target)] Func<object[], object> target,
             [Argument(Source.Arguments)] object[] args,
@@ -54,17 +54,17 @@ namespace KWT.Core.Aop
             try
             {
                 MaskExtensions.Show();
-                Task.Delay(delay);
+              //  Task.Delay(delay);
                 return (T)target(args);
             }
             catch (Exception e)
             {
-                MessageBox.Show("攔截方法出錯，原因：" + e.Message + "，請檢查被攔截的方法參數是否正確。", "系統提示", 0, (MessageBoxImage)16);
+                MessageBox.Show("拦截方法出错，原因：" + e.Message + "，请检查被拦截的方法参数是否正确。", "系统提示", 0, (MessageBoxImage)16);
                 return default;
             }
             finally
             {
-                 ContainerLocator.Container.Resolve<IEventAggregator>().GetEvent<ConstrolStateEvent>().Publish(new ControlState { IsEnabled = true });
+                ContainerLocator.Container.Resolve<IEventAggregator>().GetEvent<ConstrolStateEvent>().Publish(new ControlState { IsEnabled = true });
                 MaskExtensions.Close();
             }
         }
@@ -75,12 +75,12 @@ namespace KWT.Core.Aop
             try
             {
                 MaskExtensions.Show();
-                await Task.Delay(delay);
+             //   await Task.Delay(delay);
                 await (Task)target(args);
             }
             catch (Exception e)
             {
-                MessageBox.Show("攔截方法出錯，原因：" + e.Message + "，請檢查被攔截的方法參數是否正確。", "系統提示", 0, (MessageBoxImage)16);
+                MessageBox.Show("拦截方法出错，原因：" + e.Message + "，请检查被拦截的方法参数是否正确。", "系统提示", 0, (MessageBoxImage)16);
             }
             finally
             {
@@ -94,12 +94,12 @@ namespace KWT.Core.Aop
             try
             {
                 MaskExtensions.Show();
-                await Task.Delay(delay);
+              //  await Task.Delay(delay);
                 return await (Task<T>)target(args);
             }
             catch (Exception e)
             {
-                MessageBox.Show("攔截方法出錯，原因：" + e.Message + "，請檢查被攔截的方法參數是否正確。", "系統提示", 0, (MessageBoxImage)16);
+                MessageBox.Show("拦截方法出错，原因：" + e.Message + "，请检查被拦截的方法参数是否正确。", "系统提示", 0, (MessageBoxImage)16);
                 return default;
             }
             finally
@@ -114,12 +114,12 @@ namespace KWT.Core.Aop
             try
             {
                 MaskExtensions.Show();
-                Task.Delay(delay);
+             //   Task.Delay(delay);
                 return target(args);
             }
             catch (Exception e)
             {
-                MessageBox.Show("攔截方法出錯，原因：" + e.Message + "，請檢查被攔截的方法參數是否正確。", "系統提示", 0, (MessageBoxImage)16);
+                MessageBox.Show("拦截方法出错，原因：" + e.Message + "，请检查被拦截的方法参数是否正确。", "系统提示", 0, (MessageBoxImage)16);
                 return default;
             }
             finally

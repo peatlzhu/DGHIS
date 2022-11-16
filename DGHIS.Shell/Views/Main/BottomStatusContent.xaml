@@ -15,16 +15,8 @@
                                Text="IP:" />
                 <TextBlock Width="120"
                                Margin="5,0,0,0"
-                               Text="{Binding Identity.ApplicationInfo.IP}"
-                               Cursor="Hand"
-                               MouseLeftButtonDown="Version_MouseLeftButtonDown" />
-                <TextBlock Margin="5,0,0,0"
-                               Visibility="Collapsed"
-                               Text="编译时间:" />
-                <TextBlock Width="240"
-                               Visibility="Collapsed"
-                               Margin="0,0,0,0"
-                               Text="{Binding Identity.ApplicationInfo.BuildTime,StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}" />
+                               Text="172.168.1.104"                             
+                               />            
             </WrapPanel>
         </StatusBarItem>     
         <StatusBarItem HorizontalAlignment="Right">
@@ -39,7 +31,7 @@
                 <TextBlock Margin="0,0,5,0"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
-                               Text="{Binding Identity.Name}"
+                               Text="{Binding CurrentUser.UserName}"
                                Cursor="Hand"
                                FontWeight="Bold"
                                Foreground="{DynamicResource EMRCPOE.StatusBarItem.Foreground}">
@@ -48,38 +40,7 @@
                                 <i:InvokeCommandAction Command="{Binding UserClickCommand}" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                </TextBlock>
-                <TextBlock Margin="0,0,2,0"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Text="&#xe738;"
-                               FontSize="15"
-                               Foreground="{DynamicResource EMRCPOE.StatusBarItem.Foreground}">
-                    <TextBlock.Style>
-                        <Style TargetType="{x:Type TextBlock}"
-                                   BasedOn="{StaticResource TextBlockAppIcons}">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Identity.ClinicTypeName}"
-                                                 Value="{x:Null}">
-                                    <Setter Property="Visibility"
-                                                Value="Collapsed" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Identity.ClinicTypeName}"
-                                                 Value="">
-                                    <Setter Property="Visibility"
-                                                Value="Collapsed" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
-
-                <TextBlock Margin="0,0,5,0"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Text="{Binding Identity.ClinicTypeName}"
-                               FontWeight="Bold"
-                               Foreground="{DynamicResource EMRCPOE.StatusBarItem.Foreground}" />
+                </TextBlock>    
                 <TextBlock Margin="0,-1,5,0"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
@@ -90,7 +51,7 @@
                 <TextBlock Margin="0,0,10,0"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
-                               Text="{Binding Identity.HospitalName}"
+                               Text="{Binding CurrentUser.HospitalName}"
                                Cursor="Hand"
                                FontWeight="Bold"
                                Foreground="{DynamicResource EMRCPOE.StatusBarItem.Foreground}">
@@ -110,7 +71,7 @@
                 <TextBlock Margin="0,0,15,0"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
-                               Text="{Binding Identity.DepartmentName}"
+                               Text="{Binding CurrentUser.CurrentDepartmentName}"
                                Cursor="Hand"
                                FontWeight="Bold"
                                Foreground="{DynamicResource EMRCPOE.StatusBarItem.Foreground}">
@@ -131,7 +92,7 @@
                                VerticalAlignment="Center"
                                Cursor="Hand"
                                MouseLeftButtonDown="Version_MouseLeftButtonDown"
-                               Text="{Binding Identity.ApplicationInfo.Version.UpdateVersion}"
+                               Text="{Binding CurrentUser.Token}"
                                FontWeight="Bold"
                                Foreground="{DynamicResource EMRCPOE.StatusBarItem.Foreground}">                 
                 </TextBlock>

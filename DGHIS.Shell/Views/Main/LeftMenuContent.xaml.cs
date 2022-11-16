@@ -29,5 +29,10 @@ namespace DGHIS.Shell.Views
         {
 
         }
+
+        private void sideMenu_SelectionChanged(object sender, HandyControl.Data.FunctionEventArgs<object> e)
+        {
+
+        }
     }
 }

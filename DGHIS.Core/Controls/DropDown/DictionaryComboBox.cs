@@ -31,7 +31,7 @@ namespace DGHIS.Core.Controls.DropDown
             //{
             //    Data = response.Data;
             //}
-            if (DictionaryType == DictionaryType.性別)
+            if (DictionaryType == DictionaryType.性别)
             {
                 List<DictionaryData> list = new List<DictionaryData>();
                 list.Add(new DictionaryData { ID = 234, Name = "男" });

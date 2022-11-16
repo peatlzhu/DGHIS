@@ -22,7 +22,7 @@ namespace DGHIS.Shell.ViewModels.Login
         /// <param name="container"></param>
         public LoginWindowViewModel(IContainerExtension container) : base(container)
         {
-
+        
         }
 
         /// <summary>

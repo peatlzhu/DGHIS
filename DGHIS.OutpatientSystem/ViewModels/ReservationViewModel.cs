@@ -29,7 +29,7 @@ namespace DGHIS.OutpatientSystem.ViewModels
         /// <param name="container"></param>
         public ReservationViewModel(IContainerExtension container) : base(container)
         {
-            PagingData.PageSize = 10;
+            PagingData.PageSize = 15;
         }
 
         private ReservationCondition query = new ReservationCondition();
