@@ -182,7 +182,7 @@
             <b:InvokeCommandAction PassEventArgsToCommand="True" Command="{Binding CloseWindowCommand}" />
         </b:EventTrigger>
     </b:Interaction.Triggers>
-    <Grid>     
+    <Grid>    
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -319,6 +319,7 @@
             <local:LeftMenuContent  Grid.Column="0" Margin="5 5 0 5" Width="Auto"/>
             <hc:TabControl Grid.Column="1"  Background="Transparent" x:Name="MainTabPanel" prism:RegionManager.RegionName="ContentRegion" ShowOverflowButton="False" ShowScrollButton="False" IsScrollable="True" Margin="5" IsAnimationEnabled="True" ShowCloseButton="True" IsDraggable="False" IsTabFillEnabled="False"   />
         </Grid>
-        <local:BottomStatusContent Grid.Row="2"  />
+        <local:BottomStatusContent Grid.Row="2"  />     
     </Grid>
+
 </hc:Window>

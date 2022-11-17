@@ -13,17 +13,18 @@ using System.Windows.Controls;
 namespace KWT.Core.Aop
 {
     /// <summary>
-    /// 处理进度
+    /// 处理进度 此方法在快速点击查询或,提交按钮时会出现显示或关闭蒙蔽窗显示异常.禁用
     /// </summary>
     [Aspect(Scope.Global)]
     [Injection(typeof(WaitCompleteAttribute))]
+    [Obsolete]
     public class WaitCompleteAttribute : Attribute
     {
         private static MethodInfo _taskTHandler = typeof(WaitCompleteAttribute).GetMethod(nameof(WaitCompleteAttribute.WrapAsync), BindingFlags.NonPublic | BindingFlags.Static);
         private static MethodInfo _taskHandler = typeof(WaitCompleteAttribute).GetMethod(nameof(WaitCompleteAttribute.WrapTaskAsync), BindingFlags.NonPublic | BindingFlags.Static);
         private static MethodInfo _normalMethodHandler = typeof(WaitCompleteAttribute).GetMethod(nameof(WaitCompleteAttribute.WrapSync), BindingFlags.NonPublic | BindingFlags.Static);
 
-        //  private static int delay = 500;
+          private static int delay = 500;
      
         [Advice(Kind.Around, Targets = Target.Method)]
         public object HandleMethod([Argument(Source.Target)] Func<object[], object> target,
@@ -75,7 +76,7 @@ namespace KWT.Core.Aop
             try
             {
                 MaskExtensions.Show();
-             //   await Task.Delay(delay);
+                await Task.Delay(delay);
                 await (Task)target(args);
             }
             catch (Exception e)
@@ -94,7 +95,7 @@ namespace KWT.Core.Aop
             try
             {
                 MaskExtensions.Show();
-              //  await Task.Delay(delay);
+                await Task.Delay(delay);
                 return await (Task<T>)target(args);
             }
             catch (Exception e)
@@ -114,7 +115,7 @@ namespace KWT.Core.Aop
             try
             {
                 MaskExtensions.Show();
-             //   Task.Delay(delay);
+                Task.Delay(delay);
                 return target(args);
             }
             catch (Exception e)

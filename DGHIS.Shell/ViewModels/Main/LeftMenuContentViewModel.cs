@@ -38,8 +38,8 @@ namespace DGHIS.Shell.ViewModels
             var pageType = manager.GetPage(menuName);
             if (pageType == null)
             {
-                AlertPopup($"未实现或创建名称为【{menuName}】的Page对象",MessageType.Error);
-                //MessageBox.Show($"未实现或创建名称为【{menuName}】的Page对象", "系统提示", MessageBoxButton.OK, MessageBoxImage.Error);
+               // AlertPopup($"未实现或创建名称为【{menuName}】的Page对象",MessageType.Error);
+                MessageBox.Show($"未实现或创建名称为【{menuName}】的Page对象", "系统提示", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             var page = Container.Resolve(pageType) as Page;

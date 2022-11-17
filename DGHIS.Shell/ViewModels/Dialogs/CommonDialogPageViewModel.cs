@@ -58,8 +58,8 @@ namespace DGHIS.Shell.ViewModels.Dialogs
         /// </summary>
         public DelegateCommand SaveCommand => new DelegateCommand(() =>
         {
-            EventAggregator.GetEvent<CommonSaveEvent>().Publish();
-            EventAggregator.GetEvent<ConstrolStateEvent>().Publish(new ControlState { IsEnabled = false });
+           EventAggregator.GetEvent<CommonSaveEvent>().Publish();
+           EventAggregator.GetEvent<ConstrolStateEvent>().Publish(new ControlState { IsEnabled = false });
         });
 
         /// <summary>

@@ -15,6 +15,7 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using Unity;
 using DGHIS.Shell.RegionAdptor;
+using DGHIS.OutpatientSystem;
 
 namespace DGHIS.Shell
 {
@@ -63,8 +64,9 @@ namespace DGHIS.Shell
 						ControlType = item2,
 						RegionName = locator.RegionName,
 						TargetType = locator.Target
-					});
-				}
+					});               
+
+                }
 			}
 			containerRegistry.RegisterDialog<AlertDialog, AlertDialogViewModel>();
 			containerRegistry.RegisterDialog<ConfirmDialog, ConfirmDialogViewModel>();
@@ -95,13 +97,13 @@ namespace DGHIS.Shell
                     ModuleType = item.AssemblyQualifiedName,
                     InitializationMode = InitializationMode.OnDemand
                 });
-            }
+            }       
         }
 
         protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
         {
             base.ConfigureRegionAdapterMappings(regionAdapterMappings);
-            regionAdapterMappings.RegisterMapping(typeof(HandyControl.Controls.TabControl), Container.Resolve<TabControlRegionAdptor>());
+     //       regionAdapterMappings.RegisterMapping(typeof(HandyControl.Controls.TabControl), Container.Resolve<TabControlRegionAdptor>());
         }
 
         protected override IModuleCatalog CreateModuleCatalog()

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using Window = System.Windows.Window;
 
 namespace DGHIS.Core.Extensions
 {
@@ -22,10 +23,10 @@ namespace DGHIS.Core.Extensions
         /// </summary>
         public static void Show()
         {
-            //Window win = Application.Current.Windows.OfType<Window>().FirstOrDefault(x => x.IsActive);
-            //Grid container = win.GetChildObject<Grid>("maskContainer");
-            //if (container == null) throw new Exception("界面上未找到名称爲maskContainer的Grid容器控件！");
-            //container.Children.Add(w);
+            Window win = Application.Current.Windows.OfType<Window>().FirstOrDefault(x => x.IsActive);
+            Grid container = win.GetChildObject<Grid>("maskContainer");
+            if (container == null) throw new Exception("界面上未找到名称爲maskContainer的Grid容器控件！");
+            container.Children.Add(w);
         }
 
 
@@ -34,10 +35,10 @@ namespace DGHIS.Core.Extensions
         /// </summary>
         public static void Close()
         {
-            //Window win = Application.Current.Windows.OfType<Window>().FirstOrDefault(x => x.IsActive);
-            //Grid container = win.GetChildObject<Grid>("maskContainer");
-            //if (container == null) throw new Exception("界面上未找到名称爲maskContainer的Grid容器控件！");
-            //container.Children.Remove(w);
+            Window win = Application.Current.Windows.OfType<Window>().FirstOrDefault(x => x.IsActive);
+            Grid container = win.GetChildObject<Grid>("maskContainer");
+            if (container == null) throw new Exception("界面上未找到名称爲maskContainer的Grid容器控件！");
+            container.Children.Remove(w);
         }
     }
 }

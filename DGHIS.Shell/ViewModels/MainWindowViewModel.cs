@@ -39,14 +39,15 @@ namespace DGHIS.Shell.ViewModels
         /// <summary>
         /// 关闭窗体事件
         /// </summary>
-        public DelegateCommand CloseWindowCommand => new DelegateCommand(() =>
+        public DelegateCommand<CancelEventArgs> CloseWindowCommand => new DelegateCommand<CancelEventArgs>((e) =>
         {
-            Confirm("您确定要关闭窗体并退出吗？", (d) =>
+            Confirm("您确定要关闭窗体并退出吗?", (d) =>
             {
                 if (d.Result == ButtonResult.Yes)
                 {
                     Application.Current.Shutdown(0);
-                }
+                } 
+                e.Cancel = true;
             });
         });
 

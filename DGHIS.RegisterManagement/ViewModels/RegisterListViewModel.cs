@@ -65,24 +65,26 @@ namespace DGHIS.RegisterManagement.ViewModels
         /// <summary>
         /// 绑定分页数据
         /// </summary>
-        [WaitComplete]
+        //[WaitComplete]
         protected async override Task<object> BindPagingData()
         {
-            List<Account> list = new List<Account>();
-            for (int i = 0; i < 25; i++)
-            {
-                list.Add(new Account
+          return  await SetBusyAsync(async () => {
+                List<Account> list = new List<Account>();
+                for (int i = 0; i < 25; i++)
                 {
-                    Name = "赵佳仁" + i,
-                    RegTime = DateTime.Now.AddDays(i),
-                    RoleName = "管理员" + i,
-                    Title = "无职" + i,
-                    UserID = 100 + i
-                });
-            }
-            PageData = list;
-            await Task.Delay(200);
-            return true;
+                    list.Add(new Account
+                    {
+                        Name = "赵佳仁" + i,
+                        RegTime = DateTime.Now.AddDays(i),
+                        RoleName = "管理员" + i,
+                        Title = "无职" + i,
+                        UserID = 100 + i
+                    });
+                }
+                PageData = list;
+                await Task.Delay(200);
+                return true;
+            });         
         }
 
         /// <summary>
@@ -90,21 +92,24 @@ namespace DGHIS.RegisterManagement.ViewModels
         /// </summary>
         /// <typeparam name="TEntity">待更改状态实体</typeparam>
         /// <param name="entity">当前对象</param>
-        [WaitComplete]
+        //[WaitComplete]
         protected override async Task<object> UpdateDataStatus<TEntity>(TEntity entity)
         {
-            if (!IsDevelopment)
+            return await SetBusyAsync(async () =>
             {
-                await Task.Delay(300);
-                //var model = entity as ReservationOutputDto;
-                //var response = await RestService.For<IReservationApi>(AuthClient).ChangeStatus(model.Id, (EntityStatus)model.Status);
-                //AlertPopup(response.Message, response.Succeeded ? MessageType.Success : MessageType.Error, async (d) =>
-                //{
-                //    if (response.Succeeded) await BindPagingData();
-                //});
-                //return response.Succeeded;
-            }
-            return null;
+                if (!IsDevelopment)
+                {
+                    await Task.Delay(300);
+                    //var model = entity as ReservationOutputDto;
+                    //var response = await RestService.For<IReservationApi>(AuthClient).ChangeStatus(model.Id, (EntityStatus)model.Status);
+                    //AlertPopup(response.Message, response.Succeeded ? MessageType.Success : MessageType.Error, async (d) =>
+                    //{
+                    //    if (response.Succeeded) await BindPagingData();
+                    //});
+                    //return response.Succeeded;
+                }
+                return null;
+            });
         }
     }
 

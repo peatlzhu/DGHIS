@@ -12,7 +12,7 @@
       xmlns:hc="https://handyorg.github.io/handycontrol"
       d:DesignHeight="450" d:DesignWidth="800"    
       Title="AddOrEditReservation" Background="White">
-    <Grid x:Name="maskContainer">
+    <Grid>
         <hc:UniformSpacingPanel Spacing="24" Margin="24,0" ChildWrapping="Wrap">
         <StackPanel>
                 <hc:TextBox ShowClearButton="True" hc:InfoElement.Title="顺序" Width="140" Text="{Binding Dto.Index}" ></hc:TextBox>

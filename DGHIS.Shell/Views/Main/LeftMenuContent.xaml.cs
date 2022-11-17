@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HandyControl.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,14 +26,13 @@ namespace DGHIS.Shell.Views
             InitializeComponent();
         }
 
-        private void SearchBar_OnSearchStarted(object sender, HandyControl.Data.FunctionEventArgs<string> e)
-        {
+        //private void SearchBar_OnSearchStarted(object sender, HandyControl.Data.FunctionEventArgs<string> e)
+        //{
+        //    var items = sideMenu.Items;
+        //    sideMenu.ItemsSource = items.OfType<SideMenuItem>().Where(x => x.Header.ToString().Contains(e.Info.ToString())).ToList();
+         
+        //}
 
-        }
 
-        private void sideMenu_SelectionChanged(object sender, HandyControl.Data.FunctionEventArgs<object> e)
-        {
-
-        }
     }
 }

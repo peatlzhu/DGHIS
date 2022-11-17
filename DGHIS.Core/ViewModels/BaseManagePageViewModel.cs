@@ -82,12 +82,12 @@ namespace DGHIS.Core.ViewModels
         /// <summary>
         /// 查询命令
         /// </summary>
-        public DelegateCommand QueryCommand => new DelegateCommand(async () => { await BindPagingData(); });
+        public DelegateCommand QueryCommand => new DelegateCommand(async () => { await BindPagingData(); },()=>!IsBusy);
 
         /// <summary>
         /// 分页查询事件
         /// </summary>
-        public DelegateCommand ChangePageIndexCommand => new DelegateCommand(async () => { await BindPagingData(); });
+        public DelegateCommand ChangePageIndexCommand => new DelegateCommand(async () => { await BindPagingData(); },()=>!IsBusy);
 
         /// <summary>
         /// 新增方法

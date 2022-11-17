@@ -38,6 +38,7 @@ namespace DGHIS.Shell.Views
         private void AddPage(string name, Page page)
         {
            HandyControl.Controls.TabItem tabItem = MainTabPanel.Items.OfType<HandyControl.Controls.TabItem>().FirstOrDefault(item => item.Header.ToString() == name);
+        
             if (tabItem == null)
             {
                 tabItem = new HandyControl.Controls.TabItem()
@@ -51,9 +52,11 @@ namespace DGHIS.Shell.Views
                 pageFrame.Navigate(page);
                 tabItem.Content = pageFrame;
                 MainTabPanel.Items.Add(tabItem);
-            }
+            }          
             MainTabPanel.SelectedItem = tabItem;
+            MainTabPanel.Focus();             
         }
+
     }
 
     public static class ControlHelper

@@ -18,6 +18,8 @@ using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
+using DGHIS.Core.Extensions;
+using System.Threading.Tasks;
 
 namespace DGHIS.Core.ViewModels
 {
@@ -253,5 +255,130 @@ namespace DGHIS.Core.ViewModels
             if (p.PropertyType == typeof(DateTime) && (DateTime)v == DateTime.MinValue) return true;
             return false;
         }
+
+
+        #region 加载与执行中 Create by DG
+        public async Task<object> SetBusyAsync(Func<Task<object>> func)
+        {
+            ExecuteBefore();
+            try
+            {
+                await Task.Delay(500);
+                return await func();          
+
+            }
+            catch (Exception ex)
+            {              
+                throw;
+            }
+            finally
+            {
+                ExecuteAfter();
+            }
+        }
+
+
+        public async Task SetBusyAsync(Func<Task> func, int millisecDelay = 0)
+        {
+            ExecuteBefore();
+            try
+            {
+                await func();
+                await Task.Delay(millisecDelay);
+            }
+            catch (Exception ex)
+            {
+                var methodName = func?.Method;           
+                throw;
+            }
+            finally
+            {
+                ExecuteAfter();
+            }
+        }
+
+        /// <summary>
+        /// 执行前
+        /// </summary>
+        private void ExecuteBefore()
+        {
+            _isBusy = true;
+            MaskExtensions.Show();
+        }
+
+        /// <summary>
+        /// 执行后
+        /// </summary>
+
+        private void ExecuteAfter()
+        {
+            _isBusy = false;
+            MaskExtensions.Close();
+        }
+
+        public async Task SetInputBusyAsync(Func<Task> func)
+        {           
+            ExecuteInputBefore();
+            try
+            {
+
+                await Task.Delay(500);
+                await func();
+            }
+            catch (Exception ex)
+            {
+                var methodName = func?.Method;             
+                throw;
+            }
+            finally
+            {
+                ExecuteInputAfter();
+            }
+        }
+
+        /// <summary>
+        /// 数据录入执行前
+        /// </summary>
+        private void ExecuteInputBefore()
+        {
+            _isInputBusy = true;
+            MaskExtensions.Show();
+        }
+
+        /// <summary>
+        /// 数据录入执行后
+        /// </summary>
+
+        private void ExecuteInputAfter()
+        {
+           _isInputBusy = false;
+            MaskExtensions.Close();        
+        }
+
+        private bool _isBusy;
+
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set
+            {
+                _isBusy = value;
+                SetProperty(ref _isBusy,value);
+            }
+        }
+
+        private bool _isInputBusy;
+
+        public bool IsInputBusy
+        {
+            get => _isInputBusy;
+            set
+            {
+                _isInputBusy = value;          
+               SetProperty(ref _isInputBusy, value);          
+            }
+        }
+
+        #endregion 加载与执行中 Create by DG
     }
 }

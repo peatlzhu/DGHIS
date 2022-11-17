@@ -16,6 +16,7 @@ namespace DGHIS.Core.ViewModels
             SubscribeEvents();
         }
 
+
         protected abstract Task SaveCommand();
 
         private void SubscribeEvents()

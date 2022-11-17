@@ -84,48 +84,53 @@ namespace DGHIS.OutpatientSystem.ViewModels
             await BindPagingData();
         }
 
+ 
         /// <summary>
         /// 绑定分页数据
         /// </summary>
-        [WaitComplete]
-        protected async override Task<object> BindPagingData()
+       // [WaitComplete]
+        protected override async  Task<object> BindPagingData()
         {
-            if (!IsDevelopment)
+            return await SetBusyAsync(async () =>
             {
-                var request = this.GetQueryRules(Query);
-                var response = await RestService.For<IReservationApi>(AuthClient).GetPageingData(request);
-                if (response.Succeeded)
+                if (!IsDevelopment)
                 {
-                    PageData = response.Data.Rows;
-                    this.PagingData.Total = response.Data.Total;
-                }
-                return response;
-            }
-            else
-            {
-                this.PagingData.Total = 200;
-                int counter = this.PagingData.PageSize;
-                var list = new List<ReservationOutputDto>();
-                for (int i = 0; i < counter; i++)
-                {
-                    list.Add(new ReservationOutputDto
+                    var request = this.GetQueryRules(Query);
+                    var response = await RestService.For<IReservationApi>(AuthClient).GetPageingData(request);
+                    if (response.Succeeded)
                     {
-                        BusinessNumber = DateTime.Now.ToString($"GH-yyyyMMdd{i + 1}"),
-                        DepartmentID = i + 1,
-                        DepartmentName = $"测试科室{i}",
-                        DoctorName = $"非诉讼{i}",
-                        Expire = i % 2 == 0 ? "上午有效" : "下午有效",
-                        Id = i + 1,
-                        Index = $"第{i + 1}号",
-                        Name = $"柳{i}刀",
-                        Gender= 235,
-                        ReservationTime = DateTime.Now.AddSeconds(i),
-                        Status = i % 5 == 0 ? EntityStatus.停用 : EntityStatus.正常
-                    });
+                        PageData = response.Data.Rows;
+                        this.PagingData.Total = response.Data.Total;
+                    }
+                    return response;
                 }
-                PageData = list;
-                return true;
-            }
+                else
+                {
+                    this.PagingData.Total = 200;
+                    int counter = this.PagingData.PageSize;
+                    var list = new List<ReservationOutputDto>();
+                    for (int i = 0; i < counter; i++)
+                    {
+                        list.Add(new ReservationOutputDto
+                        {
+                            BusinessNumber = DateTime.Now.ToString($"GH-yyyyMMdd{i + 1}"),
+                            DepartmentID = i + 1,
+                            DepartmentName = $"测试科室{i}",
+                            DoctorName = $"非诉讼{i}",
+                            Expire = i % 2 == 0 ? "上午有效" : "下午有效",
+                            Id = i + 1,
+                            Index = $"第{i + 1}号",
+                            Name = $"柳{i}刀",
+                            Gender = 235,
+                            ReservationTime = DateTime.Now.AddSeconds(i),
+                            Status = i % 5 == 0 ? EntityStatus.停用 : EntityStatus.正常
+                        });
+                    }
+                    PageData = list;
+                    return true;
+                }
+            });   
+        
         }
 
         /// <summary>
@@ -141,7 +146,7 @@ namespace DGHIS.OutpatientSystem.ViewModels
         /// </summary>
         /// <typeparam name="TEntity">待更改状态实体</typeparam>
         /// <param name="entity">当前对象</param>
-        [WaitComplete]
+       // [WaitComplete]
         protected override async Task<object> UpdateDataStatus<TEntity>(TEntity entity)
         {
             if (!IsDevelopment)
