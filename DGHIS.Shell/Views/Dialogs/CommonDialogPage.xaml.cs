@@ -36,17 +36,20 @@ namespace DGHIS.Shell.Views.Dialogs
             RegionManager.SetRegionManager(pages, _regionManager);
 
             ConstrolStateEvent controlEvent = _ea.GetEvent<ConstrolStateEvent>();
-            controlEvent.Subscriptions.Clear();
-            controlEvent.Subscribe((state) => {
-                SaveButton.IsEnabled = state.IsEnabled;
-                maskGrid.Visibility = state.IsEnabled?Visibility.Collapsed: Visibility.Visible;
-            });
+            //  controlEvent.Subscriptions.Clear();  //不能使用clear ,会清除主窗体注册事件
+            if(controlEvent.Subscriptions.Count>1)
+                controlEvent.Subscriptions.Remove(controlEvent.Subscriptions.ElementAt(1));   //移除对话窗体注册事件
+            controlEvent.Subscribe(SetSaveButton);          
 
             DisableDialogPageButtonEvent disableEvent = _ea.GetEvent<DisableDialogPageButtonEvent>();
             disableEvent.Subscriptions.Clear();
             disableEvent.Subscribe(() => { saveArea.Visibility = Visibility.Collapsed; });
+        }
 
-
+        private void SetSaveButton(ControlState state)
+        {
+            SaveButton.IsEnabled = state.IsEnabled;
+            maskGrid.Visibility = state.IsEnabled ? Visibility.Collapsed : Visibility.Visible;
         }
     }
 }

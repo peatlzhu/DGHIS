@@ -13,11 +13,11 @@ using System.Windows.Controls;
 namespace KWT.Core.Aop
 {
     /// <summary>
-    /// 处理进度 此方法在快速点击查询或,提交按钮时会出现显示或关闭蒙蔽窗显示异常.禁用
+    /// 处理进度
     /// </summary>
     [Aspect(Scope.Global)]
     [Injection(typeof(WaitCompleteAttribute))]
-    [Obsolete]
+    [Obsolete("此方法在快速点击查询或,提交按钮时会出现显示或关闭蒙蔽窗显示异常.")]
     public class WaitCompleteAttribute : Attribute
     {
         private static MethodInfo _taskTHandler = typeof(WaitCompleteAttribute).GetMethod(nameof(WaitCompleteAttribute.WrapAsync), BindingFlags.NonPublic | BindingFlags.Static);
@@ -55,7 +55,7 @@ namespace KWT.Core.Aop
             try
             {
                 MaskExtensions.Show();
-              //  Task.Delay(delay);
+                Task.Delay(delay);
                 return (T)target(args);
             }
             catch (Exception e)
