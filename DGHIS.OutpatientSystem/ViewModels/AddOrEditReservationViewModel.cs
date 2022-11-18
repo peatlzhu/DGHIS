@@ -66,34 +66,37 @@ namespace DGHIS.OutpatientSystem.ViewModels
         /// 新增,编辑保存方法,从viewmodel获取数据保存即可.
         /// </summary>
         /// <returns></returns>
-        [WaitComplete]
+      //  [WaitComplete]
         protected async override Task SaveCommand()
         {
-            var current = this.GetContext<ReservationOutputDto>();
-            if (current == null)
-            {
-                if (!IsDevelopment)
+            await SetInputBusyAsync(async () => {
+                var current = this.GetContext<ReservationOutputDto>();
+                if (current == null)
                 {
-                    var response = await RestService.For<IReservationApi>(AuthClient).Add(Dto);
-                    AlertPopup(response.Message, response.Succeeded ? MessageType.Success : MessageType.Error, (d) =>
+                    if (!IsDevelopment)
                     {
-                        if (response.Succeeded)
-                            this.CloseDialog(returnValue: "已经添加成功啦，这里可以是任何参数和对象哟，父窗体可以接收到此回传参数。");
-                    });
+                        var response = await RestService.For<IReservationApi>(AuthClient).Add(Dto);
+                        AlertPopup(response.Message, response.Succeeded ? MessageType.Success : MessageType.Error, (d) =>
+                        {
+                            if (response.Succeeded)
+                                this.CloseDialog(returnValue: "已经添加成功啦，这里可以是任何参数和对象哟，父窗体可以接收到此回传参数。");
+                        });
+                    }
                 }
-            }
-            else
-            {
-                if (!IsDevelopment)
+                else
                 {
-                    var response = await RestService.For<IReservationApi>(AuthClient).Update(Dto);
-                    AlertPopup(response.Message, response.Succeeded ? MessageType.Success : MessageType.Error, (d) =>
+                    if (!IsDevelopment)
                     {
-                        if (response.Succeeded)
-                            this.CloseDialog(returnValue: "已经修改成功啦，这里可以是任何参数和对象哟，父窗体可以接收到此回传参数。");
-                    });
+                        var response = await RestService.For<IReservationApi>(AuthClient).Update(Dto);
+                        AlertPopup(response.Message, response.Succeeded ? MessageType.Success : MessageType.Error, (d) =>
+                        {
+                            if (response.Succeeded)
+                                this.CloseDialog(returnValue: "已经修改成功啦，这里可以是任何参数和对象哟，父窗体可以接收到此回传参数。");
+                        });
+                    }
                 }
-            }
+            });
+          
         }
     }
 }

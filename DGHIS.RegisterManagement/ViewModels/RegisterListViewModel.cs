@@ -11,7 +11,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace DGHIS.RegisterManagement.ViewModels
 {
@@ -27,6 +29,7 @@ namespace DGHIS.RegisterManagement.ViewModels
         public RegisterListViewModel(IContainerExtension container) : base(container)
         {
             PagingData.PageSize = 20;
+            Application.Current.Dispatcher.InvokeAsync(async () => await BindPagingData(), DispatcherPriority.Render);
         }
 
 
@@ -48,7 +51,8 @@ namespace DGHIS.RegisterManagement.ViewModels
         /// <param name="page"></param>
         public async override void PageLoaded(Page page)
         {
-            await BindPagingData();
+           // await BindPagingData();
+           await Task.FromResult(true);
         }
 
 

@@ -302,6 +302,7 @@ namespace DGHIS.Core.ViewModels
         /// </summary>
         private void ExecuteBefore()
         {
+            EventAggregator.GetEvent<ConstrolStateEvent>().Publish(new ControlState { IsEnabled = false });
             _isBusy = true;
             MaskExtensions.Show();
         }
@@ -312,6 +313,7 @@ namespace DGHIS.Core.ViewModels
 
         private void ExecuteAfter()
         {
+            EventAggregator.GetEvent<ConstrolStateEvent>().Publish(new ControlState { IsEnabled = true });
             _isBusy = false;
             MaskExtensions.Close();
         }
@@ -321,7 +323,6 @@ namespace DGHIS.Core.ViewModels
             ExecuteInputBefore();
             try
             {
-
                 await Task.Delay(500);
                 await func();
             }
@@ -341,7 +342,7 @@ namespace DGHIS.Core.ViewModels
         /// </summary>
         private void ExecuteInputBefore()
         {
-            _isInputBusy = true;
+            EventAggregator.GetEvent<ConstrolStateEvent>().Publish(new ControlState { IsEnabled = false });
             MaskExtensions.Show();
         }
 
@@ -351,7 +352,7 @@ namespace DGHIS.Core.ViewModels
 
         private void ExecuteInputAfter()
         {
-           _isInputBusy = false;
+            EventAggregator.GetEvent<ConstrolStateEvent>().Publish(new ControlState { IsEnabled = true });
             MaskExtensions.Close();        
         }
 
@@ -366,18 +367,7 @@ namespace DGHIS.Core.ViewModels
                 SetProperty(ref _isBusy,value);
             }
         }
-
-        private bool _isInputBusy;
-
-        public bool IsInputBusy
-        {
-            get => _isInputBusy;
-            set
-            {
-                _isInputBusy = value;          
-               SetProperty(ref _isInputBusy, value);          
-            }
-        }
+      
 
         #endregion 加载与执行中 Create by DG
     }

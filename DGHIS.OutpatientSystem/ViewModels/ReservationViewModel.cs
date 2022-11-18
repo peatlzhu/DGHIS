@@ -15,6 +15,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using Prism.Regions;
+using System.Windows.Threading;
+using System.Windows;
 
 namespace DGHIS.OutpatientSystem.ViewModels
 {
@@ -24,13 +27,18 @@ namespace DGHIS.OutpatientSystem.ViewModels
     public class ReservationViewModel : BaseManagePageViewModel
     {
         /// <summary>
+        /// 
         /// 构造函数
         /// </summary>
         /// <param name="container"></param>
         public ReservationViewModel(IContainerExtension container) : base(container)
         {
             PagingData.PageSize = 15;
+            Application.Current.Dispatcher.InvokeAsync(async () => await BindPagingData(), DispatcherPriority.Render); 
         }
+
+
+
 
         private ReservationCondition query = new ReservationCondition();
 
@@ -81,7 +89,8 @@ namespace DGHIS.OutpatientSystem.ViewModels
         /// <param name="page"></param>
         public async override void PageLoaded(Page page)
         {
-            await BindPagingData();
+           await  Task.FromResult(true);
+         //  await BindPagingData();
         }
 
  

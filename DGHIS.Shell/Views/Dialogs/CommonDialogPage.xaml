@@ -8,7 +8,7 @@
       xmlns:region="clr-namespace:DGHIS.Constants;assembly=DGHIS"
       prism:ViewModelLocator.AutoWireViewModel="True" 
       Title="CommonDialogPage" 
-      xmlns:dialogs="clr-namespace:DGHIS.Shell.Views.Dialogs;assembly=DGHIS.Shell">
+      xmlns:dialogs="clr-namespace:DGHIS.Shell.Views.Dialogs;assembly=DGHIS.Shell" xmlns:Mask="clr-namespace:DGHIS.Core.Controls.Mask;assembly=DGHIS.Core">
     <FrameworkElement.Resources>
         <ResourceDictionary>
             <Color x:Key="ForeGridColor">#3A4049</Color>
@@ -26,75 +26,82 @@
             <Setter Property="Window.ShowInTaskbar" Value="False" />
         </Style>
     </prism:Dialog.WindowStyle>
-    <Grid x:Name="maskContainer">
-        <Rectangle Fill="#FF000000" Opacity="0.5" />
-        <Border CornerRadius="20" Background="#FFFFFFFF" ClipToBounds="True" VerticalAlignment="Center" HorizontalAlignment="Center">
+    <Grid>
+        <Grid Panel.ZIndex="9999" >
+            <Mask:LoadingWait   x:Name="maskGrid" Visibility="Collapsed" />
+        </Grid>
+        <Grid Panel.ZIndex="0">
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Button Width="30" Height="30" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0" Command="{Binding CloseDialogCommand}">
-                    <FrameworkElement.Resources>
-                        <ResourceDictionary>
-                            <Style x:Key="{x:Type Button}" TargetType="{x:Type Button}">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate>
-                                            <Border Name="border" CornerRadius="15" Cursor="Hand">
-                                                <FrameworkElement.Resources>
-                                                    <ResourceDictionary>
-                                                        <Style x:Key="{x:Type Border}" TargetType="{x:Type Border}">
-                                                            <Setter Property="Background" Value="#00FFFFFF" />
-                                                            <Style.Triggers>
-                                                                <DataTrigger Value="true" Binding="{Binding ElementName=border, Path=IsMouseOver}">
-                                                                    <Setter Property="Background" Value="{StaticResource TipsForeBrush}" />
-                                                                </DataTrigger>
-                                                            </Style.Triggers>
-                                                        </Style>
-                                                    </ResourceDictionary>
-                                                </FrameworkElement.Resources>
-                                                <Path Name="path" Margin="8" Stretch="Uniform" Data="M0,0 L10,10 M10,0 L0,10" Stroke="{StaticResource GridForeBrush}" />
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </ResourceDictionary>
-                    </FrameworkElement.Resources>
-                </Button>
-                <WrapPanel VerticalAlignment="Center">
-                    <Grid Height="35">
-                        <FrameworkElement.Style>
-                            <Style TargetType="{x:Type Grid}">
-                                <Setter Property="Width" Value="35" />
-                                <Setter Property="Margin" Value="20,0" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ElementName=IconContainer, Path=Content}" Value="{x:Null}">
-                                        <Setter Property="Width" Value="0" />
-                                        <Setter Property="Margin" Value="20,0,0,0" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </FrameworkElement.Style>
-                        <Ellipse Fill="#FFF0F8FF" />
-                        <ContentControl Name="IconContainer" Width="17.5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="{Binding WindowIcon}" />
-                    </Grid>
-                    <TextBlock VerticalAlignment="Center" Foreground="{StaticResource ForeBrush}" FontSize="16" FontWeight="Bold" Text="{Binding Title}" />
-                </WrapPanel>
-                <Grid Name="mask" Row="1" Margin="0,0,0,10">
-                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Frame Name="pages" Margin="10" BorderThickness="0" MinWidth="300" MinHeight="100" prism:RegionManager.RegionName="{x:Static region:RegionNames.DialogRegin}" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                    </DockPanel>
-                </Grid>
-                <Border Name="saveArea" Grid.Row="2" CornerRadius="0,0,20,20" Background="#EBEDF4" Height="56" DockPanel.Dock="Bottom">
-                    <Grid Margin="0,0,20,0">
-                        <Button Content="取消" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,90,0"  Command="{Binding CloseDialogCommand}" />
-                        <Button Name="SaveButton" IsDefault="True" Content="保存" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,0,0,0" Command="{Binding SaveCommand}" />
+                <Rectangle Fill="#FF000000" Opacity="0.5" />
+                <Border CornerRadius="20" Background="#FFFFFFFF" ClipToBounds="True" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Button Width="30" Height="30" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0" Command="{Binding CloseDialogCommand}">
+                            <FrameworkElement.Resources>
+                                <ResourceDictionary>
+                                    <Style x:Key="{x:Type Button}" TargetType="{x:Type Button}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate>
+                                                    <Border Name="border" CornerRadius="15" Cursor="Hand">
+                                                        <FrameworkElement.Resources>
+                                                            <ResourceDictionary>
+                                                                <Style x:Key="{x:Type Border}" TargetType="{x:Type Border}">
+                                                                    <Setter Property="Background" Value="#00FFFFFF" />
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Value="true" Binding="{Binding ElementName=border, Path=IsMouseOver}">
+                                                                            <Setter Property="Background" Value="{StaticResource TipsForeBrush}" />
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </ResourceDictionary>
+                                                        </FrameworkElement.Resources>
+                                                        <Path Name="path" Margin="8" Stretch="Uniform" Data="M0,0 L10,10 M10,0 L0,10" Stroke="{StaticResource GridForeBrush}" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ResourceDictionary>
+                            </FrameworkElement.Resources>
+                        </Button>
+                        <WrapPanel VerticalAlignment="Center">
+                            <Grid Height="35">
+                                <FrameworkElement.Style>
+                                    <Style TargetType="{x:Type Grid}">
+                                        <Setter Property="Width" Value="35" />
+                                        <Setter Property="Margin" Value="20,0" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=IconContainer, Path=Content}" Value="{x:Null}">
+                                                <Setter Property="Width" Value="0" />
+                                                <Setter Property="Margin" Value="20,0,0,0" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </FrameworkElement.Style>
+                                <Ellipse Fill="#FFF0F8FF" />
+                                <ContentControl Name="IconContainer" Width="17.5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="{Binding WindowIcon}" />
+                            </Grid>
+                            <TextBlock VerticalAlignment="Center" Foreground="{StaticResource ForeBrush}" FontSize="16" FontWeight="Bold" Text="{Binding Title}" />
+                        </WrapPanel>
+                        <Grid Name="mask" Row="1" Margin="0,0,0,10">
+                            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Frame Name="pages" Margin="10" BorderThickness="0" MinWidth="300" MinHeight="100" prism:RegionManager.RegionName="{x:Static region:RegionNames.DialogRegin}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <Border Name="saveArea" Grid.Row="2" CornerRadius="0,0,20,20" Background="#EBEDF4" Height="56" DockPanel.Dock="Bottom">
+                            <Grid Margin="0,0,20,0">
+                                <Button Content="取消" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,90,0"  Command="{Binding CloseDialogCommand}" />
+                                <Button Name="SaveButton" IsDefault="True" Content="保存" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,0,0,0" Command="{Binding SaveCommand}" />
+                            </Grid>
+                        </Border>
                     </Grid>
                 </Border>
             </Grid>
-        </Border>
+        </Grid>
     </Grid>
 </Page>

@@ -17,8 +17,7 @@ namespace DGHIS.Shell.Views
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
     public partial class MainWindow : Window
-    {
-     
+    {     
         public MainWindow()
         {        
             InitializeComponent();
@@ -32,6 +31,13 @@ namespace DGHIS.Shell.Views
                 string menuName = menu==null? p.MenuName:menu.Name;
                 AddPage(menuName, p.Page);              
             });
+
+            ConstrolStateEvent maskEvent = ContainerLocator.Container.Resolve<IEventAggregator>().GetEvent<ConstrolStateEvent>();
+            maskEvent.Subscribe((state) =>
+            {
+                maskGrid.Visibility = state.IsEnabled ? Visibility.Collapsed : Visibility.Visible;
+            });
+          
         }
          
 

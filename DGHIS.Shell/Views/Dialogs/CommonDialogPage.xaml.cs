@@ -31,23 +31,16 @@ namespace DGHIS.Shell.Views.Dialogs
             InitializeComponent();
             _ea = ea;
             _regionManager = regionManager;
-            RegionManager.SetRegionName(pages, RegionNames.DialogRegin);
-            // IRegionManager manager = ServiceLocator.Current.GetInstance<IRegionManager>();
-            //  manager.Regions.Remove("DialogRegin");
+            RegionManager.SetRegionName(pages, RegionNames.DialogRegin);    
             _regionManager.Regions.Remove("DialogRegin");
             RegionManager.SetRegionManager(pages, _regionManager);
 
-            //ConstrolStateEvent controlEvent = ServiceLocator.Current.TryResolve<IEventAggregator>().GetEvent<ConstrolStateEvent>();
-            //controlEvent.Subscriptions.Clear();
-            //controlEvent.Subscribe((state) => { SaveButton.IsEnabled = state.IsEnabled; });
-
-            //DisableDialogPageButtonEvent disableEvent = ServiceLocator.Current.TryResolve<IEventAggregator>().GetEvent<DisableDialogPageButtonEvent>();
-            //disableEvent.Subscriptions.Clear();
-            //disableEvent.Subscribe(() => { saveArea.Visibility = Visibility.Collapsed; });
-
             ConstrolStateEvent controlEvent = _ea.GetEvent<ConstrolStateEvent>();
             controlEvent.Subscriptions.Clear();
-            controlEvent.Subscribe((state) => { SaveButton.IsEnabled = state.IsEnabled; });
+            controlEvent.Subscribe((state) => {
+                SaveButton.IsEnabled = state.IsEnabled;
+                maskGrid.Visibility = state.IsEnabled?Visibility.Collapsed: Visibility.Visible;
+            });
 
             DisableDialogPageButtonEvent disableEvent = _ea.GetEvent<DisableDialogPageButtonEvent>();
             disableEvent.Subscriptions.Clear();
