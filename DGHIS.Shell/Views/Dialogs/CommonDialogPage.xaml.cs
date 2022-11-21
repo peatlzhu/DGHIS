@@ -37,8 +37,8 @@ namespace DGHIS.Shell.Views.Dialogs
 
             ConstrolStateEvent controlEvent = _ea.GetEvent<ConstrolStateEvent>();
             //  controlEvent.Subscriptions.Clear();  //不能使用clear ,会清除主窗体注册事件
-            if(controlEvent.Subscriptions.Count>1)
-                controlEvent.Subscriptions.Remove(controlEvent.Subscriptions.ElementAt(1));   //移除对话窗体注册事件
+            if (controlEvent.Subscriptions.Count > 1)
+                controlEvent.Subscriptions.Remove(controlEvent.Subscriptions.ElementAt(1));   //移除对话窗体注册事件,主窗体注册事件未注销,会一起响应.
             controlEvent.Subscribe(SetSaveButton);          
 
             DisableDialogPageButtonEvent disableEvent = _ea.GetEvent<DisableDialogPageButtonEvent>();

@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 namespace DGHIS.Core.Controls.DropDown
 {
     /// <summary>
-    /// 通用字典業務
+    /// 通用字典业务
     /// </summary>
     public class DictionaryComboBox : BaseComboBox
     {
         /// <summary>
-        /// 初始化字典下拉框數據源
+        /// 初始化字典下拉框数据源
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

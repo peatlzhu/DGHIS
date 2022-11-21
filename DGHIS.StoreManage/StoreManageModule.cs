@@ -1,4 +1,5 @@
-﻿using Prism.Ioc;
+﻿using DGHIS.StoreManage.Views;
+using Prism.Ioc;
 using Prism.Modularity;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace DGHIS.StoreManage
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+        
         }
     }
 }

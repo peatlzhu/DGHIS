@@ -51,8 +51,8 @@ namespace DGHIS.RegisterManagement.ViewModels
         /// <param name="page"></param>
         public async override void PageLoaded(Page page)
         {
-           // await BindPagingData();
-           await Task.FromResult(true);
+            // await BindPagingData();
+            await Task.CompletedTask;
         }
 
 

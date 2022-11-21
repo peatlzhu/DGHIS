@@ -4,6 +4,7 @@ using DGHIS.Core.Modules;
 using DGHIS.Core.ViewModels;
 using DGHIS.OutpatientSystem.Views;
 using DGHIS.StoreManage.Views;
+using HandyControl.Data;
 using Prism.Commands;
 using Prism.Ioc;
 using Prism.Regions;
@@ -22,6 +23,7 @@ namespace DGHIS.Shell.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
+      
         /// <summary>
         /// 主界面构造函数
         /// </summary>
@@ -29,6 +31,13 @@ namespace DGHIS.Shell.ViewModels
         public MainWindowViewModel(IContainerExtension container) : base(container)
         {
             InitMenus();          
+        }
+
+        private string _title = "一站式医疗管理系统";
+        public string Title
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
         }
 
         /// <summary>
@@ -56,36 +65,75 @@ namespace DGHIS.Shell.ViewModels
         /// </summary>
         public static ObservableCollection<MenuEntity> MainMenuItemsSource { get; set; }
 
+        ///// <summary>
+        ///// 点击菜单选择页面
+        ///// </summary>
+        //public DelegateCommand<MenuEntity> SelectedIntoPage => new DelegateCommand<MenuEntity>((m) =>
+        //{
+        //    var manager = Container.Resolve<PageManager>();
+        //    var pageType = manager.GetPage(m.Name);
+        //    if (pageType == null)
+        //    {
+        //        MessageBox.Show($"未实现或创建名称为【{m.Name}】的Page对象", "系统提示", MessageBoxButton.OK, MessageBoxImage.Error);
+        //        return;
+        //    }
+        //    var page = Container.Resolve(pageType) as Page;
+        //    EventAggregator.GetEvent<PageEvent>().Publish(new NavigatePage { Menu = m, Page = page });
+          
+        //});
+
         /// <summary>
         /// 点击菜单选择页面
         /// </summary>
         public DelegateCommand<MenuEntity> SelectedIntoPage => new DelegateCommand<MenuEntity>((m) =>
-        {        
-            var manager = Container.Resolve<PageManager>();
-            var pageType = manager.GetPage(m.Name);
-            if (pageType == null)
-            {
-                MessageBox.Show($"未实现或创建名称为【{m.Name}】的Page对象", "系统提示", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            var page = Container.Resolve(pageType) as Page;
-            EventAggregator.GetEvent<PageEvent>().Publish(new NavigatePage { Menu = m, Page = page });
+        {
+            RegionManager.RequestNavigate("ContentRegion",m.TargetName);
+         //   Navigate("ContentRegion", m.TargetName);
         });
+
+        private DelegateCommand<object> _ClosedCmd;
+        public DelegateCommand<object> ClosedCmd =>
+            _ClosedCmd ?? (_ClosedCmd = new DelegateCommand<object>(ClosedCommand));
+
+
+        private DelegateCommand<object> _DeleteCommand;
+        public DelegateCommand<object> DeleteCommand =>
+            _DeleteCommand ?? (_DeleteCommand = new DelegateCommand<object>(ExecuteDeleteCommand));
+
+
+        /// <summary>
+        /// 关闭TabItem 后从Regions中移除.
+        /// </summary>
+        /// <param name="args"></param>
+        void ClosedCommand(object args)
+        {
+            if (args == null) return;
+            var eventArgs = args as RoutedEventArgs;
+            var view = eventArgs.OriginalSource;
+            if (view == null) return;
+            RegionManager.Regions["ContentRegion"].Remove(view);
+        }
+
+        void ExecuteDeleteCommand(object obj)
+        {
+            if (obj == null) return;
+              RegionManager.Regions["ContentRegion"].Remove(obj);
+        }
+
 
         /// <summary>
         /// 选择菜单
         /// </summary>
         /// <param name="menuName"></param>
-        //private void SelecteMenu(MenuEntity menu,string targeName)
-        //{
-        //    var parameters = new NavigationParameters();
-        //    parameters.Add("menuItem", menu);
+        private void SelecteMenu(MenuEntity menu, string targeName)
+        {
+            var parameters = new NavigationParameters();
+             parameters.Add("menuItem", menu);
 
-        //  //  Navigate("ContentRegion", targeName);
-        //    if (targeName != null)
-             //  _regionManager.RequestNavigate("ContentRegion", targeName, parameters);
-        //  //  Container.Resolve<IRegionManager>().RequestNavigate("ContentRegion", targeName, parameters);
-        //}
+             //Navigate("ContentRegion", targeName);
+            if (targeName != null)   
+               Container.Resolve<IRegionManager>().RequestNavigate("ContentRegion", targeName, parameters);
+        }
 
         /// <summary>
         /// 初始化功能菜單
@@ -93,6 +141,11 @@ namespace DGHIS.Shell.ViewModels
         private void InitMenus()
         {
             MainMenuItemsSource = new ObservableCollection<MenuEntity>();
+            MenuEntity entity5 = new MenuEntity { Id = 15, Name = "库房管理", IsGroup = true, Children = new List<MenuEntity>() };
+            entity5.Children.Add(new MenuEntity { Id = 16, Name = "入库管理",TargetName= "DGHIS.StoreManage.Views.ImportMaster" });
+            entity5.Children.Add(new MenuEntity { Id = 17, Name = "出库管理", TargetName = "DGHIS.StoreManage.Views.ExportMaster" });
+            MainMenuItemsSource.Add(entity5);
+
             MenuEntity entity4 = new MenuEntity { Id = 1, Name = "门诊挂号", IsGroup = true, Children = new List<MenuEntity>() };
             entity4.Children.Add(new MenuEntity { Id = 3, Name = "预约挂号" });
             entity4.Children.Add(new MenuEntity { Id = 4, Name = "现场挂号" });

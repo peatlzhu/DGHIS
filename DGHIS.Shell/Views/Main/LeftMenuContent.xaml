@@ -29,7 +29,7 @@
                                 <TextBlock Text="&#xf2cb;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
-                        <hc:SideMenuItem Background="Transparent" Header="现场挂号" >
+                        <hc:SideMenuItem Background="Transparent" Header="现场挂号"   >
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf246;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
@@ -105,11 +105,11 @@
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
                     </hc:SideMenuItem>
-                    <hc:SideMenuItem Background="Transparent" Header="管道">
+                    <hc:SideMenuItem Background="Transparent" Header="库房管理">
                         <hc:SideMenuItem.Icon>
                             <Image Source="/DGHIS.Wpf;component/images/DevOps/DevOps-Pipelines.png" Width="24" Height="24"/>
                         </hc:SideMenuItem.Icon>
-                        <hc:SideMenuItem Background="Transparent" Header="创建">
+                        <hc:SideMenuItem Background="Transparent" Header="入库管理">
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf28f;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>

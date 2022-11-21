@@ -16,6 +16,9 @@ using System.Windows.Threading;
 using Unity;
 using DGHIS.Shell.RegionAdptor;
 using DGHIS.OutpatientSystem;
+using DGHIS.OutpatientSystem.Views;
+using DGHIS.OutpatientSystem.ViewModels;
+using Prism.Mvvm;
 
 namespace DGHIS.Shell
 {
@@ -75,11 +78,12 @@ namespace DGHIS.Shell
 			containerRegistry.RegisterDialog<WarningDialog, WarningDialogViewModel>();
 			containerRegistry.Register(typeof(IDialogWindow), typeof(Views.Dialogs.DialogWindow), "dialog");
 			containerRegistry.RegisterDialog<CommonDialogPage, CommonDialogPageViewModel>();
-		}
+          
+        }
 
         protected override void ConfigureViewModelLocator()
         {
-            base.ConfigureViewModelLocator();
+            base.ConfigureViewModelLocator();          
         }
 
         /// <summary>

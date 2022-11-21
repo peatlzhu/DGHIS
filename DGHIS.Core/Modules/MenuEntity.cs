@@ -44,5 +44,10 @@ namespace DGHIS.Core.Modules
         {
             return Name;
         }
+
+        /// <summary>
+        /// 目标对象名称
+        /// </summary>
+        public string TargetName { get; set; }
     }
 }

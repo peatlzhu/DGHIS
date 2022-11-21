@@ -20,9 +20,9 @@ using System.Windows;
 
 namespace DGHIS.StoreManage.ViewModels
 {
-    public class ImportMasterViewModel : BaseManageUserControlViewModel
+    public class ExportMasterViewModel : BaseManageUserControlViewModel
     {
-        private string _title = "入库管理";
+        private string _title = "出库管理";
         public string Title
         {
             get { return _title; }
@@ -33,12 +33,12 @@ namespace DGHIS.StoreManage.ViewModels
         /// 构造函数
         /// </summary>
         /// <param name="container"></param>
-        public ImportMasterViewModel(IContainerExtension container) : base(container)
+        public ExportMasterViewModel(IContainerExtension container) : base(container)
         {
             PagingData.PageSize = 15;
          
         }
-            
+             
         public override DelegateCommand AddCommand => throw new NotImplementedException();
 
 

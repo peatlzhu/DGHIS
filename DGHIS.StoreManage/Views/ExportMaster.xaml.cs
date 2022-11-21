@@ -1,5 +1,4 @@
-﻿using HandyControl.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DGHIS.Shell.Views
+namespace DGHIS.StoreManage.Views
 {
     /// <summary>
-    /// LeftMenuContent.xaml 的交互逻辑
+    /// ExportMaster.xaml 的交互逻辑
     /// </summary>
-    public partial class LeftMenuContent : UserControl
+    public partial class ExportMaster : UserControl
     {
-        public LeftMenuContent()
+        public ExportMaster()
         {
             InitializeComponent();
-        }   
-
+        }
     }
 }

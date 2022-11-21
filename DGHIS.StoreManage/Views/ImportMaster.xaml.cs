@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DGHIS.Core.Modules;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,8 @@ namespace DGHIS.StoreManage.Views
     /// <summary>
     /// ImportMaster.xaml 的交互逻辑
     /// </summary>
-    public partial class ImportMaster : Page
+
+    public partial class ImportMaster : UserControl
     {
         public ImportMaster()
         {

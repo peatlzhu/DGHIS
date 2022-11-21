@@ -22,13 +22,20 @@
            NonClientAreaBackground="{DynamicResource EMRCPOE.Main.Background}" 
            NonClientAreaHeight="62"
             Title="一站式医疗管理系统" >
-    <hc:Window.Resources>
+    <hc:Window.Resources>      
         <ResourceDictionary>
+            <DataTemplate x:Key="D1">
+                <Border>
+                    <Grid>
+                        <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=hc:TabItem}, Path=Content.DataContext.Title}" />
+                    </Grid>
+                </Border>
+          </DataTemplate>         
             <Color x:Key="ForeReverseColor">#FFFFFF</Color>
             <SolidColorBrush x:Key="DeepForegroundBrush" Color="#e0e0e0" />
             <SolidColorBrush x:Key="ForeReverseBrush.OpacityTwo" Opacity="0.2" Color="{StaticResource ForeReverseColor}" />
-            <SolidColorBrush x:Key="ForeReverseBrush.OpacitySix" Opacity="0.6" Color="{StaticResource ForeReverseColor}" />
-            <SolidColorBrush x:Key="ForeReverseBrush" Color="{StaticResource ForeReverseColor}" />
+            <SolidColorBrush x:Key="ForeReverseBrush.OpacitySix" Opacity="0.6" Color="{StaticResource ForeReverseColor}" />            
+            <SolidColorBrush x:Key="ForeReverseBrush" Color="{StaticResource ForeReverseColor}" />         
         </ResourceDictionary>
     </hc:Window.Resources>
     <hc:Window.NonClientAreaContent>
@@ -179,9 +186,17 @@
     </hc:Window.NonClientAreaContent>
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="Closing">
-            <b:InvokeCommandAction PassEventArgsToCommand="True" Command="{Binding CloseWindowCommand}" />
-        </b:EventTrigger>
+            <b:InvokeCommandAction PassEventArgsToCommand="True" Command="{Binding CloseWindowCommand}"  />
+        </b:EventTrigger>     
     </b:Interaction.Triggers>
+    <hc:Interaction.Triggers>
+        <hc:RoutedEventTrigger RoutedEvent="hc:TabItem.Closing">
+            <hc:EventToCommand Command="{Binding ClosingCmd}" PassEventArgsToCommand="True" />
+        </hc:RoutedEventTrigger>
+        <hc:RoutedEventTrigger RoutedEvent="hc:TabItem.Closed">
+            <hc:EventToCommand Command="{Binding ClosedCmd}" PassEventArgsToCommand="True"/>
+        </hc:RoutedEventTrigger>
+    </hc:Interaction.Triggers>
     <Grid>
         <Grid Panel.ZIndex="9999" >
             <Mask:LoadingWait   x:Name="maskGrid" Visibility="Collapsed" />
@@ -190,18 +205,42 @@
             <Grid.RowDefinitions>         
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid >
-                <Grid.Background>
+            </Grid.RowDefinitions>          
+            <Grid >        
+                 <Grid.Background>
                     <Binding Source="{StaticResource CloudDrawingBrush}"  />
-                </Grid.Background>
+                </Grid.Background>         
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
                 <local:LeftMenuContent  Grid.Column="0" Margin="5 5 0 5" Width="Auto"/>
-                <hc:TabControl Grid.Column="1"  Background="Transparent" x:Name="MainTabPanel" prism:RegionManager.RegionName="ContentRegion" ShowOverflowButton="False" ShowScrollButton="False" IsScrollable="True" Margin="5" IsAnimationEnabled="True" ShowCloseButton="True" IsDraggable="False" IsTabFillEnabled="False"   />
-            </Grid>
+                <!--<hc:TabControl Grid.Column="1"  ItemTemplate="{StaticResource D1}" Background="Transparent" x:Name="MainTabPanel" prism:RegionManager.RegionName="ContentRegion" ShowOverflowButton="False" ShowScrollButton="False" IsScrollable="True" Margin="5" IsAnimationEnabled="True" ShowCloseButton="True" IsDraggable="False" IsTabFillEnabled="False"   >-->
+                <hc:TabControl Grid.Column="1"   Background="Transparent" x:Name="MainTabPanel" prism:RegionManager.RegionName="ContentRegion" ShowOverflowButton="False" ShowScrollButton="False" IsScrollable="True" Margin="5" IsAnimationEnabled="True" ShowCloseButton="True" IsDraggable="False" IsTabFillEnabled="False"   >
+                    <!--<TabControl Grid.Column="1"   Background="Transparent" x:Name="MainTabPanel" prism:RegionManager.RegionName="ContentRegion"   >-->
+                    <hc:TabControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border>
+                                <Grid>
+                                    <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=hc:TabItem}, Path=Content.DataContext.Title}" />
+                                    <!--<Button Height="Auto" Width="Auto"   BorderThickness="0" Command="{Binding RelativeSource={RelativeSource AncestorType=TabControl}, Path=DataContext.DeleteCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TabItem}, Path=Content}" >
+                                        <Button.Template>
+                                            <ControlTemplate>
+                                                <Grid Height="8"  Width="8" Background="Transparent"   Margin="65,0,10,0">
+                                                    <Path   Data="M307,28.093333 L52.333333,250.76" Fill="Red" Stretch="Fill"   Stroke="#FFEA1717" HorizontalAlignment="Right" />
+                                                    <Path   Data="M56.666667,53 L352,265.66667" Fill="Red"  Stretch="Fill"   Stroke="#FFEA1717" HorizontalAlignment="Right" />
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>-->
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </hc:TabControl.ItemTemplate>
+                </hc:TabControl>
+              </Grid>
             <local:BottomStatusContent Grid.Row="1"  />
         </Grid>
 

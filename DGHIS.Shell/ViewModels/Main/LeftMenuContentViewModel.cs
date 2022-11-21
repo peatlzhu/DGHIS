@@ -46,21 +46,6 @@ namespace DGHIS.Shell.ViewModels
             EventAggregator.GetEvent<PageEvent>().Publish(new NavigatePage { MenuName = menuName, Page = page });
 
         });
-
-        /// <summary>
-        /// 点击菜单选择页面
-        /// </summary>
-        public DelegateCommand<string> SelectCmd => new DelegateCommand<string>((menuName) =>
-        {
-            var manager = Container.Resolve<PageManager>();
-            var pageType = manager.GetPage(menuName);
-            if (pageType == null)
-            {
-                MessageBox.Show($"未实现或创建名称为【{menuName}】的Page对象", "系统提示", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            var page = Container.Resolve(pageType) as Page;
-            EventAggregator.GetEvent<PageEvent>().Publish(new NavigatePage { MenuName = menuName, Page = page });
-        });
+  
     }
 }

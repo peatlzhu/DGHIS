@@ -10,6 +10,7 @@ using HandyControl.Controls;
 using TabItem = HandyControl.Controls.TabItem;
 using Window = HandyControl.Controls.Window;
 using Prism.Regions;
+using System;
 
 namespace DGHIS.Shell.Views
 {
@@ -34,7 +35,7 @@ namespace DGHIS.Shell.Views
 
             ConstrolStateEvent maskEvent = ContainerLocator.Container.Resolve<IEventAggregator>().GetEvent<ConstrolStateEvent>();
             maskEvent.Subscribe((state) =>
-            {
+            {               
                 maskGrid.Visibility = state.IsEnabled ? Visibility.Collapsed : Visibility.Visible;
             });
           
@@ -58,9 +59,9 @@ namespace DGHIS.Shell.Views
                 pageFrame.Navigate(page);
                 tabItem.Content = pageFrame;
                 MainTabPanel.Items.Add(tabItem);
-            }          
-            MainTabPanel.SelectedItem = tabItem;
-            MainTabPanel.Focus();             
+            }
+            MainTabPanel.SelectedItem = tabItem;         
+            MainTabPanel.Focus(); 
         }
 
     }
