@@ -30,11 +30,11 @@ namespace DGHIS.Core.Extensions
         public static void GenerateColumns(this DataGrid dataGrid, int index, object data, string operationKey, DataGridLength operationWidth)
         {
             IList<BindDescriptionAttribute> list = GetColumns(data);
-            //Window win = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-            //Page page = win.GetChildObject<Page>("page");
-            //if (page == null) throw new Exception("未获取到当前窗口名称爲page的(Page)页面对象，原因：没有爲Page设置Name，且名称必须爲【page】！");
-
+      
             Page page = GetParentObject<Page>(dataGrid, "page");
+            UserControl userControl = GetParentObject<UserControl>(dataGrid, "userControl");
+            FrameworkElement frameworkElement = page==null? userControl: page;
+            //if (frameworkElement == null) throw new Exception("未获取到当前窗口名称为page的(Page)页面对象 或userControl(UserControl)用户控件，原因：没有为Page设置Name，且名称必须为【page】！或没有为UserControl 设置userControl，且名称必须为【UserControl 】！");
 
             for (int i = 0; i < list.Count; i++)
             {
@@ -49,7 +49,7 @@ namespace DGHIS.Core.Extensions
                         });
                         break;
                     case ShowScheme.自定义:
-                        if (page.FindResource(list[i].ResourceKey) != null)
+                        if (frameworkElement.FindResource(list[i].ResourceKey) != null)
                         {
                             DataGridTemplateColumn val = new DataGridTemplateColumn();
                             val.Header = list[i].HeaderName;
@@ -60,9 +60,9 @@ namespace DGHIS.Core.Extensions
                         break;
                 }
             }
-            if (!string.IsNullOrWhiteSpace(operationKey) && page != null)
+            if (!string.IsNullOrWhiteSpace(operationKey) && frameworkElement != null)
             {
-                var resource = page.FindResource(operationKey);
+                var resource = frameworkElement.FindResource(operationKey);
                 if (resource != null)
                 {
 

@@ -18,6 +18,8 @@ using System.Windows.Controls;
 using Prism.Regions;
 using System.Windows.Threading;
 using System.Windows;
+using Prism.Services.Dialogs;
+using DGHIS.Core.Threading;
 
 namespace DGHIS.OutpatientSystem.ViewModels
 {
@@ -34,7 +36,8 @@ namespace DGHIS.OutpatientSystem.ViewModels
         public ReservationViewModel(IContainerExtension container) : base(container)
         {
             PagingData.PageSize = 15;
-            Application.Current.Dispatcher.InvokeAsync(async () => await BindPagingData(), DispatcherPriority.Render); 
+            DispatcherExtension.RunOnUIThreadAsync(BindPagingData);
+            //Dispatcher.CurrentDispatcher.InvokeAsync(async () => await BindPagingData(), DispatcherPriority.Render); 
         }
 
 
@@ -72,6 +75,24 @@ namespace DGHIS.OutpatientSystem.ViewModels
             {
                 if (d.Parameters.GetValue<bool>("success"))
                     await BindPagingData();
+            });
+        });
+
+        /// <summary>
+        /// 删除事件
+        /// </summary>
+        public DelegateCommand<object> DeleteCommand => new DelegateCommand<object>((item) =>
+        {
+            this.Confirm("确认删除记录!", callback:  (d) =>
+            {
+                if (d.Result == ButtonResult.Yes)
+                {
+                    AlertPopup("已确认删除!");
+                }
+                else
+                {
+                    AlertPopup("取消删除!");
+                }
             });
         });
 

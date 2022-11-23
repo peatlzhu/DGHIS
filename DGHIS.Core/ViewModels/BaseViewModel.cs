@@ -302,9 +302,8 @@ namespace DGHIS.Core.ViewModels
         /// </summary>
         private void ExecuteBefore()
         {
-            EventAggregator.GetEvent<ConstrolStateEvent>().Publish(new ControlState { IsEnabled = false });
             _isBusy = true;
-            MaskExtensions.Show();
+            EventAggregator.GetEvent<ConstrolStateEvent>().Publish(new ControlState { IsEnabled = false });  
         }
 
         /// <summary>
@@ -313,9 +312,9 @@ namespace DGHIS.Core.ViewModels
 
         private void ExecuteAfter()
         {
-            EventAggregator.GetEvent<ConstrolStateEvent>().Publish(new ControlState { IsEnabled = true });
             _isBusy = false;
-            MaskExtensions.Close();
+            EventAggregator.GetEvent<ConstrolStateEvent>().Publish(new ControlState { IsEnabled = true });          
+        
         }
 
         public async Task SetInputBusyAsync(Func<Task> func)
@@ -342,8 +341,7 @@ namespace DGHIS.Core.ViewModels
         /// </summary>
         private void ExecuteInputBefore()
         {
-            EventAggregator.GetEvent<ConstrolStateEvent>().Publish(new ControlState { IsEnabled = false });
-            MaskExtensions.Show();
+            EventAggregator.GetEvent<ConstrolStateEvent>().Publish(new ControlState { IsEnabled = false });         
         }
 
         /// <summary>
@@ -352,8 +350,7 @@ namespace DGHIS.Core.ViewModels
 
         private void ExecuteInputAfter()
         {
-            EventAggregator.GetEvent<ConstrolStateEvent>().Publish(new ControlState { IsEnabled = true });
-            MaskExtensions.Close();        
+            EventAggregator.GetEvent<ConstrolStateEvent>().Publish(new ControlState { IsEnabled = true });     
         }
 
         private bool _isBusy;

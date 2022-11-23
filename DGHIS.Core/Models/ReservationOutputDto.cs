@@ -9,17 +9,17 @@ using System.Threading.Tasks;
 namespace DGHIS.Core.Models
 {
     /// <summary>
-    /// 預約掛號記錄輸出對象(界面展示)
+    /// 预约挂号记录对象(界面展示)
     /// </summary>
     public class ReservationOutputDto
     {
         /// <summary>
-        /// 記錄ID
+        /// 记录ID
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// 叫號順序
+        /// 叫号順序
         /// </summary>
         [BindDescription("叫号顺序", ShowScheme.普通文本, "100*", 1, "")]
         public string Index { get; set; }

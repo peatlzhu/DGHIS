@@ -32,7 +32,7 @@
     <Color x:Key="SecondaryBorderColor">#757575</Color>
     <Color x:Key="BackgroundColor">#eeeeee</Color>
     <Color x:Key="RegionColor">#ffffff</Color>
-    <Color x:Key="SecondaryRegionColor">#eeeeee</Color>
+    <Color x:Key="SecondaryRegionColor">#eeeeee</Color>  
     <Color x:Key="ThirdlyRegionColor">White</Color>
     <Color x:Key="TitleColor">#2E8A9B</Color>
     <Color x:Key="SecondaryTitleColor">#2E8A9B</Color>

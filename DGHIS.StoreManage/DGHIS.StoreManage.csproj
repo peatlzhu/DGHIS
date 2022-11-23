@@ -7,8 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controls\" />
-    <Folder Include="Models\" />
     <Folder Include="Converters\" />
   </ItemGroup>
 
@@ -20,6 +18,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DGHIS.Core\DGHIS.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\AddOrEditImport.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
   </ItemGroup>
 
 </Project>
