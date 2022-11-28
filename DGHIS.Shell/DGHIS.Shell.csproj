@@ -40,7 +40,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Common.Utility\Common.Utility.csproj" />
     <ProjectReference Include="..\DGHIS.Core\DGHIS.Core.csproj" />
+    <ProjectReference Include="..\DGHIS.Entity\DGHIS.Entity.csproj" />
     <ProjectReference Include="..\DGHIS.OutpatientSystem\DGHIS.OutpatientSystem.csproj" />
     <ProjectReference Include="..\DGHIS.RegisterManagement\DGHIS.RegisterManagement.csproj" />
     <ProjectReference Include="..\DGHIS.StoreManage\DGHIS.StoreManage.csproj" />

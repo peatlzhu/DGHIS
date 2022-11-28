@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DGHIS.Entity\DGHIS.Entity.csproj" />
     <ProjectReference Include="..\DGHIS\DGHIS.csproj" />
   </ItemGroup>
 

@@ -44,7 +44,7 @@ namespace DGHIS.Core.Identity
         /// <summary>
         /// 用户会话token
         /// </summary>
-        public UserToken Token { get; set; }
+        public string Token { get; set; }
 
         /// <summary>
         /// 医院名称
@@ -55,5 +55,16 @@ namespace DGHIS.Core.Identity
         /// 显示
         /// </summary>
         public string ShowText => "用户：" + UserName + "，科室：【" + CurrentDepartmentName + "】";
+
+        /// <summary>
+        /// 用户头像
+        /// </summary>
+        public string UserImage { get; set; }
+
+
+        /// <summary>
+        /// 获取本机在Internet网络的广域网IP
+        /// </summary>
+        public string WanIp { get; set; }
     }
 }

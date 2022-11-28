@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +11,7 @@ namespace DGHIS.Core.Models
     /// <summary>
     /// 預約掛號輸入DTO
     /// </summary>
-    public class ReservationInputDto
+    public class ReservationInputDto : BaseModel
     {
         /// <summary>
         /// 叫號順序
@@ -26,10 +28,16 @@ namespace DGHIS.Core.Models
         /// </summary>
         public DateTime ReservationTime { get; set; }
 
+      
         /// <summary>
         /// 病人姓名
         /// </summary>
-        public string Name { get; set; }
+        [Required(ErrorMessage = "病人姓名不能33为空...")]
+        [StringLength(5, ErrorMessage = "字符长度不能超过5")]
+        public string Name
+        {
+            get;set;
+        }
 
         /// <summary>
         /// 性別
@@ -55,5 +63,7 @@ namespace DGHIS.Core.Models
         /// 有效期
         /// </summary>
         public string Expire { get; set; }
+
+       
     }
 }

@@ -18,7 +18,7 @@
                 <hc:TextBox ShowClearButton="True" hc:InfoElement.Title="顺序" Width="140" Text="{Binding Dto.Index}" ></hc:TextBox>
             <hc:TextBox ShowClearButton="True" hc:InfoElement.Title="流水号"  Text="{Binding Dto.BusinessNumber}" ></hc:TextBox>
             <hc:DatePicker ShowClearButton="True"  hc:InfoElement.Title="挂号时间"  SelectedDate="{Binding Dto.ReservationTime}" />
-            <hc:TextBox ShowClearButton="True" hc:InfoElement.Title="患者姓名"  Text="{Binding Dto.Name}" ></hc:TextBox>
+            <hc:TextBox ShowClearButton="True" hc:InfoElement.Title="患者姓名"  Text="{Binding Dto.Name,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" ></hc:TextBox>
         </StackPanel>
         <StackPanel>
             <hc:TextBox ShowClearButton="True"  hc:InfoElement.Title="科室" Width="140"  Text="{Binding Dto.DepartmentName}" ></hc:TextBox>

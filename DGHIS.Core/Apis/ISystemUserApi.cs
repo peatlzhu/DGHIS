@@ -18,21 +18,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VOL.Entity.DomainModels;
 
 namespace DGHIS.Core.Apis
 {
     /// <summary>
-    /// 预约挂号接口
+    /// 系统用户接口
     /// </summary>
     [Headers("User-Agent: DGHIS.WPF-Client")]
-    public interface IWsDrugImportMasterApi
+    public interface ISystemUserApi
     {
         /// <summary>
-        /// 分页查询接口
+        /// 登录接口
         /// </summary>
         /// <param name="request">请求规则</param>
         /// <returns></returns>
-        [Post("/api/WsDrugImportMaster/GetPageData")]
-        Task<PageGridData<WsDrugImportMaster>> GetPageData(PageDataOptions request);
+        [Post("/api/Sys_User/Login")]
+        Task<ApiResult> Login(LoginInfo request);
     }
 }

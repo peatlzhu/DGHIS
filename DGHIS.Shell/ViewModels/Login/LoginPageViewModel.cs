@@ -19,6 +19,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using DGHIS.Entity.DomainModels;
+using VOL.Entity.DomainModels;
+using Newtonsoft.Json;
+using Common.Utility;
 
 namespace DGHIS.Shell.ViewModels.Login
 {
@@ -66,14 +70,14 @@ namespace DGHIS.Shell.ViewModels.Login
         /// <summary>
         /// 登录命令
         /// </summary>
-        public DelegateCommand<string> LoginCommand => new DelegateCommand<string>(async (pwd) =>
+        public DelegateCommand<PasswordBox> LoginCommand => new DelegateCommand<PasswordBox>(async (pwd) =>
         {
             if (string.IsNullOrWhiteSpace(CurrentUser.Name))
             {
                 Alert("请输入用户名！");
                 return;
             }
-            if (string.IsNullOrWhiteSpace(pwd))
+            if (string.IsNullOrWhiteSpace(pwd.Password))
             {
                 AlertPopup("请输入密码！");
                 return;
@@ -84,22 +88,41 @@ namespace DGHIS.Shell.ViewModels.Login
             //开发环境模拟登录，正式环境调接口
             if (ConfigurationManager.AppSettings["Development"].CastTo<bool>())
             {
+                //UserContext = new UserContext
+                //{
+                //    Token = new UserToken { AccessToken = "这是访问token", RefreshToken = "这是刷新token" }
+                //};
+                //AuthHttpClient.SetHttpClient(baseUrl, UserContext.Token.AccessToken);
+                string token = "这是访问token";
                 UserContext = new UserContext
                 {
-                    Token = new UserToken { AccessToken = "这是访问token", RefreshToken = "这是刷新token" }
+                    Token = token,                 
+                    WanIp = NetHelper.WANIP
                 };
-                AuthHttpClient.SetHttpClient(baseUrl, UserContext.Token.AccessToken);
+                AuthHttpClient.SetHttpClient(baseUrl, token);
             }
             else
             {
-                var response = await RestService.For<ILoginApi>(baseUrl).Login(CurrentUser);
-                if (!response.Succeeded)
+                //var response = await RestService.For<ILoginApi>(baseUrl).Login(CurrentUser);
+                //if (!response.Succeeded)
+                //{
+                //    Alert(response.Message);
+                //    return;
+                //}
+                //UserContext = response.Data;
+                //AuthHttpClient.SetHttpClient(baseUrl, response.Data.Token);
+
+                var response = await RestService.For<ISystemUserApi>(baseUrl).Login(new LoginInfo { UserName = CurrentUser.Name, Password = pwd.Password, VerificationCode = "123", UUID = "111" });
+                var tokenData = response.Data as dynamic;
+                string token = tokenData.token;
+                AuthHttpClient.SetHttpClient(baseUrl, token);
+                UserContext = new UserContext
                 {
-                    Alert(response.Message);
-                    return;
-                }
-                UserContext = response.Data;
-                AuthHttpClient.SetHttpClient(baseUrl, response.Data.Token.AccessToken);
+                    Token = token,
+                    UserName = tokenData.userName,
+                    UserImage = tokenData.Img,
+                    WanIp = NetHelper.WANIP
+                };
             }
             ShellSwitcher.Switch<LoginWindow, MainWindow>();
         });

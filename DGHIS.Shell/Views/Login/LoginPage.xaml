@@ -154,7 +154,7 @@
                                                             Height="60"
                                                             IsDefault="True"
                                                             IsEnabled="{Binding IsEnabledLogin,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                                             Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=password,Path=Password}" 
+                                                             Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=password}" 
                                                             Style="{DynamicResource ButtonLoginStyle}">
                             <Grid>
                                 <StackPanel Orientation="Horizontal"

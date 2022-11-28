@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DGHIS.Shell.Views" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
+             d:Background="White"
              d:DesignHeight="450" d:DesignWidth="800">
     <StatusBar Background="Transparent"
                    BorderBrush="Gray"               
@@ -12,10 +13,14 @@
         <StatusBarItem>
             <WrapPanel>
                 <TextBlock Margin="5,0,0,0"
+                             FontWeight="Bold"
+                             Foreground="{DynamicResource EMRCPOE.StatusBarItem.Foreground}"
                                Text="IP:" />
                 <TextBlock Width="120"
                                Margin="5,0,0,0"
-                               Text="172.168.1.104"                             
+                             FontWeight="Bold"
+                                Foreground="{DynamicResource EMRCPOE.StatusBarItem.Foreground}"
+                               Text="{Binding CurrentUser.WanIp}"                             
                                />            
             </WrapPanel>
         </StatusBarItem>     
@@ -82,24 +87,26 @@
                         </i:Interaction.Triggers>
                 </TextBlock>
        
-                <TextBlock Margin="0,0,0,0"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Text="V"
+                        <TextBlock                       
+                               Text="Version:"
                                FontWeight="Bold"
-                               Foreground="{DynamicResource EMRCPOE.StatusBarItem.Foreground}" />
-                <TextBlock Margin="0,0,15,0"
+                             HorizontalAlignment="Center"
                                VerticalAlignment="Center"
+                               Foreground="{DynamicResource EMRCPOE.StatusBarItem.Foreground}" />
+                        <TextBox Margin="0,0,15,0"                               
                                Cursor="Hand"
+                               IsReadOnly="True"
+                               BorderThickness="0"
+                               TextWrapping="Wrap"
+                                  HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Background="Transparent"
                                MouseLeftButtonDown="Version_MouseLeftButtonDown"
                                Text="{Binding CurrentUser.Token}"
                                FontWeight="Bold"
-                               Foreground="{DynamicResource EMRCPOE.StatusBarItem.Foreground}">                 
-                </TextBlock>
-    
-                <TextBlock Margin="0,0,2,0"
-                               VerticalAlignment="Center"
-                               Text="{Binding Identity.ApplicationInfo.Service.Basic}" />
+                               Foreground="{DynamicResource EMRCPOE.StatusBarItem.Foreground}">
+                        </TextBox>
+                 
             </WrapPanel>
         </StatusBarItem>
     </StatusBar>

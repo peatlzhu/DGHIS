@@ -40,6 +40,13 @@ namespace DGHIS.Shell.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
+        private int _warningCount=1;
+        public int WarningCount
+        {
+            get { return _warningCount; }
+            set { SetProperty(ref _warningCount, value); }
+        }
+
         /// <summary>
         /// 当前登录用戶
         /// </summary>

@@ -21,6 +21,7 @@ using DGHIS.StoreManage.Views;
 using DGHIS.StoreManage.Models;
 using Prism.Services.Dialogs;
 using DGHIS.Core.Threading;
+using DGHIS.Entity.DomainModels;
 
 namespace DGHIS.StoreManage.ViewModels
 {
@@ -145,13 +146,13 @@ namespace DGHIS.StoreManage.ViewModels
             {
                 if (!IsDevelopment)
                 {
-                    var request = this.GetQueryRules(Query);
-                    var response = await RestService.For<IReservationApi>(AuthClient).GetPageingData(request);
-                    if (response.Succeeded)
-                    {
-                        PageData = response.Data.Rows;
-                        this.PagingData.Total = response.Data.Total;
-                    }
+                    //var request = this.GetQueryRules(Query);
+                    var response = await RestService.For<IWsDrugImportMasterApi>(AuthClient).GetPageData(new PageDataOptions { });
+                    //if (response.Succeeded)
+                    //{
+                    //    PageData = response.Data.Rows;
+                    //    this.PagingData.Total = response.Data.Total;
+                    //}
                     return response;
                 }
                 else

@@ -1,4 +1,5 @@
 ﻿using DGHIS.Core.Enums;
+using DGHIS.Core.Threading;
 using DGHIS.Core.ViewModels;
 using DGHIS.Data;
 using DGHIS.OutpatientSystem.Views;
@@ -29,7 +30,8 @@ namespace DGHIS.RegisterManagement.ViewModels
         public RegisterListViewModel(IContainerExtension container) : base(container)
         {
             PagingData.PageSize = 20;
-            Application.Current.Dispatcher.InvokeAsync(async () => await BindPagingData(), DispatcherPriority.Render);
+            DispatcherExtension.RunOnUIThreadAsync(BindPagingData);
+            //Dispatcher.CurrentDispatcher.InvokeAsync(async () => await BindPagingData(), DispatcherPriority.Render); 
         }
 
 

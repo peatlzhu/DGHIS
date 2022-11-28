@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace DGHIS.Core.Models
 {
     /// <summary>
@@ -42,16 +43,19 @@ namespace DGHIS.Core.Models
         [BindDescription("挂号时间", ShowScheme.普通文本, "150*", 8, "")]
         public DateTime ReservationTime { get; set; }
 
+      
         /// <summary>
         /// 病人姓名
-        /// </summary>
+        /// </summary>     
         [BindDescription("病人姓名", ShowScheme.普通文本, "80*", 3, "")]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// 性別
-        /// </summary>
-        [BindDescription("性別", ShowScheme.普通文本, "80*", 4, "")]
+        public string Name
+        {
+            get;set;   
+        }
+            /// <summary>
+            /// 性別
+            /// </summary>
+            [BindDescription("性別", ShowScheme.普通文本, "80*", 4, "")]
         public int Gender { get; set; }
 
         /// <summary>
@@ -76,5 +80,7 @@ namespace DGHIS.Core.Models
         /// </summary>
         [BindDescription("有效期", ShowScheme.普通文本, "100*", 6, "")]
         public string Expire { get; set; }
+
+     
     }
 }

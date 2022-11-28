@@ -71,6 +71,7 @@ namespace DGHIS.StoreManage.ViewModels
         {
             await SetInputBusyAsync(async () => {
                 var current = this.GetContext<ReservationOutputDto>();
+              
                 if (current == null)
                 {
                     if (!IsDevelopment)

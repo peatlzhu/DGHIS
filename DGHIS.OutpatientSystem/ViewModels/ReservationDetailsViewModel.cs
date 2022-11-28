@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 namespace DGHIS.OutpatientSystem.ViewModels
 {
     /// <summary>
-    /// 掛號記錄詳情
+    /// 挂号记录详情
     /// </summary>
     public class ReservationDetailsViewModel : BaseViewModel
     {
         /// <summary>
-        /// 掛號記錄詳情
+        /// 挂号记录详情
         /// </summary>
         /// <param name="container"></param>
         public ReservationDetailsViewModel(IContainerExtension container) : base(container)

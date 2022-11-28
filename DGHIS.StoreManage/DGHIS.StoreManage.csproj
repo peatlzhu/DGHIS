@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DGHIS.Core\DGHIS.Core.csproj" />
+    <ProjectReference Include="..\DGHIS.Entity\DGHIS.Entity.csproj" />
   </ItemGroup>
 
   <ItemGroup>

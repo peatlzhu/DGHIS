@@ -19,13 +19,13 @@ using System.Threading.Tasks;
 namespace DGHIS.Core.Apis
 {
     /// <summary>
-    /// 登錄接口
+    /// 登录接口
     /// </summary>
     [Headers("User-Agent: DGHIS.WPF-Client")]
     public interface ILoginApi
     {
         /// <summary>
-        /// 用戶登錄
+        /// 用戶登录
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>

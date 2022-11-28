@@ -162,7 +162,7 @@
                                Foreground="{DynamicResource EMRCPOE.StatusBarItem.Background}"
                                Style="{DynamicResource TextBlockAppIcons}" />
                         <TextBlock FontSize="22" FontWeight="Bold" Foreground="#FFFFFFFF" Margin="10 2 0 0" HorizontalAlignment="Right" Text="{Binding CurrentUser.HospitalName}" />
-                        </WrapPanel>
+                    </WrapPanel>               
                     <WrapPanel Margin="0 5 0 0">
                         <TextBlock Margin="2"
                                HorizontalAlignment="Center"
@@ -173,9 +173,18 @@
                                Style="{DynamicResource TextBlockAppIcons}" />
                         <TextBlock FontSize="14" Foreground="#FFFFFFFF" Margin="10 2 0 0" Text="{Binding CurrentUser.ShowText}" />
                     </WrapPanel>
-                </ItemsControl>
-            <StackPanel Orientation="Horizontal" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top">
-                <Button Style="{StaticResource ButtonCustom}" Width="30" Height="30" Cursor="Hand" >
+                </ItemsControl>               
+                <StackPanel  Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Top">
+                    <StackPanel  Orientation="Horizontal" Margin="10 10 " HorizontalAlignment="Right" VerticalAlignment="Top" >
+                        <hc:Badge Value="{Binding WarningCount}"   Style="{StaticResource BadgeDanger}">
+                            <ToggleButton IsChecked="{Binding IsOpen,ElementName=DrawerRight}"  Cursor="Hand" Style="{StaticResource ToggleButtonCustom}" Width="30" Height="30">
+                                <Border>
+                                    <Path Margin="6" Fill="#212121" Stretch="Uniform" Data="{StaticResource WarningGeometry}"/>
+                                </Border>
+                            </ToggleButton>
+                        </hc:Badge>
+                    </StackPanel>
+                    <Button Style="{StaticResource ButtonCustom}" Width="30" Height="30" Cursor="Hand" >
                     <Border>
                         <Path Margin="6" Fill="#212121" Stretch="Uniform" Data="{StaticResource ConfigGeometry}"/>
                     </Border>
@@ -198,6 +207,18 @@
         </hc:RoutedEventTrigger>
     </hc:Interaction.Triggers>
     <Grid>
+        <hc:Drawer Name="DrawerRight" MaskCanClose="False">
+            <Border Background="{DynamicResource RegionBrush}" Width="300" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource BorderBrush}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Margin="10,0,0,0" Text="系统消息" Style="{StaticResource TextBlockTitle}" HorizontalAlignment="Left"/>
+                    <Button Command="hc:ControlCommands.Close" Grid.Row="0" HorizontalAlignment="Right" Foreground="{DynamicResource PrimaryTextBrush}" Style="{StaticResource ButtonIcon}" hc:IconElement.Geometry="{StaticResource DeleteFillCircleGeometry}"/>
+                </Grid>
+            </Border>
+        </hc:Drawer>
         <Grid Panel.ZIndex="9999" >
             <Mask:LoadingWait   x:Name="maskGrid" Visibility="Collapsed" />
         </Grid>

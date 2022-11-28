@@ -70,9 +70,9 @@ namespace DGHIS.OutpatientSystem.ViewModels
         protected async override Task SaveCommand()
         {
             await SetInputBusyAsync(async () => {
-                var current = this.GetContext<ReservationOutputDto>();
+                var current = this.GetContext<ReservationOutputDto>();             
                 if (current == null)
-                {
+                {                 
                     if (!IsDevelopment)
                     {
                         var response = await RestService.For<IReservationApi>(AuthClient).Add(Dto);
