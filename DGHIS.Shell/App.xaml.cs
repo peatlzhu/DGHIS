@@ -39,10 +39,19 @@ namespace DGHIS.Shell
 			return Container.Resolve<LoginWindow>();
 		}
 
-		protected override void RegisterTypes(IContainerRegistry containerRegistry)
-		{           
-            IMapper mapper= AutoMapperConfig.RegisterMappings().CreateMapper();
+        /// <summary>
+        /// 注册AutoMapper
+        /// </summary>
+        /// <param name="containerRegistry"></param>
+        private  void RegisterAutoMapper(IContainerRegistry containerRegistry)
+        {
+            IMapper mapper = AutoMapperConfig.RegisterMappings().CreateMapper();
             containerRegistry.RegisterInstance(mapper);
+        }
+
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+		{
+            RegisterAutoMapper(containerRegistry);
             containerRegistry.RegisterSingleton<PageManager>();
 			containerRegistry.RegisterSingleton<UserControlManager>();
 			Type[] pages = AppDomainAllAssemblyFinder.FindAll<Page>();

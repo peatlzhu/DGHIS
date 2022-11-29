@@ -24,7 +24,7 @@ namespace DGHIS.StoreManage.ViewModels
         /// 新增预约挂号业务处理构造函数
         /// </summary>
         /// <param name="container"></param>
-        public AddOrEditImportViewModel(IContainerExtension container,IMapper mapper) : base(container)
+        public AddOrEditImportViewModel(IContainerExtension container,IMapper mapper) : base(container)      
         {
             this._mapper = mapper; 
             InitData();
@@ -40,18 +40,18 @@ namespace DGHIS.StoreManage.ViewModels
             if (current != null)
             {
                 Dto = _mapper.Map<ReservationInputDto>(current);
-                Dto = new ReservationInputDto
-                {
-                    DepartmentID = current.DepartmentID,
-                    DepartmentName = current.DepartmentName,
-                    DoctorName = current.DoctorName,
-                    Gender = current.Gender,
-                    Index = current.Index,
-                    BusinessNumber = current.BusinessNumber,
-                    Name = current.Name,
-                    ReservationTime = current.ReservationTime,
-                    Expire=current.Expire
-                };
+                //Dto = new ReservationInputDto
+                //{
+                //    DepartmentID = current.DepartmentID,
+                //    DepartmentName = current.DepartmentName,
+                //    DoctorName = current.DoctorName,
+                //    Gender = current.Gender,
+                //    Index = current.Index,
+                //    BusinessNumber = current.BusinessNumber,
+                //    Name = current.Name,
+                //    ReservationTime = current.ReservationTime,
+                //    Expire=current.Expire
+                //};  //删除此代码,改用AutoMapper自动映射
             }
         }
 
