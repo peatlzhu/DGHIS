@@ -9,6 +9,7 @@ using DGHIS.Core.ViewModels;
 using KWT.Core.Aop;
 using Prism.Ioc;
 using Refit;
+using AutoMapper;
 
 namespace DGHIS.OutpatientSystem.ViewModels
 {
@@ -18,12 +19,14 @@ namespace DGHIS.OutpatientSystem.ViewModels
     /// </summary>
     public class AddOrEditReservationViewModel : BaseDialogPageViewModel
     {
+       IMapper _mapper;
         /// <summary>
         /// 新增预约挂号业务处理构造函数
         /// </summary>
         /// <param name="container"></param>
-        public AddOrEditReservationViewModel(IContainerExtension container) : base(container)
+        public AddOrEditReservationViewModel(IContainerExtension container,IMapper mapper) : base(container)
         {
+            this._mapper = mapper;
             InitData();
         }
 
@@ -36,18 +39,19 @@ namespace DGHIS.OutpatientSystem.ViewModels
             //不爲null表示处于编辑模式
             if (current != null)
             {
-                Dto = new ReservationInputDto
-                {
-                    DepartmentID = current.DepartmentID,
-                    DepartmentName = current.DepartmentName,
-                    DoctorName = current.DoctorName,
-                    Gender = current.Gender,
-                    Index = current.Index,
-                    BusinessNumber = current.BusinessNumber,
-                    Name = current.Name,
-                    ReservationTime = current.ReservationTime,
-                    Expire=current.Expire
-                };
+                Dto = _mapper.Map<ReservationInputDto>(current);
+                //Dto = new ReservationInputDto
+                //{
+                //    DepartmentID = current.DepartmentID,
+                //    DepartmentName = current.DepartmentName,
+                //    DoctorName = current.DoctorName,
+                //    Gender = current.Gender,
+                //    Index = current.Index,
+                //    BusinessNumber = current.BusinessNumber,
+                //    Name = current.Name,
+                //    ReservationTime = current.ReservationTime,
+                //    Expire=current.Expire
+                //};
             }
         }
 

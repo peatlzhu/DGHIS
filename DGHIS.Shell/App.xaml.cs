@@ -19,6 +19,8 @@ using DGHIS.OutpatientSystem;
 using DGHIS.OutpatientSystem.Views;
 using DGHIS.OutpatientSystem.ViewModels;
 using Prism.Mvvm;
+using DGHIS.Core.AutoMapper;
+using AutoMapper;
 
 namespace DGHIS.Shell
 {
@@ -26,8 +28,8 @@ namespace DGHIS.Shell
 	{
 		protected override void OnStartup(StartupEventArgs e)
 		{
-			base.OnStartup(e);
-			DispatcherUnhandledException += App_DispatcherUnhandledException;
+			base.OnStartup(e);       
+            DispatcherUnhandledException += App_DispatcherUnhandledException;
 			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 			TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
 		}
@@ -38,8 +40,10 @@ namespace DGHIS.Shell
 		}
 
 		protected override void RegisterTypes(IContainerRegistry containerRegistry)
-		{
-			containerRegistry.RegisterSingleton<PageManager>();
+		{           
+            IMapper mapper= AutoMapperConfig.RegisterMappings().CreateMapper();
+            containerRegistry.RegisterInstance(mapper);
+            containerRegistry.RegisterSingleton<PageManager>();
 			containerRegistry.RegisterSingleton<UserControlManager>();
 			Type[] pages = AppDomainAllAssemblyFinder.FindAll<Page>();
 			var pageManager = containerRegistry.GetContainer().Resolve<PageManager>();

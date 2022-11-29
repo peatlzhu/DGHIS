@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using DGHIS.Core.Apis;
 using DGHIS.Core.Models;
 using DGHIS.Core.ViewModels;
@@ -18,12 +19,14 @@ namespace DGHIS.StoreManage.ViewModels
     /// </summary>
     public class AddOrEditImportViewModel : BaseDialogPageViewModel
     {
+        IMapper _mapper;
         /// <summary>
         /// 新增预约挂号业务处理构造函数
         /// </summary>
         /// <param name="container"></param>
-        public AddOrEditImportViewModel(IContainerExtension container) : base(container)
+        public AddOrEditImportViewModel(IContainerExtension container,IMapper mapper) : base(container)
         {
+            this._mapper = mapper; 
             InitData();
         }
 
@@ -36,6 +39,7 @@ namespace DGHIS.StoreManage.ViewModels
             //不爲null表示处于编辑模式
             if (current != null)
             {
+                Dto = _mapper.Map<ReservationInputDto>(current);
                 Dto = new ReservationInputDto
                 {
                     DepartmentID = current.DepartmentID,
