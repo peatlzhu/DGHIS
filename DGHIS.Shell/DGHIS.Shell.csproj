@@ -60,4 +60,10 @@
     <Resource Include="images\success.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Nlog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

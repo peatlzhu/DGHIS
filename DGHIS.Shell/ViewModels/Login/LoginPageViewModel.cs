@@ -81,7 +81,7 @@ namespace DGHIS.Shell.ViewModels.Login
             {
                 AlertPopup("请输入密码！");
                 return;
-            }
+            }        
             var baseUrl = ConfigurationManager.AppSettings["BaseUrl"];
             if (string.IsNullOrEmpty(baseUrl)) throw new Exception("未配置BaseUrl节点！");
 

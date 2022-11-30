@@ -21,14 +21,15 @@ using DGHIS.OutpatientSystem.ViewModels;
 using Prism.Mvvm;
 using DGHIS.Core.AutoMapper;
 using AutoMapper;
+using DGHIS.Core.Helpers.LogHelper;
 
 namespace DGHIS.Shell
 {
     public partial class App : PrismApplication
-	{
-		protected override void OnStartup(StartupEventArgs e)
+    {     
+        protected override void OnStartup(StartupEventArgs e)
 		{
-			base.OnStartup(e);       
+			base.OnStartup(e);          
             DispatcherUnhandledException += App_DispatcherUnhandledException;
 			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 			TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
@@ -39,6 +40,7 @@ namespace DGHIS.Shell
 			return Container.Resolve<LoginWindow>();
 		}
 
+
         /// <summary>
         /// 注册AutoMapper
         /// </summary>
@@ -46,12 +48,12 @@ namespace DGHIS.Shell
         private  void RegisterAutoMapper(IContainerRegistry containerRegistry)
         {
             IMapper mapper = AutoMapperConfig.RegisterMappings().CreateMapper();
-            containerRegistry.RegisterInstance(mapper);
-        }
+            containerRegistry.RegisterInstance(mapper);   
+        }     
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
 		{
-            RegisterAutoMapper(containerRegistry);
+            RegisterAutoMapper(containerRegistry);          
             containerRegistry.RegisterSingleton<PageManager>();
 			containerRegistry.RegisterSingleton<UserControlManager>();
 			Type[] pages = AppDomainAllAssemblyFinder.FindAll<Page>();
@@ -148,8 +150,9 @@ namespace DGHIS.Shell
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
-        {
+        {         
             Exception ex = e.Exception;
+            Logger.Default.Error("UI线程未捕获异常", ex);
             MessageBox.Show($"程序运行出错，原因：{ex.Message}-{ex.InnerException?.Message}", "系统提示", MessageBoxButton.OK, MessageBoxImage.Error);
             e.Handled = true;//表示异常已处理，可以继续运行
         }
@@ -162,6 +165,7 @@ namespace DGHIS.Shell
         private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
         {
             Exception ex = e.Exception;
+            Logger.Default.Error("Task任务异常", ex);
             MessageBox.Show($"执行任务出错，原因：{ex.Message}", "系统提示", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
