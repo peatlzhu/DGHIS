@@ -152,7 +152,7 @@ namespace DGHIS.Shell
         private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {         
             Exception ex = e.Exception;
-            Logger.Default.Error("UI线程未捕获异常", ex);
+            Logger.Error("UI线程未捕获异常", ex);
             MessageBox.Show($"程序运行出错，原因：{ex.Message}-{ex.InnerException?.Message}", "系统提示", MessageBoxButton.OK, MessageBoxImage.Error);
             e.Handled = true;//表示异常已处理，可以继续运行
         }
@@ -165,7 +165,7 @@ namespace DGHIS.Shell
         private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
         {
             Exception ex = e.Exception;
-            Logger.Default.Error("Task任务异常", ex);
+            Logger.Error("Task任务异常", ex);
             MessageBox.Show($"执行任务出错，原因：{ex.Message}", "系统提示", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }

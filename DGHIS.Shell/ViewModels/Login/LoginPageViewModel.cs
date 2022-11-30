@@ -23,6 +23,7 @@ using DGHIS.Entity.DomainModels;
 using VOL.Entity.DomainModels;
 using Newtonsoft.Json;
 using Common.Utility;
+using DGHIS.Core.Helpers.LogHelper;
 
 namespace DGHIS.Shell.ViewModels.Login
 {
@@ -81,7 +82,8 @@ namespace DGHIS.Shell.ViewModels.Login
             {
                 AlertPopup("请输入密码！");
                 return;
-            }        
+            }
+            Logger.Info("登录成功");        
             var baseUrl = ConfigurationManager.AppSettings["BaseUrl"];
             if (string.IsNullOrEmpty(baseUrl)) throw new Exception("未配置BaseUrl节点！");
 
