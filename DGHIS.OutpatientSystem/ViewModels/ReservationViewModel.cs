@@ -26,8 +26,15 @@ namespace DGHIS.OutpatientSystem.ViewModels
     /// <summary>
     /// 预约挂号业务处理
     /// </summary>
-    public class ReservationViewModel : BaseManagePageViewModel
+    public class ReservationViewModel : BaseManageUserControlViewModel
     {
+        private string _title = "预约挂号";
+        public string Title
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
+        }
+
         /// <summary>
         /// 
         /// 构造函数
@@ -104,33 +111,42 @@ namespace DGHIS.OutpatientSystem.ViewModels
             this.ShowDialog(typeof(ReservationDetails).FullName, IconEnum.Detail, "挂号记录详细信息", args: item, disableArea: true);
         });
 
+        ///// <summary>
+        ///// 页面加载事件
+        ///// </summary>
+        ///// <param name="page"></param>
+        //public async override void PageLoaded(Page page)
+        //{
+        //   await  Task.FromResult(true);
+        // //  await BindPagingData();
+        //}
+
         /// <summary>
-        /// 页面加载事件
+        /// 用户控件加载事件
         /// </summary>
         /// <param name="page"></param>
-        public async override void PageLoaded(Page page)
+        public async override void UserControlLoaded(UserControl page)
         {
-           await  Task.FromResult(true);
-         //  await BindPagingData();
+            await Task.FromResult(true);
         }
 
- 
+
         /// <summary>
         /// 绑定分页数据
         /// </summary>
-       // [WaitComplete]
+        // [WaitComplete]
         protected override async  Task<object> BindPagingData()
         {
             return await SetBusyAsync(async () =>
             {
                 if (!IsDevelopment)
                 {
-                    var request = this.GetQueryRules(Query);
-                    var response = await RestService.For<IReservationApi>(AuthClient).GetPageingData(request);
-                    if (response.Succeeded)
+                    var request = this.GetQueryParameter(Query);
+                    var response = await RestService.For<IAdministrationDicApi>(AuthClient).GetPageDataAsync(request);
+                    if (string.IsNullOrEmpty(response.msg))
                     {
-                        PageData = response.Data.Rows;
-                        this.PagingData.Total = response.Data.Total;
+                        PageData = response.rows;
+                        this.PagingData.Total = response.total;
                     }
                     return response;
                 }

@@ -9,7 +9,6 @@ using DGHIS.Json;
 using DGHIS.Reflection;
 using Prism.Events;
 using Prism.Ioc;
-//using Prism.Logging;
 using Prism.Mvvm;
 using Prism.Regions;
 using Prism.Services.Dialogs;
@@ -20,6 +19,13 @@ using System.Net.Http;
 using System.Reflection;
 using DGHIS.Core.Extensions;
 using System.Threading.Tasks;
+using DGHIS.Response;
+using DGHIS.Core.Apis;
+using System.Collections.Generic;
+using DGHIS.Entity.DomainModels;
+using DGHIS.Entity.DomainModels.Core;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace DGHIS.Core.ViewModels
 {
@@ -40,7 +46,6 @@ namespace DGHIS.Core.ViewModels
             Container = container;
             EventAggregator = container.Resolve<IEventAggregator>();
             _dialogService = container.Resolve<IDialogService>();
-           // Logger = container.Resolve<ILoggerFacade>();
             _regionManager = container.Resolve<IRegionManager>();
         }
 
@@ -196,6 +201,30 @@ namespace DGHIS.Core.ViewModels
                 EventAggregator.GetEvent<CloseDialogEvent>().Publish(pars);
             }
         }
+
+        /// <summary>
+        /// 获取查询规则
+        /// </summary>
+        /// <param name="query">当前查询对象</param>
+        /// <returns></returns>
+        protected  string GetQueryWhereParameters(object query)
+        {
+            PageDataOptions request = new PageDataOptions();
+            var pros = query.GetType().GetProperties();
+            var rules = pros.Select(x => x.GetAttribute<QueryRuleAttribute>()).Where(x => x != null).ToList();
+
+            List<SearchParameters> searchParametersList = new List<SearchParameters>();
+            rules.ForEach(x =>
+            {
+                var p = pros.FirstOrDefault(m => m.GetAttribute<QueryRuleAttribute>().FieldName == x.FieldName && m.GetAttribute<QueryRuleAttribute>().Operate == x.Operate);
+                if (!IsIgnore(query, p))
+                {
+                    searchParametersList.Add(new SearchParameters { Name = x.FieldName,  Value = p.GetValue(query).ToString(), DisplayType = x.Operate.ToOperateCode()});
+                }
+            });
+          return  searchParametersList.ToJson();  
+        }
+
 
         /// <summary>
         /// 获取查询规则
@@ -364,8 +393,18 @@ namespace DGHIS.Core.ViewModels
                 SetProperty(ref _isBusy,value);
             }
         }
-      
+
 
         #endregion 加载与执行中 Create by DG
+
+
+        /// <summary>
+        /// 2021.07.04增加code="-1"强制返回，具体使用见：后台开发文档->后台基础代码扩展实现
+        /// </summary>
+        /// <returns></returns>
+        public bool CheckResponseResult(ApiResult apitResult)
+        {
+            return !apitResult.Status || apitResult.Code == "-1";
+        }
     }
 }

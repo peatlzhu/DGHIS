@@ -6,10 +6,10 @@
              xmlns:local="clr-namespace:DGHIS.StoreManage.Controls" xmlns:dd="clr-namespace:DGHIS.Core.Controls.DropDown;assembly=DGHIS.Core"
              xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d" d:Background="White"
-             d:DesignHeight="450" d:DesignWidth="1444">
+             d:DesignHeight="80" d:DesignWidth="1678">
     <WrapPanel Name="root" VerticalAlignment="Center" >
-        <Label Content="序号" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" />
-        <TextBox Width="120" VerticalAlignment="Center" Style="{StaticResource TextBox.Normal}" Text="{Binding Query.Index}" />
+        <Label Content="给药途径名称" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" />
+        <TextBox Width="120" VerticalAlignment="Center" Style="{StaticResource TextBox.Normal}" Text="{Binding Query.AdministrationName}" />
         <Label Content="科室" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20,0,10,0" />
         <dd:DepartmentComboBox VerticalAlignment="Center" Style="{StaticResource ComboBoxPlusBaseStyle}" MinWidth="120" SelectedValue="{Binding Query.DepartmentID}" />
         <Label Content="性別" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20,0,10,0" />

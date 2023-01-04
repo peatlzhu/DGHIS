@@ -1,4 +1,5 @@
-﻿using DGHIS.Core.Modules;
+﻿using DGHIS.Core.Apis;
+using DGHIS.Core.Modules;
 using DGHIS.Extensions;
 using DGHIS.Filter;
 using Prism.Commands;
@@ -224,6 +225,25 @@ namespace DGHIS.Core.ViewModels
                 PageIndex = pageIndex,
                 PageSize = pageSize,
                 SortConditions = new SortCondition[] { new SortCondition { ListSortDirection = ListSortDirection.Descending, SortField = "Id" } }
+            };
+            return request;
+        }
+
+        /// <summary>
+        /// 获取查询规则
+        /// </summary>
+        /// <param name="query">当前查询对象</param>
+        /// <returns></returns>
+        protected  PageDataOptions GetQueryParameter(object query)
+        {
+            var pageIndex = 0 >= PagingData.PageIndex ? 1 : PagingData.PageIndex;
+            var pageSize = 0 >= PagingData.PageSize ? 10 : PagingData.PageSize;
+            var queryWhere = base.GetQueryWhereParameters(query);
+           var request = new PageDataOptions
+           {
+                Wheres=queryWhere,
+                Page = pageIndex,
+                Rows = pageSize                            
             };
             return request;
         }

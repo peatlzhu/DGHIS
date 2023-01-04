@@ -1,4 +1,6 @@
-﻿using DGHIS.Core.Modules;
+﻿using DGHIS.Constants;
+using DGHIS.Core.Modules;
+using DGHIS.SystemManage.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,15 +16,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DGHIS.OutpatientSystem.Views
+namespace DGHIS.SystemManage.Controls
 {
     /// <summary>
-    /// SpotReservation.xaml 的交互逻辑
+    /// AccountQuery.xaml 的交互逻辑
     /// </summary>
-    [Function("现场挂号")]
-    public partial class SpotReservation : UserControl
+    [QueryLocator(RegionNames.QueryRegin, typeof(AccountList))]
+    public partial class AccountQuery : UserControl
     {
-        public SpotReservation()
+        public AccountQuery()
         {
             InitializeComponent();
         }

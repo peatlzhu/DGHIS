@@ -29,42 +29,42 @@ namespace DGHIS.Filter
         /// <summary>
         /// 等于
         /// </summary>
-        [OperateCode("equal")]
+        [OperateCode("=")]
         [Description("等于")]
         Equal = 3,
 
         /// <summary>
         /// 不等于
         /// </summary>
-        [OperateCode("notequal")]
+        [OperateCode("!=")]
         [Description("不等于")]
         NotEqual = 4,
 
         /// <summary>
         /// 小于
         /// </summary>
-        [OperateCode("less")]
+        [OperateCode("<")]
         [Description("小于")]
         Less = 5,
 
         /// <summary>
         /// 小于或等于
         /// </summary>
-        [OperateCode("lessorequal")]
+        [OperateCode("<=")]
         [Description("小于等于")]
         LessOrEqual = 6,
 
         /// <summary>
         /// 大于
         /// </summary>
-        [OperateCode("greater")]
+        [OperateCode(">")]
         [Description("大于")]
         Greater = 7,
 
         /// <summary>
         /// 大于或等于
         /// </summary>
-        [OperateCode("greaterorequal")]
+        [OperateCode(">=")]
         [Description("大于等于")]
         GreaterOrEqual = 8,
 
@@ -85,14 +85,14 @@ namespace DGHIS.Filter
         /// <summary>
         /// 字符串的包含（相似）
         /// </summary>
-        [OperateCode("contains")]
+        [OperateCode("like")]
         [Description("包含")]
         Contains = 11,
 
         /// <summary>
         /// 字符串的不包含
         /// </summary>
-        [OperateCode("notcontains")]
+        [OperateCode("not like")]
         [Description("不包含")]
         NotContains = 12
     }

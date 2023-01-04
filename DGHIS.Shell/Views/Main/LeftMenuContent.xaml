@@ -4,32 +4,137 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DGHIS.Shell.Views"
+             xmlns:module="clr-namespace:DGHIS.Core.Modules;assembly=DGHIS.Core"        
              mc:Ignorable="d" 
              d:Background="White"
-                xmlns:prism="http://prismlibrary.com/" 
-              prism:ViewModelLocator.AutoWireViewModel="True"     
-              xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:prism="http://prismlibrary.com/" 
+             xmlns:p="clr-namespace:DGHIS.Core.Extensions;assembly=DGHIS.Core"
+             prism:ViewModelLocator.AutoWireViewModel="True"   
+             xmlns:pu="clr-namespace:Panuon.WPF.UI;assembly=Panuon.WPF.UI"   
+             xmlns:rs="clr-namespace:Panuon.WPF.UI.Resources;assembly=Panuon.WPF.UI"
+             xmlns:hc="https://handyorg.github.io/handycontrol"          
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>          
+            <ResourceDictionary.MergedDictionaries>            
+            <ResourceDictionary Source="pack://application:,,,/Panuon.WPF.UI;component/Styles/TreeViewStyle.xaml" />
+            <ResourceDictionary Source="pack://application:,,,/Panuon.WPF.UI;component/Styles/TreeViewItemStyle.xaml" />
+        </ResourceDictionary.MergedDictionaries>
+            <FontFamily x:Key="PanuonIconFont">/Panuon.WPF.UI;component/Resources/Fonts/#PanuonIcon</FontFamily>
+            <Style TargetType="TreeView"
+           BasedOn="{StaticResource {x:Static rs:StyleKeys.TreeViewStyle}}" />
+            <Style TargetType="TreeViewItem"
+               BasedOn="{StaticResource {x:Static rs:StyleKeys.TreeViewItemStyle}}" >
+                <Setter Property="pu:TreeViewItemHelper.Icon"
+                    Value="&#xe90f;" />              
+            </Style>
+            <Style x:Key="{ComponentResourceKey ResourceId=ToggleArrowToggleButtonStyle, TypeInTargetAssembly={x:Type pu:TreeViewHelper}}"
+           TargetType="ToggleButton"
+           BasedOn="{StaticResource {x:Static rs:StyleKeys.ToggleButtonStyle}}">
+                <Setter Property="Foreground"
+                Value="{Binding Path=(pu:TreeViewItemHelper.ToggleBrush), RelativeSource={RelativeSource AncestorType=TreeViewItem}, Mode=OneWay}" />
+                <Setter Property="pu:ToggleButtonHelper.HoverBackground"
+                Value="{x:Null}" />
+                <Setter Property="pu:ToggleButtonHelper.CheckedBackground"
+                Value="{x:Null}" />
+                <Setter Property="pu:ToggleButtonHelper.HoverForeground"
+                Value="{Binding Path=(pu:TreeViewItemHelper.HoverToggleBrush), RelativeSource={RelativeSource AncestorType=TreeViewItem}, Mode=OneWay}" />
+                <Setter Property="pu:ToggleButtonHelper.CheckedForeground"
+                Value="{Binding Path=(pu:TreeViewItemHelper.ExpandedToggleBrush), RelativeSource={RelativeSource AncestorType=TreeViewItem}, Mode=OneWay}" />
+                <Setter Property="pu:ToggleButtonHelper.CheckedContent"
+                Value="&#xe94a;" />
+                <Setter Property="Background"
+                Value="Transparent" />
+                <Setter Property="Padding"
+                Value="2,0" />
+                <Setter Property="FontFamily"
+                Value="/Panuon.WPF.UI;component/Resources/Fonts/#PanuonIcon" />
+                <Setter Property="FontSize"
+                Value="{Binding FontSize, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+                <Setter Property="Content"
+                Value="&#xe949;" />
+                <Style.Triggers>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding IsExpanded, RelativeSource={RelativeSource AncestorType=TreeViewItem}, Mode=OneWay}"
+                               Value="False" />
+                            <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=TreeViewItem}, Mode=OneWay}"
+                               Value="True" />
+                            <Condition Binding="{Binding Path=(pu:TreeViewItemHelper.SelectedToggleBrush), Converter={StaticResource {x:Static rs:ConverterKeys.IsNonnullConverter}}, RelativeSource={RelativeSource AncestorType=TreeViewItem}, Mode=OneWay}"
+                               Value="True" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="Foreground"
+                        Value="{Binding Path=(pu:TreeViewItemHelper.SelectedToggleBrush), RelativeSource={RelativeSource AncestorType=TreeViewItem}, Mode=OneWay}" />
+                    </MultiDataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="MainMenuTreeViewStyle"
+               TargetType="TreeView"
+              BasedOn="{StaticResource {x:Type TreeView}}">                        
+                <Setter Property="pu:IconHelper.FontFamily"
+                    Value="{StaticResource PanuonIconFont}" />
+                <Setter Property="pu:IconHelper.FontSize"
+                    Value="20" />           
+                <Setter Property="pu:IconHelper.Margin"
+                    Value="8,0" />              
+                <Setter Property="pu:TreeViewHelper.ItemsBorderBrush"
+                    Value="Transparent" />
+                <Setter Property="pu:TreeViewHelper.ItemsSelectedBorderBrush"
+                    Value="#C62F2F" />
+                <Setter Property="pu:TreeViewHelper.ItemsSelectedBackground"
+                    Value="#E8E8E8" />
+                <Setter Property="pu:TreeViewHelper.ItemsBorderThickness"
+                    Value="3,0,0,0" />
+                <Setter Property="pu:TreeViewHelper.ItemsPadding"
+                    Value="0" />
+                <Setter Property="pu:TreeViewHelper.ItemsHeight"
+                    Value="35" />
+                <Setter Property="BorderThickness"
+                    Value="0" />
+                <Setter Property="Padding"
+                    Value="0" />             
+                <!--<Setter Property="pu:TreeViewHelper.ItemsIcon" Value="&#xe90f;" />-->
+                <Setter Property="pu:TreeViewHelper.ToggleArrowToggleButtonStyle"
+                        Value="{StaticResource {ComponentResourceKey ResourceId=ToggleArrowToggleButtonStyle, TypeInTargetAssembly={x:Type pu:TreeViewHelper}}}" />
+                <!--<Setter Property="pu:TreeViewHelper.ToggleArrowToggleButtonStyle"
+                    Value="{x:Null}" />-->
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Border  Style="{StaticResource BorderRegion}" Effect="{StaticResource EffectShadow1}">
-        <StackPanel>
+        <StackPanel>       
             <!--<hc:SearchBar ShowClearButton="True" IsRealTime="True" SearchStarted="SearchBar_OnSearchStarted" Style="{StaticResource SearchBarPlus}"  hc:InfoElement.Placeholder="项目名称" Margin="4" Tag="{Binding ElementName=sideMenu}"/>-->
-            <hc:TransitioningContentControl  TransitionMode="Fade" >
-                <hc:SideMenu BorderThickness="0" x:Name="sideMenu" Width="200" Margin="10" Background="Transparent"   >                
+        
+            <hc:TransitioningContentControl  TransitionMode="Fade" >        
+                    <!--<TreeView Width="200" Margin="16"  ItemsSource="{Binding MainMenuItemsSource}"  Style="{StaticResource MainMenuTreeViewStyle}">
+                        <TreeView.ItemTemplate>
+                            <HierarchicalDataTemplate ItemsSource="{Binding Children}"   >
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Name}" FontSize="13"/>
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                        </TreeView.ItemTemplate>   
+                    </TreeView>-->
+
+                <hc:SideMenu BorderThickness="0" x:Name="sideMenu" Width="200" Margin="10" Background="Transparent" ExpandMode="Freedom" >
                     <hc:Interaction.Triggers>
                         <hc:EventTrigger EventName="SelectionChanged">
-                            <hc:EventToCommand Command="{Binding SwitchItemCmd}" PassEventArgsToCommand="True" />
+                            <hc:EventToCommand Command="{Binding SwitchItemCmd}"  PassEventArgsToCommand="True" />
                         </hc:EventTrigger>
                     </hc:Interaction.Triggers>
-                    <hc:SideMenuItem  Header="门诊挂号" Background="Transparent">
+                    <hc:SideMenuItem  Header="门诊挂号" Background="Transparent" >
                         <hc:SideMenuItem.Icon>
                             <Image Source="/DGHIS.Wpf;component/images/DevOps/DevOps-Overview.png" Width="24" Height="24"/>
                         </hc:SideMenuItem.Icon>
-                        <hc:SideMenuItem Background="Transparent" Header="预约挂号" >
+                         <hc:SideMenuItem  
+                            Visibility="{p:AuthToVisibility Tag='Charge/' }"
+                            Background="Transparent" Header="预约挂号" CommandParameter="DGHIS.OutpatientSystem.Views.Reservation">
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf2cb;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
-                        <hc:SideMenuItem Background="Transparent" Header="现场挂号"   >
+                        <hc:SideMenuItem Background="Transparent" Header="现场挂号"  CommandParameter="DGHIS.OutpatientSystem.Views.SpotReservation"  >
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf246;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
@@ -74,17 +179,17 @@
                         <hc:SideMenuItem.Icon>
                             <Image Source="/DGHIS.Wpf;component/images/DevOps/DevOps-Repos.png" Width="24" Height="24"/>
                         </hc:SideMenuItem.Icon>
-                        <hc:SideMenuItem Background="Transparent"  Header="账户管理"   >
+                        <hc:SideMenuItem Background="Transparent"  Header="用户管理"   >
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf30e;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
-                        <hc:SideMenuItem Background="Transparent" Header="提交">
+                        <hc:SideMenuItem Background="Transparent" Header="权限管理">
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf293;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
-                        <hc:SideMenuItem Background="Transparent" Header="推送">
+                        <hc:SideMenuItem Background="Transparent" Header="角色管理">
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf298;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>

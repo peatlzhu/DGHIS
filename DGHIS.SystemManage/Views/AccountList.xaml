@@ -1,4 +1,4 @@
-﻿<Page x:Class="DGHIS.SystemManage.Views.AccountList"
+﻿<UserControl x:Class="DGHIS.SystemManage.Views.AccountList"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,12 +6,53 @@
       xmlns:local="clr-namespace:DGHIS.SystemManage.Views"
       xmlns:prism="http://prismlibrary.com/" 
       xmlns:b="http://schemas.microsoft.com/xaml/behaviors" 
+      xmlns:search="clr-namespace:DGHIS.Core.Controls.Layouts;assembly=DGHIS.Core"
+      xmlns:p="clr-namespace:DGHIS.Core.Controls.DataGrids;assembly=DGHIS.Core" 
+      xmlns:c="clr-namespace:DGHIS.Core.Controls.DropDown;assembly=DGHIS.Core"
       prism:ViewModelLocator.AutoWireViewModel="True" 
       mc:Ignorable="d" 
+      x:Name="userControl"
+      xmlns:hc="https://handyorg.github.io/handycontrol" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AccountList" Background="White">
+      Background="White">
 
-    <Grid>
-        <Label Content="賬戶管理"></Label>
-    </Grid>
-</Page>
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Loaded" >
+            <b:InvokeCommandAction Command="{Binding LoadedCommand}" CommandParameter="{Binding ElementName=userControl}" />
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
+    <UserControl.Resources>
+        <DataTemplate x:Key="OperateKey">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Button Name="btnEdit" Content="编辑" Margin="10 0 0 0"   Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding Path=DataContext, ElementName=btnEdit}"  Style="{StaticResource ButtonWarning.Small}"  hc:IconElement.Geometry="{StaticResource  DocumentGeometry}"/>
+                <Button Name="btnDelete" Content="删除" Margin="10 0 0 0"  Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" Style="{StaticResource buttonDeleteStyle}" CommandParameter="{Binding Path=DataContext, ElementName=btnDelete}"   hc:IconElement.Geometry="{StaticResource  DeleteGeometry}" />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="Status">
+            <c:StatusComboBox Name="cboStatus" SelectedValue="{Binding Status, Mode=TwoWay, UpdateSourceTrigger=Explicit,Converter={StaticResource EnumToIntConverter}}">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="SelectionChanged" >
+                        <b:InvokeCommandAction Command="{Binding DataContext.SelectionChangedCommand,RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding ElementName=cboStatus}"/>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </c:StatusComboBox>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Border Style="{StaticResource BorderRegion}" Effect="{StaticResource EffectShadow1}" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid VerticalAlignment="Top" >
+                <search:FunctionArea AddButtonText="新增用户" />
+            </Grid>
+            <Grid  Row="1" VerticalAlignment="Top">
+                <Border Style="{StaticResource BorderRegion}" Effect="{StaticResource EffectShadow1}" >
+                    <p:PagingDataGrid EnableRowNumber="false" Name="ucDataGrid" OperatingKey="OperateKey" OperatingWidth="150*" EnableSelectAll="True"   PageData="{Binding PageData}" PagingData="{Binding PagingData}" />
+                </Border>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

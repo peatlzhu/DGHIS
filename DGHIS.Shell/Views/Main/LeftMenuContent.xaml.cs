@@ -23,7 +23,7 @@ namespace DGHIS.Shell.Views
     {
         public LeftMenuContent()
         {
-            InitializeComponent();
+            InitializeComponent();           
         }   
 
     }

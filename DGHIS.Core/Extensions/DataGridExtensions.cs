@@ -54,7 +54,7 @@ namespace DGHIS.Core.Extensions
                             DataGridTemplateColumn val = new DataGridTemplateColumn();
                             val.Header = list[i].HeaderName;
                             val.Width = list[i].Width;
-                            val.CellTemplate = page.FindResource(list[i].ResourceKey) as DataTemplate;
+                            val.CellTemplate = frameworkElement.FindResource(list[i].ResourceKey) as DataTemplate;
                             dataGrid.Columns.Insert(i + index, val);
                         }
                         break;

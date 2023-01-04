@@ -133,7 +133,7 @@ namespace DGHIS.Filter
         public static string ToOperateCode(this FilterOperate operate)
         {
             Type type = operate.GetType();
-            MemberInfo[] members = type.GetMember(operate.CastTo<string>());
+            MemberInfo[] members = type.GetMember(operate.ToString());
             if (members.Length == 0)
             {
                 return null;

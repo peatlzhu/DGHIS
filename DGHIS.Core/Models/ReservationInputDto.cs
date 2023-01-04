@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DGHIS.Entity.DomainModels.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -9,22 +10,22 @@ using System.Threading.Tasks;
 namespace DGHIS.Core.Models
 {
     /// <summary>
-    /// 預約掛號輸入DTO
+    /// 预约挂号输入入DTO
     /// </summary>
     public class ReservationInputDto : BaseModel
     {
         /// <summary>
-        /// 叫號順序
+        /// 叫号顺序
         /// </summary>
         public string Index { get; set; }
 
         /// <summary>
-        /// 流水號
+        /// 流水号
         /// </summary>
         public string BusinessNumber { get; set; }
 
         /// <summary>
-        /// 掛號時間
+        /// 挂号时间
         /// </summary>
         public DateTime ReservationTime { get; set; }
 
@@ -45,12 +46,12 @@ namespace DGHIS.Core.Models
         public int Gender { get; set; }
 
         /// <summary>
-        /// 掛號科室
+        /// 挂号科室
         /// </summary>
         public string DepartmentName { get; set; }
 
         /// <summary>
-        /// 診治醫師
+        /// 诊治医生
         /// </summary>
         public string DoctorName { get; set; }
 

@@ -32,9 +32,14 @@ namespace DGHIS.Core.Identity
         public string CurrentDepartmentName { get; set; } = "重症医学科(ICU)";
 
         /// <summary>
+        /// 登录用户
+        /// </summary>
+        public string UserName { get; set; }
+
+        /// <summary>
         /// 当前登录用户姓名
         /// </summary>
-        public string UserName { get; set; } = "张三封";
+        public string UserTrueName { get; set; } = "张三封";
 
         /// <summary>
         /// 当前用户角色ID集合
@@ -54,7 +59,7 @@ namespace DGHIS.Core.Identity
         /// <summary>
         /// 显示
         /// </summary>
-        public string ShowText => "用户：" + UserName + "，科室：【" + CurrentDepartmentName + "】";
+        public string ShowText => "用户：" + UserTrueName + "，科室：【" + CurrentDepartmentName + "】";
 
         /// <summary>
         /// 用户头像

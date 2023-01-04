@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DGHIS.Core.Models
+namespace DGHIS.Entity.DomainModels.Core
 {
-    public class BaseModel: IDataErrorInfo
+    public class BaseModel: Prism.Mvvm.BindableBase,IDataErrorInfo
     {
         /// <summary>
         /// 错误集合
@@ -21,7 +21,7 @@ namespace DGHIS.Core.Models
         /// </summary>
         public string Error
         {
-            get => string.Join("', '", new List<string>(dataErrors.Values));
+            get => string.Join(",", new List<string>(dataErrors.Values));
         }
         
         /// <summary>

@@ -127,8 +127,8 @@
                         </Style>
                         <HierarchicalDataTemplate x:Key="{DataTemplateKey {x:Type cmmod:MenuEntity}}" DataType="{x:Type cmmod:MenuEntity}" ItemsSource="{Binding Path=Children}">
                             <TextBlock Text="{Binding Path=Name}" />
-                        </HierarchicalDataTemplate>
-                    </ResourceDictionary>
+                        </HierarchicalDataTemplate>                        
+                        </ResourceDictionary>
                 </Menu.Resources>
                 <Menu.Style>
                     <Style TargetType="{x:Type Menu}">
@@ -149,7 +149,7 @@
                         </Setter>
                     </Style>
                 </Menu.Style>
-            </Menu>
+            </Menu> 
             </StackPanel>
             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right"> 
                 <ItemsControl HorizontalAlignment="Right">

@@ -83,50 +83,50 @@ namespace DGHIS.Shell.ViewModels.Login
                 AlertPopup("请输入密码！");
                 return;
             }
-            Logger.Info("登录成功");        
             var baseUrl = ConfigurationManager.AppSettings["BaseUrl"];
             if (string.IsNullOrEmpty(baseUrl)) throw new Exception("未配置BaseUrl节点！");
 
-            //开发环境模拟登录，正式环境调接口
-            if (ConfigurationManager.AppSettings["Development"].CastTo<bool>())
-            {
-                //UserContext = new UserContext
-                //{
-                //    Token = new UserToken { AccessToken = "这是访问token", RefreshToken = "这是刷新token" }
-                //};
-                //AuthHttpClient.SetHttpClient(baseUrl, UserContext.Token.AccessToken);
-                string token = "这是访问token";
-                UserContext = new UserContext
+            await SetBusyAsync(async () => {
+                //开发环境模拟登录，正式环境调接口
+                if (ConfigurationManager.AppSettings["Development"].CastTo<bool>())
                 {
-                    Token = token,                 
-                    WanIp = NetHelper.WANIP
-                };
-                AuthHttpClient.SetHttpClient(baseUrl, token);
-            }
-            else
-            {
-                //var response = await RestService.For<ILoginApi>(baseUrl).Login(CurrentUser);
-                //if (!response.Succeeded)
-                //{
-                //    Alert(response.Message);
-                //    return;
-                //}
-                //UserContext = response.Data;
-                //AuthHttpClient.SetHttpClient(baseUrl, response.Data.Token);
+                    //UserContext = new UserContext
+                    //{
+                    //    Token = new UserToken { AccessToken = "这是访问token", RefreshToken = "这是刷新token" }
+                    //};
+                    //AuthHttpClient.SetHttpClient(baseUrl, UserContext.Token.AccessToken);
+                    string token = "这是访问token";
+                    UserContext = new UserContext
+                    {
+                        Token = token,
+                        WanIp = NetHelper.WANIP
+                    };
+                    AuthHttpClient.SetHttpClient(baseUrl, token);
+                }
+                else
+                {
+                    var response = await RestService.For<ISys_UserApi>(baseUrl).LoginPostAsync(new LoginInfo { UserName = CurrentUser.Name, Password = pwd.Password, VerificationCode = "123", UUID = "111" });
+                    if (CheckResponseResult(response))
+                    {
+                        Alert(response.Message);
+                        return;
+                    }
+                    Logger.Info($"{CurrentUser.Name}登录成功");
+                    var tokenData = response.Data as dynamic;
+                    string token = tokenData.token;
+                    AuthHttpClient.SetHttpClient(baseUrl, token);
+                    UserContext = new UserContext
+                    {
+                        Token = token,
+                        UserName = tokenData.userName,
+                        UserTrueName = tokenData.userTrueName,
+                        UserImage = tokenData.Img,
+                        WanIp = NetHelper.WANIP
+                    };
+                }
+                ShellSwitcher.Switch<LoginWindow, MainWindow>();
+            });
 
-                var response = await RestService.For<ISystemUserApi>(baseUrl).Login(new LoginInfo { UserName = CurrentUser.Name, Password = pwd.Password, VerificationCode = "123", UUID = "111" });
-                var tokenData = response.Data as dynamic;
-                string token = tokenData.token;
-                AuthHttpClient.SetHttpClient(baseUrl, token);
-                UserContext = new UserContext
-                {
-                    Token = token,
-                    UserName = tokenData.userName,
-                    UserImage = tokenData.Img,
-                    WanIp = NetHelper.WANIP
-                };
-            }
-            ShellSwitcher.Switch<LoginWindow, MainWindow>();
-        });
+        },(p)=> !IsBusy);
     }
 }

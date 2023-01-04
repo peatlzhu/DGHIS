@@ -25,9 +25,9 @@
     
     <DataTemplate x:Key="OperationKey">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <Button Name="btnView" Content="详情"  ToolTip="详情" Command="{Binding DataContext.ViewDetailsCommand, RelativeSource={RelativeSource AncestorType=Page}}" CommandParameter="{Binding Path=DataContext, ElementName=btnView}"  Style="{StaticResource ButtonInfo.Small}"  hc:IconElement.Geometry="{StaticResource EyeOpenGeometry}"/>
-            <Button Name="btnEdit" Content="编辑" Margin="10 0 0 0"   Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=Page}}" CommandParameter="{Binding Path=DataContext, ElementName=btnEdit}"  Style="{StaticResource ButtonWarning.Small}"  hc:IconElement.Geometry="{StaticResource  DocumentGeometry}"/>
-            <Button Name="btnDelete" Content="删除" Margin="10 0 0 0"  Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=Page}}" Style="{StaticResource buttonDeleteStyle}" CommandParameter="{Binding Path=DataContext, ElementName=btnDelete}"   hc:IconElement.Geometry="{StaticResource  DeleteGeometry}" />
+            <Button Name="btnView" Content="详情"  ToolTip="详情" Command="{Binding DataContext.ViewDetailsCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding Path=DataContext, ElementName=btnView}"  Style="{StaticResource ButtonInfo.Small}"  hc:IconElement.Geometry="{StaticResource EyeOpenGeometry}"/>
+            <Button Name="btnEdit" Content="编辑" Margin="10 0 0 0"   Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding Path=DataContext, ElementName=btnEdit}"  Style="{StaticResource ButtonWarning.Small}"  hc:IconElement.Geometry="{StaticResource  DocumentGeometry}"/>
+            <Button Name="btnDelete" Content="删除" Margin="10 0 0 0"  Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" Style="{StaticResource buttonDeleteStyle}" CommandParameter="{Binding Path=DataContext, ElementName=btnDelete}"   hc:IconElement.Geometry="{StaticResource  DeleteGeometry}" />
         </StackPanel>
     </DataTemplate>
 </ResourceDictionary>

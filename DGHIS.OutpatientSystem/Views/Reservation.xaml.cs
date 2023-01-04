@@ -20,7 +20,7 @@ namespace DGHIS.OutpatientSystem.Views
     /// Reservation.xaml 的交互逻辑
     /// </summary>
     [Function("预约挂号")]
-    public partial class Reservation : Page
+    public partial class Reservation : UserControl
     {
         public Reservation()
         {

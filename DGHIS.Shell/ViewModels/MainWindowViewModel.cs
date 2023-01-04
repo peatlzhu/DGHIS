@@ -1,4 +1,5 @@
 ﻿using DGHIS.Core.Events;
+using DGHIS.Core.Helpers.LogHelper;
 using DGHIS.Core.Identity;
 using DGHIS.Core.Modules;
 using DGHIS.Core.ViewModels;
@@ -61,6 +62,7 @@ namespace DGHIS.Shell.ViewModels
             {
                 if (d.Result == ButtonResult.Yes)
                 {
+                    Logger.Info($"{CurrentUser.UserName}登出");
                     Application.Current.Shutdown(0);
                 } 
                 e.Cancel = true;
@@ -94,9 +96,8 @@ namespace DGHIS.Shell.ViewModels
         /// </summary>
         public DelegateCommand<MenuEntity> SelectedIntoPage => new DelegateCommand<MenuEntity>((m) =>
         {
-            RegionManager.RequestNavigate("ContentRegion",m.TargetName);
-         //   Navigate("ContentRegion", m.TargetName);
-        });
+            RegionManager.RequestNavigate("ContentRegion", m.TargetName);
+         });
 
         private DelegateCommand<object> _ClosedCmd;
         public DelegateCommand<object> ClosedCmd =>
@@ -148,13 +149,18 @@ namespace DGHIS.Shell.ViewModels
         private void InitMenus()
         {
             MainMenuItemsSource = new ObservableCollection<MenuEntity>();
+            MenuEntity entity6 = new MenuEntity { Id = 19, Name = "报表管理", IsGroup = true, Children = new List<MenuEntity>() };
+            entity6.Children.Add(new MenuEntity { Id = 20, Name = "测试报表", TargetName = "DGHIS.ReportManage.Views.CefReport" });
+            MainMenuItemsSource.Add(entity6);
+
             MenuEntity entity5 = new MenuEntity { Id = 15, Name = "库房管理", IsGroup = true, Children = new List<MenuEntity>() };
             entity5.Children.Add(new MenuEntity { Id = 16, Name = "入库管理",TargetName= "DGHIS.StoreManage.Views.ImportMaster" });
             entity5.Children.Add(new MenuEntity { Id = 17, Name = "出库管理", TargetName = "DGHIS.StoreManage.Views.ExportMaster" });
+            entity5.Children.Add(new MenuEntity { Id = 18, Name = "测试报表", TargetName = "DGHIS.StoreManage.Views.TestReport" });
             MainMenuItemsSource.Add(entity5);
 
             MenuEntity entity4 = new MenuEntity { Id = 1, Name = "门诊挂号", IsGroup = true, Children = new List<MenuEntity>() };
-            entity4.Children.Add(new MenuEntity { Id = 3, Name = "预约挂号" });
+            entity4.Children.Add(new MenuEntity { Id = 3, Name = "预约挂号", TargetName = "DGHIS.OutpatientSystem.Views.Reservation" });
             entity4.Children.Add(new MenuEntity { Id = 4, Name = "现场挂号" });
             MainMenuItemsSource.Add(entity4);
             MenuEntity entity3 = new MenuEntity { Id = 2, Name = "挂号管理", IsGroup = true, Children = new List<MenuEntity>() };
@@ -164,7 +170,7 @@ namespace DGHIS.Shell.ViewModels
             entity3.Children.Add(new MenuEntity { Id = 8, Name = "号源管理" });
             MainMenuItemsSource.Add(entity3);
             MenuEntity entity2 = new MenuEntity { Id = 9, Name = "系统管理", IsGroup = true, Children = new List<MenuEntity>() };
-            entity2.Children.Add(new MenuEntity { Id = 10, Name = "账户管理" });
+            entity2.Children.Add(new MenuEntity { Id = 10, Name = "用户管理", TargetName = "DGHIS.SystemManage.Views.AccountList" });
             entity2.Children.Add(new MenuEntity { Id = 15, Name = "角色管理" });
             entity2.Children.Add(new MenuEntity { Id = 16, Name = "权限管理" });
             entity2.Children.Add(new MenuEntity { Id = 11, Name = "科室管理" });

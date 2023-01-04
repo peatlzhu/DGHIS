@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DGHIS.StoreManage.Models
+namespace DGHIS.OutpatientSystem.Models
 {
-    public class ImportMasterCondition
+    public class AccountCondition
     {
-        [QueryRule(FilterOperate.Contains, "AdministrationName")]
-        public string AdministrationName
+        [QueryRule(FilterOperate.Contains, "Index", "", FilterOperate.And)]
+        public string Index
         {
             get;
             set;

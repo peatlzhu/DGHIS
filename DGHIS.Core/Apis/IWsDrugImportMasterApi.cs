@@ -21,18 +21,18 @@ using System.Threading.Tasks;
 
 namespace DGHIS.Core.Apis
 {
-    /// <summary>
-    /// 预约挂号接口
-    /// </summary>
-    [Headers("User-Agent: DGHIS.WPF-Client")]
-    public interface IWsDrugImportMasterApi
-    {
-        /// <summary>
-        /// 分页查询接口
-        /// </summary>
-        /// <param name="request">请求规则</param>
-        /// <returns></returns>
-        [Post("/api/WsDrugImportMaster/GetPageData")]
-        Task<PageGridData<WsDrugImportMaster>> GetPageData(PageDataOptions request);
-    }
+    ///// <summary>
+    ///// 预约挂号接口
+    ///// </summary>
+    //[Headers("User-Agent: DGHIS.WPF-Client")]
+    //public interface IWsDrugImportMasterApi
+    //{
+    //    /// <summary>
+    //    /// 分页查询接口
+    //    /// </summary>
+    //    /// <param name="request">请求规则</param>
+    //    /// <returns></returns>
+    //    [Post("/api/WsDrugImportMaster/GetPageData")]
+    //    Task<PageGridData<WsDrugImportMaster>> GetPageData(PageDataOptions request);
+    //}
 }

@@ -20,7 +20,7 @@ namespace DGHIS.RegisterManagement.Views
     /// RegisterList.xaml 的交互逻辑
     /// </summary>
     [Function("挂号时段设置")]
-    public partial class RegisterList : Page
+    public partial class RegisterList : UserControl
     {
         public RegisterList()
         {

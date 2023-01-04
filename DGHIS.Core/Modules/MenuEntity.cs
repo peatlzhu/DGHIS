@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DGHIS.Core.Modules
 {
     /// <summary>
-    /// 功能菜單實體對象
+    /// 功能菜單
     /// </summary>
     public class MenuEntity
     {

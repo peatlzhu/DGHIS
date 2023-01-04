@@ -138,6 +138,7 @@ namespace DGHIS.Shell
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             Exception ex = e.ExceptionObject as Exception;
+            Logger.Error("非UI线程未捕获异常", ex);
             if (ex != null)
             {
                 MessageBox.Show($"程序组件出错，原因：{ex.Message}", "系统提示", MessageBoxButton.OK, MessageBoxImage.Error);

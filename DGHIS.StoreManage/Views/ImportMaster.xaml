@@ -49,7 +49,7 @@
             </Grid>
             <Grid  Row="1" VerticalAlignment="Top">
                 <Border Style="{StaticResource BorderRegion}" Effect="{StaticResource EffectShadow1}" >
-                    <p:PagingDataGrid EnableRowNumber="false" Name="ucDataGrid" OperatingKey="OperateKey" OperatingWidth="150*" EnableSelectAll="True"   PageData="{Binding PageData}" PagingData="{Binding PagingData}" />
+                    <p:PagingDataGrid  EnableRowNumber="false" Name="ucDataGrid" OperatingKey="OperateKey" OperatingWidth="150*" EnableSelectAll="True"   PageData="{Binding PageData}" PagingData="{Binding PagingData}" />
                 </Border>
             </Grid>
         </Grid>

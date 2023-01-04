@@ -141,18 +141,18 @@ namespace DGHIS.StoreManage.ViewModels
         /// </summary>
         // [WaitComplete]
         protected override async Task<object> BindPagingData()
-        {
+        {          
             return await SetBusyAsync(async () =>
             {
                 if (!IsDevelopment)
                 {
-                    //var request = this.GetQueryRules(Query);
-                    var response = await RestService.For<IWsDrugImportMasterApi>(AuthClient).GetPageData(new PageDataOptions { });
-                    //if (response.Succeeded)
-                    //{
-                    //    PageData = response.Data.Rows;
-                    //    this.PagingData.Total = response.Data.Total;
-                    //}
+                    var request = this.GetQueryParameter(Query);
+                    var response = await RestService.For<IAdministrationDicApi>(AuthClient).GetPageDataAsync(request);
+                    if (string.IsNullOrEmpty(response.msg))
+                    {
+                        PageData = response.rows;
+                        this.PagingData.Total = response.total;
+                    }
                     return response;
                 }
                 else

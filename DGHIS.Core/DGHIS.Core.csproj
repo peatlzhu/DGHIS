@@ -13,6 +13,7 @@
     <PackageReference Include="AspectInjector" Version="2.8.0" />
     <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="HandyControl" Version="3.3.0" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.9" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
@@ -21,6 +22,10 @@
     <PackageReference Include="Prism.Core" Version="8.1.97" />
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
     <PackageReference Include="Refit" Version="5.1.67" />
+    <PackageReference Include="System.CodeDom" Version="7.0.0" />
+    <PackageReference Include="System.Diagnostics.Tools" Version="4.3.0" />
+    <PackageReference Include="System.IO" Version="4.3.0" />
+    <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
     <PackageReference Include="Unity.Microsoft.Logging" Version="5.11.1" />
   </ItemGroup>
 
