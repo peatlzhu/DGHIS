@@ -95,7 +95,7 @@
                         </Grid>
                         <Border Name="saveArea" Grid.Row="2" CornerRadius="0,0,20,20" Background="#EBEDF4" Height="56" DockPanel.Dock="Bottom">
                             <Grid Margin="0,0,20,0">
-                                <Button Content="取消" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,90,0"  Command="{Binding CloseDialogCommand}" />
+                                <Button Content="取消" IsCancel="True" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,90,0"  Command="{Binding CloseDialogCommand}" />
                                 <Button Name="SaveButton" IsDefault="True" Content="保存" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,0,0,0" Command="{Binding SaveCommand}" />
                             </Grid>
                         </Border>

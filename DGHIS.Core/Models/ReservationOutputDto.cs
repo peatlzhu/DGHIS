@@ -1,4 +1,5 @@
-﻿using DGHIS.Core.Enums;
+﻿//using DGHIS.Core.Enums;
+using DGHIS.Core.Enums;
 using DGHIS.Data;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,7 @@ namespace DGHIS.Core.Models
         /// 挂号时间
         /// </summary>
         [BindDescription("挂号时间", ShowScheme.普通文本, "150*", 8, "")]
-        public DateTime ReservationTime { get; set; }
+        public DateTime? ReservationTime { get; set; }
 
       
         /// <summary>

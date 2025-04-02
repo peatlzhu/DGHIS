@@ -27,7 +27,7 @@ namespace DGHIS.Core.Models
         /// <summary>
         /// 挂号时间
         /// </summary>
-        public DateTime ReservationTime { get; set; }
+        public DateTime? ReservationTime { get; set; }
 
       
         /// <summary>

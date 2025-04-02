@@ -23,7 +23,7 @@
         <StackPanel>
             <hc:TextBox ShowClearButton="True"  hc:InfoElement.Title="科室" Width="140"  Text="{Binding Dto.DepartmentName}" ></hc:TextBox>
             <hc:TextBox ShowClearButton="True" hc:InfoElement.Title="医生"  Text="{Binding Dto.DoctorName}" ></hc:TextBox>
-            <hc:TextBox ShowClearButton="True" hc:InfoElement.Title="有效期"  Text="{Binding Dto.Expire}" ></hc:TextBox>
+                <hc:TextBox ShowClearButton="True" hc:InfoElement.Title="有效期"  Text="{Binding Dto.Expire}" ></hc:TextBox>
             <dd:DictionaryComboBox Style="{StaticResource ComboBoxPlusBaseStyle}" DictionaryType="性别"   hc:InfoElement.Title="性别"   SelectedValue="{Binding Dto.Gender}" />
 
         </StackPanel>

@@ -127,14 +127,14 @@
                         <hc:SideMenuItem.Icon>
                             <Image Source="/DGHIS.Wpf;component/images/DevOps/DevOps-Overview.png" Width="24" Height="24"/>
                         </hc:SideMenuItem.Icon>
-                         <hc:SideMenuItem  
-                            Visibility="{p:AuthToVisibility Tag='Charge/' }"
+                         <hc:SideMenuItem                            
                             Background="Transparent" Header="预约挂号" CommandParameter="DGHIS.OutpatientSystem.Views.Reservation">
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf2cb;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>
                         </hc:SideMenuItem>
-                        <hc:SideMenuItem Background="Transparent" Header="现场挂号"  CommandParameter="DGHIS.OutpatientSystem.Views.SpotReservation"  >
+                        <hc:SideMenuItem   Visibility="{p:AuthToVisibility Tag='Charge/' }"
+                                           Background="Transparent" Header="现场挂号"  CommandParameter="DGHIS.OutpatientSystem.Views.SpotReservation"  >
                             <hc:SideMenuItem.Icon>
                                 <TextBlock Text="&#xf246;" Style="{StaticResource TextBlockFabricIcons}"/>
                             </hc:SideMenuItem.Icon>

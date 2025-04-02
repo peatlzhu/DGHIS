@@ -65,7 +65,19 @@ namespace DGHIS.OutpatientSystem.ViewModels
             get { return _dto; }
             set { SetProperty(ref _dto, value); }
         }
-
+        /// <summary>
+        /// 验证数据
+        /// </summary>
+        /// <returns></returns>
+        private bool ValidateFormData()
+        {
+            if (Dto.HasError)
+            {
+                Alert(Dto.Error);
+                return false;
+            }
+            return true;
+        }
         /// <summary>
         /// 新增,编辑保存方法,从viewmodel获取数据保存即可.
         /// </summary>
@@ -73,6 +85,7 @@ namespace DGHIS.OutpatientSystem.ViewModels
       //  [WaitComplete]
         protected async override Task SaveCommand()
         {
+            if (!ValidateFormData()) return;
             await SetInputBusyAsync(async () => {
                 var current = this.GetContext<ReservationOutputDto>();             
                 if (current == null)
